@@ -355,13 +355,13 @@ button:focus {
 }
 
 .header_top .social_icon li a {
-  font-size: 12px;
-  line-height: 30px;
+  font-size: 50px;
+  line-height: 50px;
   color: #cccccc;
-  width: 30px;
-  height: 30px;
+  width: 50px;
+  height: 50px;
   background: #f9f9ff;
-  display: inline-block;
+ 
   text-align: center;
 }
 
@@ -372,11 +372,11 @@ button:focus {
 
 .header_top .top_btn a {
   font-weight: 500;
-  font-size: 12px;
-  line-height: 30px;
-  padding: 0px 32px;
-  background: #f9f9ff;
-  color: #777;
+  font-size: 15px;
+  padding:  8px;
+  background: #00c8e6;
+  color: black;
+  border-bottom-right-radius: 8px;
 }
 
 .header_top .top_btn a:hover {
