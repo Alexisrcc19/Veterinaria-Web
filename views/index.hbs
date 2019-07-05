@@ -25,7 +25,7 @@
         <script id="address-template" type="text/x-handlebars-template"></script>
     </head>
     <body>
-
+{{#if principal}}
         <!--================Header Area =================-->
         <header class="header_area">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -46,10 +46,10 @@
                             <li class="nav-item"><a class="nav-link" href="ministries.html">Foro</a></li>
                             <li class="nav-item submenu dropdown">
                                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
-                                   aria-expanded="false">tema</a>
+                                   aria-expanded="false">mascotas</a>
 
                                 <ul class="dropdown-menu">
-                                    <li class="nav-item"><a class="nav-link" href="event.html">opcion 1</a></li>
+                                    <li class="nav-item"><a class="nav-link" href="/registro">registrar</a></li>
                                     <li class="nav-item"><a class="nav-link" href="event-details.html">opcion 2</a></li>
                                 </ul>
                             </li> 
@@ -73,6 +73,29 @@
             </nav>
         </header>
         <!--================Header Area =================-->
+        {{else}}
+         <header class="header_area">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <a class="navbar-brand logo_h" href="index.html"><img src="../public/images/Logo.png" alt=""></a>
+
+                    <!-- Collect the nav links, forms, and other content for toggling -->
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                        
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                            <li class="nav-item"><a class="nav-link" href="/">regresar</a></li>
+                        
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                            <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+                        </ul>
+                    </div> 
+                </div>
+            </nav>
+        </header>
+        {{/if}}
+        {{#if principal}}
         <!--================banner Area =================-->
         <section class="banner_area d-flex text-center">
             <div class="container align-self-center">
@@ -371,7 +394,10 @@
         </footer>
         <!--================ End footer Area  =================-->
 
-
+{{/if}}
+<section class="banner_area d-flex text-center">
+    
+</section>
         <!-- Optional JavaScript -->
         <!-- jQuery first, then Popper.js, then Bootstrap JS -->
         <script src="../public/javascripts/jquery-3.2.1.min.js"></script>
