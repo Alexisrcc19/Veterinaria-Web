@@ -3,7 +3,6 @@ var type = thinky.type;
 var r = thinky.r;
 var Mascota = thinky.createModel("Mascota", {
     id_mascota: type.string(),
-    id_cliente: type.string(),
     raza: type.string(),
     nombre: type.string(),
     edad: type.string(),
@@ -11,8 +10,10 @@ var Mascota = thinky.createModel("Mascota", {
     });
 
 module.exports = Mascota;
-//var Rol = require('./rol');
-//Veterinario.hasOne(Rol, "rol", "id_veterinario", "id_rol");
+var Historial = require('./historial');
+Mascota.belongsTo(Historial, "mascota", "id_mascota", "id_historial");
+var Cliente = require('./cliente');
+Mascota.belongsTo(Cliente,"mascotaC","id_mascota","id_cliente");
 
 
 

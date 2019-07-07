@@ -14,7 +14,10 @@ var Veterinario = thinky.createModel("Veterinario", {
 
 module.exports = Veterinario;
 var Rol = require('./rol');
-Veterinario.hasOne(Rol, "rol", "id_veterinario", "id_rol");
-
+Veterinario.hasOne(Rol, "veterinarioR", "id_veterinario", "id_rol");
+var Cuenta = require('./cuenta');
+Veterinario.hasOne(Cuenta,"veterianarioC", "id_veterinario","id_cuenta");
+var ConsultaMedica = require('./consultaMedica');
+Veterinario.hasOne(ConsultaMedica, "veterinarioCM","id_veterinario","id_consulta")
 
 

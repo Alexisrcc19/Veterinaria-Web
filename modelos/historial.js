@@ -13,8 +13,9 @@ var Historial = thinky.createModel("Historial", {
 });
 
 module.exports = Historial;
-//var Rol = require('./rol');
-//Veterinario.hasOne(Rol, "rol", "id_veterinario", "id_rol");
-
+var ConsultaMedica = require('./consultaMedica');
+Historial.hasOne(ConsultaMedica, "historial", "id_historial", "id_consulta");
+var Mascota = require('./mascota');
+Historial.hasOne(Mascota, "mascota", "id_historial", "id_mascota");
 
 

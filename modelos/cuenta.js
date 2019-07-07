@@ -10,8 +10,9 @@ var r = thinky.r;
 });
 
 module.exports = Cuenta;
-//var Rol = require('./rol');
-//Veterinario.hasOne(Rol, "rol", "id_veterinario", "id_rol");
-
+var Veterinario = require('./Veterinario');
+Cuenta.belongsTo(Veterinario,"cuenta","id_cuenta","id_veterinario");
+var Cliente = require('./cliente');
+Cuenta.hasOne(Cliente, "cliente", "id_cuenta", "id_cliente");
 
 

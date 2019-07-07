@@ -12,8 +12,13 @@ var Cliente = thinky.createModel("Cliente", {
 });
 
 module.exports = Cliente;
-//var Rol = require('./rol');
-//Veterinario.hasOne(Rol, "rol", "id_veterinario", "id_rol");
-
+var Mascota = require('./mascota');
+Cliente.hasMany(Mascota, "cliente", "id_cliente", "id_mascota");
+var Cita = require('./cita');
+Cliente.hasOne(Cita, "cita", "id_cliente", "id_cita");
+var Pago = require('./pago');
+Cliente.hasMany(Pago, "pago", "id_cliente", "id_pago");
+var Cuenta = require('./cita');
+Cliente.belongsTo(Cuenta, "cuenta", "id_cliente", "id_cuenta");
 
 
