@@ -2,17 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/historial.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/cuenta.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/cita.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/routes/index.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/mascota.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/Veterinario.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/pago.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/rol.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/consultaMedica.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/cliente.js</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

@@ -23,7 +23,50 @@
         <link rel="stylesheet" href="/stylesheets/responsive.css">
     </head>
     <body>
-{{#if principal}}
+        {{#if inicio}}
+<section class="banner_area d-flex text-center">
+
+            <!--================Header Area =================-->
+        <header class="header_area">
+            <nav class="navbar navbar-expand-lg navbar-light">
+                <div class="container">
+                  
+                    <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+
+
+
+
+                        <ul class="nav navbar-nav menu_nav ml-auto">
+                          
+                        </ul>
+                        <ul class="nav navbar-nav navbar-right">
+                        <div class="header_top">
+                <div class="top_btn">
+                    <a href="#">Iniciar Sesion</a>
+                    <a href="/registrarVeterinario">Registrate</a>
+                </div>
+            </div>    
+                        </ul>
+                    </div> 
+                </div>
+            </nav>
+        </header>
+        <!--================Header Area =================-->
+            
+        
+        </section>
+
+
+        {{/if}}
+        {{#if registrarVeterinario}}
+<section class="banner_area d-flex text-center">
+
+        </section>
+
+
+        {{/if}}
+
+        {{#if principal}}
         <!--================Header Area =================-->
         <header class="header_area">
             <nav class="navbar navbar-expand-lg navbar-light">
@@ -33,12 +76,10 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                        <div class="header_top">
-                            <div class="top_btn">
-                                <a href="#">Iniciar Sesion</a>
-                                <a href="#">Registrate</a>
-                            </div>
-                        </div>
+
+
+
+
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item active"><a class="nav-link" href="index.hbs">Pagina principal</a></li> 
                             <li class="nav-item"><a class="nav-link" href="ministries.html">Foro</a></li>
@@ -72,7 +113,7 @@
         </header>
         <!--================Header Area =================-->
         {{else if mascota}}
-         <header class="header_area">
+        <header class="header_area">
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="container">
                     <!-- Brand and toggle get grouped for better mobile display -->
@@ -80,10 +121,10 @@
 
                     <!-- Collect the nav links, forms, and other content for toggling -->
                     <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
-                        
+
                         <ul class="nav navbar-nav menu_nav ml-auto">
                             <li class="nav-item"><a class="nav-link" href="/">regresar</a></li>
-                        
+
                         </ul>
                         <ul class="nav navbar-nav navbar-right">
                             <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
@@ -312,10 +353,10 @@
         </section>
         <!--================Blog Area=================-->
         {{else if mascota}}
-<section class="banner_area d-flex text-center">
-            
+        <section class="banner_area d-flex text-center">
+
         </section>
-{{/if}}
+        {{/if}}
         <!--================ start footer Area  =================-->	
         <footer class="footer-area section_gap">
             <div class="container">
