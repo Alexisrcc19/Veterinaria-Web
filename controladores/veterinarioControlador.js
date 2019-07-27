@@ -6,7 +6,7 @@ class VeterinarioControl {
         cuenta.filter({correo: req.body.correo}).then(function (verificarCuenta) {
             if (verificarCuenta.length >= 1) {
                 req.flash('error', 'la cuenta ya existe');
-                res.redirect('/');
+                res.redirect('/registrarVeterinario');
             } else {
                 var datosV = {
                     cedula: req.body.cedula,

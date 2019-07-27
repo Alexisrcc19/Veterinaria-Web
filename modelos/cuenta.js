@@ -6,6 +6,8 @@ var r = thinky.r;
     usuario: type.string(),
     clave: type.string(),
     id_veterinario: type.string(),
+    id: type.string(),
+    external_id: type.string().default(r.uuid())
     
 
 });

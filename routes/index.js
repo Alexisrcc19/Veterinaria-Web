@@ -5,6 +5,8 @@ var bd = require('../modelos/rol');
 
 var veterinarioControl = require('../controladores/veterinarioControlador');
 var veterinario = new veterinarioControl();
+var cuentaControlador = require('../controladores/CuentaControlador');
+var cuenta = new cuentaControlador();
 
 /* GET home page. */
 function verificar_inicio(req) {
@@ -19,16 +21,20 @@ var sacar = function (req, res, next) {
     }
 };
 router.get('/', function (req, res, next) {
-    if (req.session !== undefined && req.session.cuenta !== undefined ) {
-        res.render('index', {title: "Veterinaria",principal:'principal',  sesion: true, msg: {error: req.flash('error'),info: req.flash('info'), ok: req.flash('success')}});
+    if (req.session !== undefined && req.session.cuenta !== undefined) {
+        res.render('index', {title: "Veterinaria", principal: 'principal', sesion: true, usuario: req.session.cuenta.usuario,
+            msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     } else {
-        res.render('index', {title: 'Medicos',inicio:'inicio', msg: {error: req.flash('error'),info: req.flash('info'), ok: req.flash('success')}});
+        res.render('index', {title: 'Medicos', inicio: 'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     }
 });
-router.get('/registrarVeterinario', function(req, res, next) {
-  res.render('index', { title: 'Registrate', registrarVeterinario: 'registrarVeterinario' });
+router.get('/registrarVeterinario', function (req, res, next) {
+    res.render('index', {title: 'Registrate', registrarVeterinario: 'registrarVeterinario'
+    , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 });
-
-router.post('/registroVeterinario',veterinario.guardar );
-
+//Veterinario
+router.post('/registroVeterinario', veterinario.guardar);
+//inicio de sesion
+router.post('/inicio_sesion', cuenta.iniciar_sesion);
+router.get('/cerrar_sesion', sacar, cuenta.cerrar_sesion);
 module.exports = router;

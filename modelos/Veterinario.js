@@ -2,6 +2,8 @@ var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
 var Veterinario = thinky.createModel("Veterinario", {
+    id: type.string(),
+    external_id: type.string().default(r.uuid()), 
     correo: type.string(),
     nombre: type.string(),
     apellido: type.string(),
