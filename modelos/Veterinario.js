@@ -2,7 +2,6 @@ var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
 var Veterinario = thinky.createModel("Veterinario", {
-    id_veterinario: type.string(),
     correo: type.string(),
     nombre: type.string(),
     apellido: type.string(),
@@ -15,9 +14,9 @@ var Veterinario = thinky.createModel("Veterinario", {
 module.exports = Veterinario;
 var Rol = require('./rol');
 Veterinario.hasOne(Rol, "veterinarioR", "id_veterinario", "id_rol");
-var Cuenta = require('./cuenta');
-Veterinario.hasOne(Cuenta,"veterianarioC", "id_veterinario","id_cuenta");
+var Cuenta = require("./cuenta");
+Veterinario.hasOne(Cuenta, "cuenta", "id", "id_veterinario");;
 var ConsultaMedica = require('./consultaMedica');
-Veterinario.hasOne(ConsultaMedica, "veterinarioCM","id_veterinario","id_consulta")
+Veterinario.hasOne(ConsultaMedica, "veterinarioCM","id_veterinario","id_consulta");
 
 
