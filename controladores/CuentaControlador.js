@@ -17,36 +17,37 @@ class CuentaController {
      * @param {type} res objeto respuesta
      * @returns {undefined} redireccion a paginas
      */
-    
+
     iniciar_sesion(req, res) {
         //var cuenta = new cuentaC();
-        cuentaC.getJoin({veterinario: true}).filter({correo: req.body.correo}).run().then(function (verificar) {
-            if(verificar.length > 0) {
+        cuentaC.getJoin({veterinario: {rol: true}}).filter({correo: req.body.correo}).run().then(function (verificar) {
+            if (verificar.length > 0) {
                 var cuenta = verificar[0];
-                if(cuenta.clave === req.body.clave) {
-                    req.session.cuenta = {external:cuenta.veterinario.external_id,
-                    usuario: cuenta.veterinario.apellidos+" "+cuenta.veterinario.nombres};
-                    res.redirect('/');
-                    console.log(verificar);
-                } else {
-                    req.flash('error', 'Sus credenciales no son las correctas');
-                res.redirect('/');
-                console.log(verificar);
-                }
-                
+                    if (cuenta.clave === req.body.clave) {
+                        req.session.cuenta = {external: cuenta.veterinario.external_id,
+                            usuario: cuenta.veterinario.apellidos + " " + cuenta.veterinario.nombres + " (" + cuenta.veterinario.rol.nombre + ")"};
+                        res.redirect('/');
+                        console.log(verificar);
+                    } else {
+                        req.flash('error', 'Sus credenciales no son las correctas');
+                        res.redirect('/');
+                        console.log(verificar);
+                    }
+
+
             } else {
                 req.flash('error', 'Sus credenciales no son las correctas');
                 res.redirect('/');
                 console.log(verificar);
             }
-            
+
         }).error(function (error) {
             console.log(error);
         });
     }
-    
-    cerrar_sesion(req, res) {        
-        req. session.destroy();        
+
+    cerrar_sesion(req, res) {
+        req.session.destroy();
         res.redirect('/');
     }
 }
