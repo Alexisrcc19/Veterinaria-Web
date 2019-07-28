@@ -10,12 +10,13 @@ var Veterinario = thinky.createModel("Veterinario", {
     direccion: type.string(),
     telefono: type.string(),
     cedula: type.string(),
-    nro_registro: type.string()
+    nro_registro: type.string(),
+    id_rolVeterinario: type.string()
 });
 
 module.exports = Veterinario;
 var Rol = require('./rol');
-Veterinario.hasOne(Rol, "veterinarioR", "id_veterinario", "id_rol");
+Veterinario.belongsTo(Rol, "rol", "id_rolVeterinario", "id");
 var Cuenta = require("./cuenta");
 Veterinario.hasOne(Cuenta, "cuenta", "id", "id_veterinario");;
 var ConsultaMedica = require('./consultaMedica');

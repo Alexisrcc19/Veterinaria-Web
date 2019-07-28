@@ -8,6 +8,8 @@ var cuentaC = require('../modelos/cuenta');
 /**
  * Clase que permite iniciar sesion y cerrar sesion
  */
+
+
 class CuentaController {
     /**
      * Funcion que permite iniciar sesion
@@ -15,6 +17,7 @@ class CuentaController {
      * @param {type} res objeto respuesta
      * @returns {undefined} redireccion a paginas
      */
+    
     iniciar_sesion(req, res) {
         //var cuenta = new cuentaC();
         cuentaC.getJoin({veterinario: true}).filter({correo: req.body.correo}).run().then(function (verificar) {
@@ -47,6 +50,6 @@ class CuentaController {
         res.redirect('/');
     }
 }
-module.exports = CuentaController;
+module.exports = (CuentaController);
 
 

@@ -26,6 +26,19 @@ function validarCedula(cedula) {
     }
 }
 
+function creacionRoles(){
+    var rol = require('../modelos/rol');
+    rol.run().then(function (roles){
+       if(roles.length <= 0){
+           rol.save([{nombre: "veterinario"}, {nombre:"usuario"}]);
+           console.log(roles);
+       } 
+           console.log(roles);
+       
+    }).error(function (error){
+        console.log(error);
+    });
+}
 
 function manejoMensajes(msg) {    
     //console.log(error);
@@ -34,3 +47,4 @@ function manejoMensajes(msg) {
     mensaje += '</div>';
     $("#error").html(mensaje);
 }
+module.exports= {creacionRoles};

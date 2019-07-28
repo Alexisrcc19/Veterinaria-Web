@@ -8,6 +8,8 @@ var veterinario = new veterinarioControl();
 var cuentaControlador = require('../controladores/CuentaControlador');
 var cuenta = new cuentaControlador();
 
+var utilidades = require('../controladores/utilidades');
+
 /* GET home page. */
 function verificar_inicio(req) {
     return (req.session !== undefined && req.session.cuenta !== undefined);
@@ -21,13 +23,16 @@ var sacar = function (req, res, next) {
     }
 };
 router.get('/', function (req, res, next) {
+    utilidades.creacionRoles();
     if (req.session !== undefined && req.session.cuenta !== undefined) {
         res.render('index', {title: "Veterinaria", principal: 'principal', sesion: true, usuario: req.session.cuenta.usuario,
             msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     } else {
         res.render('index', {title: 'Medicos', inicio: 'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+        
     }
 });
+
 router.get('/registrarVeterinario', function (req, res, next) {
     res.render('index', {title: 'Registrate', registrarVeterinario: 'registrarVeterinario'
     , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
