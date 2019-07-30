@@ -11,6 +11,8 @@ var veterinarioControl = require('../controladores/veterinarioControlador');
 var veterinario = new veterinarioControl();
 var cuentaControlador = require('../controladores/CuentaControlador');
 var cuenta = new cuentaControlador();
+var mascotacontrol = require('../controladores/mascotaControlador');
+var mascota = new mascotacontrol();
 
 var utilidades = require('../controladores/utilidades');
 
@@ -48,7 +50,8 @@ router.get('/miCuenta', function (req, res, next) {
 });
 
 //router.get('/miCuenta', inicio.cuenta_veterinario);
-
+//mascota
+router.get('/registro',sacar, mascota.visualizar);
 //Veterinario
 router.post('/registroVeterinario', veterinario.guardar);
 //inicio de sesion
