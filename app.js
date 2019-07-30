@@ -1,8 +1,10 @@
 var createError = require('http-errors');
 var express = require('express');
+var exphbs  = require('express-handlebars');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
+
 
 var hbs = require('handlebars');
 
@@ -15,6 +17,8 @@ var flash = require('connect-flash');
 
 var app = express();
 
+app.engine('handlebars', exphbs());
+app.set('view engine', 'handlebars');
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');

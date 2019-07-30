@@ -2,6 +2,14 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/controladores/CuentaControlador.js</file>
+            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/controladores/utilidades.js</file>
+            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/routes/index.js</file>
+            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/Veterinario.js</file>
+            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/controladores/veterinarioControlador.js</file>
+            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/modelos/rol.js</file>
+            <file>file:/home/daniel/Documentos/Programacion/Proyecto/Veterinaria/views/index.hbs</file>
+        </group>
     </open-files>
 </project-private>

@@ -3,12 +3,20 @@ var router = express.Router();
 var hbs = require('handlebars');
 var bd = require('../modelos/rol');
 
+
+
+
+
 var veterinarioControl = require('../controladores/veterinarioControlador');
 var veterinario = new veterinarioControl();
 var cuentaControlador = require('../controladores/CuentaControlador');
 var cuenta = new cuentaControlador();
 
 var utilidades = require('../controladores/utilidades');
+
+
+var iniciosesioncontrolador = require('../controladores/PublicoControlador');
+var inicio = new iniciosesioncontrolador();
 
 /* GET home page. */
 function verificar_inicio(req) {
@@ -26,26 +34,21 @@ var sacar = function (req, res, next) {
 router.get('/', function (req, res, next) {
     utilidades.creacionRoles();
     if (req.session !== undefined && req.session.cuenta !== undefined) {
-        res.render('index', {title: "Veterinaria", principal: 'principal', sesion: true, usuario: req.session.cuenta.usuario,
+        res.render('index', {title: "Veterinaria", sesion: true, usuario: req.session.cuenta.usuario,
             msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     } else {
-        res.render('index', {title: 'Veterinaria', publico: 'publico', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
-        
+        res.render('Publico', {title: 'Veterinaria', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+
     }
 });
 
-router.get('/registrarVeterinario', function (req, res, next) {
-    res.render('index', {title: 'Registrate', registrarVeterinario: 'registrarVeterinario'
-    , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
-});
 router.get('/miCuenta', function (req, res, next) {
-    res.render('index', {title: 'Registrate', inicio: 'inicio'
-    , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+    res.render('inicioSesionVeterinario',{title: 'Veterinaria', inicio:'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+
 });
-router.get('/miCuentaC', function (req, res, next) {
-    res.render('index', {title: 'Registrate', inicioC: 'inicioC'
-    , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
-});
+
+//router.get('/miCuenta', inicio.cuenta_veterinario);
+
 //Veterinario
 router.post('/registroVeterinario', veterinario.guardar);
 //inicio de sesion
