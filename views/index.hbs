@@ -35,6 +35,12 @@
                 <!-- Brand and toggle get grouped for better mobile display -->
                 <a class="navbar-brand logo_h" href="index.html"><img src="/images/Logo.png" alt=""></a>
                 Bienvenido {{usuario}}
+                {{#if persona }}
+                <h1>que mas veterinario</h1>
+                {{/if}}
+                {{#unless persona }}
+                <h1>que mas usuario</h1>
+                {{/unless}}
 
                 <!-- Collect the nav links, forms, and other content for toggling -->
                 <div class="collapse navbar-collapse offset" id="navbarSupportedContent">

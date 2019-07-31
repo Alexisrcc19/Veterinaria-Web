@@ -18,8 +18,7 @@ module.exports = Veterinario;
 var Rol = require('./rol');
 Veterinario.belongsTo(Rol, "rol", "id_rolVeterinario", "id");
 var Cuenta = require("./cuenta");
-Veterinario.hasOne(Cuenta, "cuenta", "id", "id_veterinario");;
-var ConsultaMedica = require('./consultaMedica');
-Veterinario.hasOne(ConsultaMedica, "veterinarioCM","id_veterinario","id_consulta");
+Veterinario.hasOne(Cuenta, "cuenta", "id", "id_veterinario");
+
 
 

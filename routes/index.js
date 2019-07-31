@@ -13,7 +13,8 @@ var cuentaControlador = require('../controladores/CuentaControlador');
 var cuenta = new cuentaControlador();
 var mascotacontrol = require('../controladores/mascotaControlador');
 var mascota = new mascotacontrol();
-
+var usuarioControl = require('../controladores/usuarioControlador');
+var usuario = new usuarioControl();
 var utilidades = require('../controladores/utilidades');
 
 
@@ -36,16 +37,29 @@ var sacar = function (req, res, next) {
 router.get('/', function (req, res, next) {
     utilidades.creacionRoles();
     if (req.session !== undefined && req.session.cuenta !== undefined) {
-        res.render('index', {title: "Veterinaria", sesion: true, usuario: req.session.cuenta.usuario,
+        res.render('index', {title: "Veterinaria", sesion: true, usuario: req.session.cuenta.usuario,persona:req.session.cuenta.persona,
             msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     } else {
         res.render('Publico', {title: 'Veterinaria', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
     }
 });
-
+//cuenta del veterinario
 router.get('/miCuenta', function (req, res, next) {
     res.render('inicioSesionVeterinario',{title: 'Veterinaria', inicio:'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+
+});
+router.get('/registrarVeterinario', function (req, res, next) {
+    res.render('registroVeterinario',{title: 'Registrate', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+
+});
+//cuenta del cliente
+router.get('/miCuentaC', function (req, res, next) {
+    res.render('inicioSesionUsuario',{title: 'Veterinaria', inicio:'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+
+});
+router.get('/registrarUsuario', function (req, res, next) {
+    res.render('registroUsuario',{title: 'Registrate', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
 
@@ -54,7 +68,10 @@ router.get('/miCuenta', function (req, res, next) {
 router.get('/registro',sacar, mascota.visualizar);
 //Veterinario
 router.post('/registroVeterinario', veterinario.guardar);
+//usuario
+router.post('/registroUsuario', usuario.guardar);
 //inicio de sesion
 router.post('/inicio_sesion', cuenta.iniciar_sesion);
+router.post('/inicio_sesionUsuario', cuenta.iniciar_sesionUsuario);
 router.get('/cerrar_sesion', sacar, cuenta.cerrar_sesion);
 module.exports = router;

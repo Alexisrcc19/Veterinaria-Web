@@ -9,5 +9,6 @@ var Rol = thinky.createModel("Rol", {
 module.exports = Rol;
 var Veterinario = require('./Veterinario');
 Rol.hasMany(Veterinario, "veterinario", "id", "id_rolVeterinario");
-
+var Usuario = require('./cliente');
+Rol.hasMany(Usuario, "usuario", "id", "id_rolUsuario");
 
