@@ -38,7 +38,7 @@ router.get('/', function (req, res, next) {
         res.render('index', {title: "Veterinaria", sesion: true, usuario: req.session.cuenta.usuario, persona: req.session.cuenta.persona,
             msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     } else {
-        res.render('index', {title: 'Veterinaria', msg: {error: req.flash('error'),
+        res.render('index', {title: 'Publico', msg: {error: req.flash('error'),
                 info: req.flash('info'), ok: req.flash('success')},
             fragmento: 'Publico'});
 
@@ -46,20 +46,20 @@ router.get('/', function (req, res, next) {
 });
 //cuenta del veterinario
 router.get('/miCuenta', function (req, res, next) {
-    res.render('inicioSesionVeterinario', {title: 'Veterinaria', inicio: 'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+    res.render('index', {title: 'Veterinaria',fragmento:'inicioSesionVeterinario', inicio: 'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
 router.get('/registrarVeterinario', function (req, res, next) {
-    res.render('registroVeterinario', {title: 'Registrate', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+    res.render('index', {title: 'Registrate',fragmento:'registroVeterinario',registro:'registro', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
 //cuenta del cliente
 router.get('/miCuentaC', function (req, res, next) {
-    res.render('inicioSesionUsuario', {title: 'Veterinaria', inicio: 'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+    res.render('index', {title: 'Registro Usuario',fragmento:'inicioSesionUsuario' ,inicio: 'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
 router.get('/registrarUsuario', function (req, res, next) {
-    res.render('registroUsuario', {title: 'Registrate', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+    res.render('index', {title: 'Registrate',fragmento:'registroUsuario',registro:'registro', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
 

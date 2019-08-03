@@ -10,7 +10,7 @@ class VeterinarioControl {
                 cuenta.filter({correo: req.body.correo}).then(function (verificarCuenta) {
                     if (verificarCuenta.length >= 1) {
                         req.flash('error', 'la cuenta ya existe');
-                        res.redirect('/registrarVeterinario');
+                        res.redirect('/registrarUsuairo');
                     } else {
                         var datosV = {
                             cedula: req.body.cedula,
@@ -35,13 +35,13 @@ class VeterinarioControl {
                             req.flash('success', 'Se ha registrado correctamente el usuario');
                             res.redirect('/');
                         }).error(function (error) {
-                            req.flash('error', 'la cuenta ya existe');
-                            res.redirect('/');
+                            req.flash('error', 'algo salio mal');
+                            res.redirect('/registrarUsuario');
                             console.log(error)
                         });
                     }
                 }).error(function (error) {
-                    req.flash('error', 'la cuenta ya existe');
+                    req.flash('error', 'algo salio mal');
                     console.log(error)
                     res.redirect('/');
                 });

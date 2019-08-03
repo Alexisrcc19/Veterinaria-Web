@@ -15,7 +15,7 @@ var r = thinky.r;
 
 module.exports = Cuenta;
 var Veterinario = require('./Veterinario');
-Cuenta.belongsTo(Veterinario, "veterinario", "id_veterinario", "id")
+Cuenta.belongsTo(Veterinario, "veterinario", "id_veterinario", "id");
 var Cliente = require('./cliente');
 Cuenta.belongsTo(Cliente, "cliente", "id_usuario", "id");
 
