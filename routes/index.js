@@ -44,6 +44,7 @@ router.get('/', function (req, res, next) {
 
     }
 });
+
 //cuenta del veterinario
 router.get('/miCuenta', function (req, res, next) {
     res.render('index', {title: 'Veterinaria',fragmento:'inicioSesionVeterinario', inicio: 'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
@@ -62,6 +63,16 @@ router.get('/registrarUsuario', function (req, res, next) {
     res.render('index', {title: 'Registrate',fragmento:'registroUsuario',registro:'registro', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
+//foro
+router.get('/foro', function (req, res, next) {
+    res.render('index', {title: 'Foro',fragmento:'foro', inicio:'inicio',msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+
+});
+//acerca
+router.get('/acerca', function (req, res, next) {
+    res.render('index', {title: 'Foro',fragmento:'AcercadeNosotros', inicio:'inicio',msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+
+});
 
 //router.get('/miCuenta', inicio.cuenta_veterinario);
 //mascota
@@ -71,13 +82,13 @@ router.post('/registroVeterinario', veterinario.guardar);
 //usuario
 router.post('/registroUsuario', usuario.guardar);
 //inicio de sesion
-router.post('/inicio_sesion', cuenta.iniciar_sesion);
+router.post('/inicio_sesion',cuenta.iniciar_sesion);
 router.post('/inicio_sesionUsuario', cuenta.iniciar_sesionUsuario);
 router.get('/cerrar_sesion', sacar, cuenta.cerrar_sesion);
-
 //test
 router.get('/veterinario',function (req, res, next) {
     res.render('index', {title: 'Registro de mascota',fragmento:'registroMascota', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
+
 module.exports = router;

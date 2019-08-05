@@ -52,7 +52,6 @@ class CuentaController {
      iniciar_sesionUsuario(req, res) {
 
         cuentaC.getJoin({ cliente: {rol: true}}).filter({correo: req.body.correo}).run().then(function (verificar) {
-           
                 if (verificar.length > 0) {
 
                 var cuenta = verificar[0];
@@ -71,6 +70,11 @@ class CuentaController {
                 res.redirect('/');
                 console.log(verificar);
             }
+            
+
+
+
+           
 
         }).error(function (error) {
             console.log(error);
