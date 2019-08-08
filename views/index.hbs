@@ -1,66 +1,81 @@
 {{#unless inicio}}
 {{#unless registro}}
+
 <header class="header_area">
 
     <nav class="navbar navbar-expand-lg navbar-light">
-        
-        <div class="container">
-            
-            <!-- Brand and toggle get grouped for better mobile display -->
-            <a class="navbar-brand logo_h" href="index.html"><img src="/images/Logo.png" alt=""></a>
-            
-            {{#if sesion}}
-            Bienvenido {{usuario}}
-            {{#if persona }}
-            <h1>que mas veterinario</h1>
-            {{/if}}
-            {{#unless persona }}
-            <h1>Bienvenido Usuario</h1>
-            {{/unless}}
 
-            <!-- Collect the nav links, forms, and other content for toggling -->
-            
+        <div class="container">
+
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <a class="navbar-brand logo_h" href="/"><img src="/images/Logo.png" alt=""></a>
+
+            {{#if sesion}}
+
+            {{#if persona }}
+            <a style="margin-left:50px"> Bienvenido {{usuario}}</a>
             <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
 
                 <ul class="nav navbar-nav menu_nav ml-auto">
-                    <li class="nav-item active"><a class="nav-link" href="index.hbs">Pagina principal</a></li> 
-                    <li class="nav-item"><a class="nav-link" href="ministries.html">Foro</a></li>
+                    <li class="nav-item submenu dropdown">
+                        <a href="/historialClinico" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">Historial Clinico</a>
+                    </li>
                     <li class="nav-item submenu dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
-                           aria-expanded="false">mascotas</a>
+                           aria-expanded="false">Veterinario</a>
 
                         <ul class="dropdown-menu">
-                            <li class="nav-item"><a class="nav-link" href="/registro">registrar</a></li>
-                            <li class="nav-item"><a class="nav-link" href="event-details.html">opcion 2</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/registrarVeterinario">Registrar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/listaVeterinarios">Lista de veterinarios</a></li>
                         </ul>
                     </li> 
                     <li class="nav-item submenu dropdown">
                         <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
-                           aria-expanded="false">tema</a>
+                           aria-expanded="false">Citas</a>
                         <ul class="dropdown-menu">
-                            <li class="nav-item"><a class="nav-link" href="about-us.html">opcion 1</a></li>
-                            <li class="nav-item"><a class="nav-link" href="donation.html">opcion 2</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#">Nueva cita</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/listaCitas">Lista de citas</a></li>
+                        </ul>
+                    </li> 
+                    <li class="nav-item submenu dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
+                           aria-expanded="false">Pagos</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="/listaPagos">Historial de pagos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/GestionPagos">Gestion de pagos</a></li>
                         </ul>
                     </li> 
 
 
-                    <li class="nav-item"><a class="nav-link" href="contact.html">Acerca de nosotros</a></li>
                     <li class="nav-item"><a class="nav-link" href="/cerrar_sesion" onclick="return confirm('Esta seguro que desea salir?')" >Salir</a></li>
                 </ul>
 
                 <ul class="nav navbar-nav navbar-right">
                     <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
                 </ul>
-{{/if}}
             </div> 
-          
+
         </div>
 
+        {{/if}}
+
+        {{#unless persona }}
+        <h1>Bienvenido Usuario</h1>
+        {{/unless}}
+       
+
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+ 
+
+        {{/if}}
     </nav>
 
 </header>
- {{/unless}}
-  {{/unless}}
+
+{{/unless}}
+{{/unless}}
+
 <!--================Header Area =================-->
 <section>
 

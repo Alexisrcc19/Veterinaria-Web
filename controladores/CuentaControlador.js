@@ -27,7 +27,11 @@ class CuentaController {
                     if (cuenta.clave === req.body.clave) {
                         try {
                             req.session.cuenta = {external: cuenta.veterinario.external_id, persona: true,
-                                usuario: cuenta.veterinario.apellidos + " " + cuenta.veterinario.nombres + " (" + cuenta.veterinario.rol.nombre + ")"};
+                                usuario: cuenta.veterinario.apellidos + " " + cuenta.veterinario.nombres};
+                            
+                            //en caso de querer recuperar el rol de quien inicia sesion se usara esto:
+                            //cuenta.veterinario.rol.nombre
+                            
                             res.redirect('/');
                         } catch (error) {
                             req.flash('error', 'Los datos no son de un veterinario');
@@ -52,7 +56,11 @@ class CuentaController {
                     if (cuenta.clave === req.body.clave) {
                         try {
                             req.session.cuenta = {external: cuenta.cliente.external_id, persona: false,
-                                usuario: cuenta.cliente.apellidos + " " + cuenta.cliente.nombres + " (" + cuenta.cliente.rol.nombre + ")"};
+                                usuario: cuenta.cliente.apellidos + " " + cuenta.cliente.nombres};
+
+                            //en caso de querer recuperar el rol de quien inicia sesion se usara esto:
+                            //cuenta.cliente.rol.nombre
+
                             res.redirect('/');
                         } catch (error) {
                             req.flash('error', 'los datos no son de un cliente');
@@ -70,7 +78,7 @@ class CuentaController {
                 req.flash('error', 'Algo salio mal, comuniquese con los desarroladores');
                 res.redirect('/');
             });
-        } 
+        }
     }
     cerrar_sesion(req, res) {
         req.session.destroy();

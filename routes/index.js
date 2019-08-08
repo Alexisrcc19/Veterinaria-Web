@@ -13,6 +13,10 @@ var mascotacontrol = require('../controladores/mascotaControlador');
 var mascota = new mascotacontrol();
 var usuarioControl = require('../controladores/usuarioControlador');
 var usuario = new usuarioControl();
+var citaControl = require('../controladores/citaControlador');
+var cita = new citaControl();
+var pagoControl = require('../controladores/pagoControlador');
+var pago = new pagoControl();
 var utilidades = require('../controladores/utilidades');
 
 
@@ -76,11 +80,19 @@ router.get('/acerca', function (req, res, next) {
 router.get('/registro',  mascota.visualizar);
 //Veterinario
 router.post('/registroVeterinario', veterinario.guardar);
+router.get('/historialClinico', sacar, veterinario.verHistorialClinico);
+router.get('/listaVeterinarios', sacar, veterinario.verListaVeterinario);
+
 //usuario
 router.post('/registroUsuario', usuario.guardar);
 //inicio de sesion
 router.post('/inicio_sesion',cuenta.iniciar_sesion);
 router.get('/cerrar_sesion', sacar, cuenta.cerrar_sesion);
+//citas
+router.get('/listaCitas', sacar, cita.verListaCitas);
+//pagos en linea
+router.get('/listaPagos', sacar, pago.verListaPagos);
+router.get('/GestionPagos', sacar, pago.verGestionPagos);
 //test
 router.get('/veterinario',function (req, res, next) {
     res.render('index', {title: 'Registro de mascota',fragmento:'registroMascota', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});

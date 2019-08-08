@@ -3,6 +3,14 @@ var rol = require('../modelos/rol');
 var veterianrio = require('../modelos/Veterinario');
 var cuenta = require('../modelos/cuenta');
 class VeterinarioControl {
+    verHistorialClinico(req, res){
+        res.render('index', {title: 'Historial Clinico',fragmento:'historialClinico'
+            ,msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+    }
+     verListaVeterinario(req, res){
+        res.render('index', {title: 'Lista de Veterinarios',fragmento:'listaVeterinarios'
+            ,msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+    }
     guardar(req, res) {
         rol.filter({nombre: "veterinario"}).run().then(function (roles) {
             if (roles.length > 0) {
