@@ -7,6 +7,7 @@ var Mascota = thinky.createModel("Mascota", {
     nombre: type.string(),
     edad: type.string(),
     tipo: type.string(),
+    especie: type.string()
     });
 
 module.exports = Mascota;
