@@ -1,70 +1,90 @@
-<section class="banner_area d-flex text-center">
-    <script>
-        $(document).ready(function () {
-            validarMascota();
+<script>
+    $(document).ready(function () {
+        validarMascota();
 
-        });
-    </script>
+    });
+
+</script>
+
+
+<section class="banner_area d-flex text-center">
+    <header class="header_area">
+        <nav class="navbar navbar-expand-lg navbar-light">
+            <div class="container">
+                <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+                    <ul class="nav navbar-nav menu_nav ml-auto">
+                        <li class="nav-item submenu dropdown">
+                            <a href="/" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">Regresar</a>
+                        </li>
+                        <div class="form-group">
+                            <div style="font-size: 20px; color: #b21f2d;"> 
+                                {{msg.error}}
+                            </div>
+                            <div style="font-size: 20px; color: green;"> 
+                                {{msg.ok}}
+                            </div>
+                        </div>
+                    </ul>
+
+
+                </div> 
+            </div>
+        </nav>
+
+    </header>
     <div class="container"> 
-        <div> 
-            <div class="container" style="margin-top: 20px;">    
-                <div class="panel panel-primary">
-                    <h1>Datos de la mascota</h1>
-                    <div class="form-group">
-                        <div class="label label-danger" style="font-size: 20px; color: #b21f2d;"> 
-                            {{msg.error}}
+        
+        <div class="container" style="margin-top: 20px;">  
+            <div class="panel-body">
+                <form id="formularioM"  method="POST" action="/registro/mascota">
+                    <div style="padding-left:200px; padding-right: 200px">
+                        <div role="tabpanel" class="tab-pane active" id="home">
+                            <div class="form-group">
+                                <label for="nombre">Nombre</label>
+                                <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre"  >
+                            </div>
+                            <div class="form-group">
+                                <label for="raza">Raza:</label>
+                                <input type="text" class="form-control" id="raza" name="raza"  placeholder="Ingrese sus raza" >
+                            </div>
+                            <div class="form-group">
+                                <label for="edad">Edad:</label>
+                                <input type="text" class="form-control" id="edad" name="edad"  placeholder="Ingrese edad">
+                            </div>
+                            <div class="form-group">
+                                <label for="tipo">Tipo:</label>
+                                <input type="text" class="form-control" id="tipo" name="tipo"  placeholder="tipo">
+                            </div>
+                            <label for="edad">Especie:</label>
+
+                            <div class="btn-group" style="padding-bottom: 10px">
+
+                                <select name="especie" id="especie" class="form" aria-describedby="espeHelp">
+                                    <option>DOMESTICAS</option>
+                                    <option value="gato">Gato</option>
+                                    <option value="perro">Perro</option>
+                                    <option value="ave">Ave</option>
+                                    <option style="">GRANJA</option>
+                                    <option value="vaca">Vaca</option>
+                                    <option value="pato">Pato</option>
+
+                                </select> 
+
+                            </div>
+
+                        </div>
+
+
+
+                        <div class="modal-footer">                                    
+                            <button type="submit" class="btn btn-primary">Registrar</button>
+                            <a href="/" class="btn btn-danger">Cancelar</a>
                         </div>
                     </div>
-                    <br>
-                        <div class="panel-body">
-                            <form id="formularioM"  method="POST" action="/registroVeterinario">
-                                <div style="padding-left:200px; padding-right: 200px">
-                                    <ul class="nav nav-tabs" role="tablist">
-                                        <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" class="btn btn-primary" data-toggle="tab">Datos Propios</a></li>
-                                        <                                   
-                                    </ul>                                   <!-- Tab panes -->
-                                    <div class="tab-content" />
-                                    <div role="tabpanel" class="tab-pane active" id="home">
-                                        <div class="form-group">
-                                            <label for="nombre">Nombre</label>
-                                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre"  >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="raza">Raza:</label>
-                                            <input type="text" class="form-control" id="raza" name="raza"  placeholder="Ingrese sus raza" >
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="edad">Edad:</label>
-                                            <input type="text" class="form-control" id="edad" name="edad"  placeholder="Ingrese edad">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="tipo">Tipo:</label>
-                                            <input type="text" class="form-control" id="tipo" name="tipo"  placeholder="tipo">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="edad">Especie:</label>
-                                            <select name="especie" id="especie" class="form-control" aria-describedby="espeHelp">
-                                                <option value="" selected="selected">Selecione...</option>
-                                                <option value="Canino">Canino</option>
-                                                <option value="Felino">Felino</option>
-                                                <option value="Porcino">Porcino</option>
-                                                <option value="Bovino">Bovino</option>
-                                                <option value="Equino">Equino</option>
-                                                <option value="aves">aves</option>
-                                                <option value="Anfibios">anfibios</option>
-                                            </select>            
-                                            <small id="espeHelp" class="form-text text-muted">seleccione la especie</small>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
-                </div>
-                <div class="modal-footer">                                    
-                    <button type="submit" name="guardar" id="guardar" class="btn btn-primary">Registrar</button>
-                    <a href="/miCuenta" class="btn btn-danger">Cancelar</a>
-                </div>
+                    <br><br><br>
+                </form>
             </div>
         </div>
     </div>
 </section>
+

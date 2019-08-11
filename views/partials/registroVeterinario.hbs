@@ -2,55 +2,6 @@
     <script>
         $().ready(function () {
             validarveterinario();
-            $("#boton").click(function () {
-                buscar();
-            });
-            function buscar() {
-                var url = "http://localhost:3000/users/buscar_consulta";
-                var criterio = $("#criterio").val();
-                var texto = $("#texto").val();
-                $.ajax({
-                    url: url,
-                    dataType: 'json',
-                    data: 'criterio=' + criterio + '&texto=' + texto,
-                    success: function (data, textStatus, jqXHR) {
-                        console.log(data);
-                        $("#cedula").val(data[0].cedula);
-                        $("#paciente").val(data[0].paciente);
-                        $("#enf").val(data[0].enf);
-                        $("#enf_her").val(data[0].enf_her);
-                        $("#hab").val(data[0].habitos);
-                        $("#nro").val(data[0].nro);
-                        $("#idHistoria").val(data[0].external);
-
-
-                    }
-                });
-            }
-
-            cambiarFecha();
-            function cambiarFecha() {
-//alert(fecha);
-                var d = new Date();
-//alert((d.getDate()+"/"+(d.getMonth()+1))+"/"+d.getFullYear());
-                var mes = (d.getMonth() + 1);
-                var dia = d.getDate();
-                var fecha = (d.getFullYear() + "-" + rellenarCeros(mes, 2) + "-" + rellenarCeros(dia, 2));
-                console.log(fecha);
-                $("#fecha").val(fecha);
-            }
-            function rellenarCeros(texto, nro_cero) {
-                texto = texto + "";
-                if (texto.length < nro_cero) {
-                    var aux = "";
-                    for (var i = texto.length; i < nro_cero; i++) {
-                        aux += "0";
-                    }
-                    return aux + texto;
-                } else {
-                    return texto;
-                }
-            }
         });
     </script>
     <div class="container"> 
@@ -122,7 +73,7 @@
                         </div>
                         <div class="modal-footer">                                    
                             <button type="submit" class="btn btn-primary">Registrar</button>
-                            <a href="/miCuenta" class="btn btn-danger">Cancelar</a>
+                            <a href="/" class="btn btn-danger">Cancelar</a>
                         </div>
                                 
                     </br>

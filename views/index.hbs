@@ -3,9 +3,17 @@
 
 <header class="header_area">
 
-    <nav class="navbar navbar-expand-lg navbar-light">
 
         <div class="container">
+    <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="form-group">
+                        <div style="font-size: 20px; color: #b21f2d;"> 
+                            {{msg.error}}
+                        </div>
+                        <div style="font-size: 20px; color: green;"> 
+                            {{msg.ok}}
+                        </div>
+                    </div>
 
             <!-- Brand and toggle get grouped for better mobile display -->
             <a class="navbar-brand logo_h" href="/"><img src="/images/Logo.png" alt=""></a>
@@ -55,21 +63,65 @@
                 </ul>
             </div> 
 
+
+            {{/if}}
+
+            {{#unless persona }}
+
+            <a style="margin-left:50px"> Bienvenido {{usuario}}</a>
+            <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+
+                <ul class="nav navbar-nav menu_nav ml-auto">
+                     <li class="nav-item submenu dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
+                           aria-expanded="false">Registrar</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="#">cita</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/registroMascota">mascota</a></li>
+                        </ul>
+                    </li> 
+                    <li class="nav-item submenu dropdown">
+                        <a href="/historialClinico" class="nav-link" role="button" aria-haspopup="true" aria-expanded="false">Historial Clinico</a>
+                    </li>
+                    <li class="nav-item submenu dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
+                           aria-expanded="false">Veterinario</a>
+
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="/registrarVeterinario">Registrar</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/listaVeterinarios">Lista de veterinarios</a></li>
+                        </ul>
+                    </li> 
+                   
+                    <li class="nav-item submenu dropdown">
+                        <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" 
+                           aria-expanded="false">Pagos</a>
+                        <ul class="dropdown-menu">
+                            <li class="nav-item"><a class="nav-link" href="/listaPagos">Historial de pagos</a></li>
+                            <li class="nav-item"><a class="nav-link" href="/GestionPagos">Gestion de pagos</a></li>
+                        </ul>
+                    </li> 
+
+
+                    <li class="nav-item"><a class="nav-link" href="/cerrar_sesion" onclick="return confirm('Esta seguro que desea salir?')" >Salir</a></li>
+                </ul>
+
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="nav-item"><a href="#" class="search"><i class="lnr lnr-magnifier"></i></a></li>
+                </ul>
+            </div> 
+
+            {{/unless}}
+
+
+
+            <!-- Collect the nav links, forms, and other content for toggling -->
+
+
+            {{/if}}
         </div>
-
-        {{/if}}
-
-        {{#unless persona }}
-        <h1>Bienvenido Usuario</h1>
-        {{/unless}}
-       
-
-
-        <!-- Collect the nav links, forms, and other content for toggling -->
- 
-
-        {{/if}}
     </nav>
+
 
 </header>
 
