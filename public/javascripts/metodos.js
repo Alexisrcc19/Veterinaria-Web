@@ -167,13 +167,9 @@ function validarMascota() {
         return this.optional(element) || /^[a-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     
-    $('#guardar').click(function(){
-        if($('#especie').val().trim()===''){
-            alert('selecione la especie');
-        }else{
-//            alert('especie seleccionado correctamente');
-        }
-    });
+  
+    
+   
     $("#formularioM").validate({
         rules: {
 

@@ -39,6 +39,19 @@ function creacionRoles(){
         console.log(error);
     });
 }
+function creacionTipos(){
+    var tipo = require('../modelos/tipos');
+    tipo.run().then(function (tipos){
+       if(tipos.length <= 0){
+           tipo.save([{tipo: "granja"},{tipo: "domestico"},{tipo: "salvaje"}]);
+           console.log(tipos);
+       } 
+           console.log(tipos);
+       
+    }).error(function (error){
+        console.log(error);
+    });
+}
 
 function manejoMensajes(msg) {    
     //console.log(error);
@@ -47,4 +60,4 @@ function manejoMensajes(msg) {
     mensaje += '</div>';
     $("#error").html(mensaje);
 }
-module.exports= {creacionRoles};
+module.exports= {creacionRoles, creacionTipos};

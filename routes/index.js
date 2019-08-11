@@ -4,7 +4,6 @@ var router = express.Router();
 var bd = require('../modelos/rol');
 
 
-
 var veterinarioControl = require('../controladores/veterinarioControlador');
 var veterinario = new veterinarioControl();
 var cuentaControlador = require('../controladores/CuentaControlador');
@@ -17,6 +16,7 @@ var citaControl = require('../controladores/citaControlador');
 var cita = new citaControl();
 var pagoControl = require('../controladores/pagoControlador');
 var pago = new pagoControl();
+
 var utilidades = require('../controladores/utilidades');
 
 
@@ -35,9 +35,9 @@ var sacar = function (req, res, next) {
         res.redirect('/');
     }
 };
-//principal: 'principal', 
 router.get('/', function (req, res, next) {
     utilidades.creacionRoles();
+    
     if (req.session !== undefined && req.session.cuenta !== undefined) {
         res.render('index', {title: "Veterinaria", fragmento:'principal',sesion: true,external: req.session.cuenta.external, usuario: req.session.cuenta.usuario, persona: req.session.cuenta.persona,
             msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});

@@ -26,10 +26,6 @@ class MascotaControl {
             req.flash('error', 'No se pudo guardar');
             res.redirect('/');
         });
-
-
-
-
     }
 }
 module.exports = MascotaControl;
