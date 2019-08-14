@@ -50,10 +50,7 @@ router.get('/', function (req, res, next) {
 });
 
 //cuenta del veterinario
-router.get('/miCuenta', function (req, res, next) {
-    res.render('index', {title: 'Veterinaria',fragmento:'inicioSesion', inicio: 'inicio', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
-});
 router.get('/registrarVeterinario', function (req, res, next) {
     res.render('index', {title: 'Registrate',fragmento:'registroVeterinario',registro:'registro', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
