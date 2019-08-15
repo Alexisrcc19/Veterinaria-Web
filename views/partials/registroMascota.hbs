@@ -1,53 +1,120 @@
 <script src="/js/metodos.js"></script>
 <script>
     $(document).ready(function () {
-
-        validarMascota();
+        validarRegistro()
     });
 </script>
 <br>
 <br>
-<br>
-<section class="banner_area d-flex text-center">
 
 
-    <div class="container">
-
-        <div class="container" style="margin-top: 20px;">
-            <div class="panel-body">
-                <div class="form-group">
-                    <div style="font-size: 20px; color: #b21f2d;">
-                        {{msg.error}}
+<div class="card">
+    
+    <div class="card-header bg-succses">
+         MASCOTAS REGISTRADAS
+    </div>
+    <div class="card-body">
+        <div class="form-group">
+            <a href="#" class="btn btn-success" data-toggle="modal" data-target="#ModalMascota"><i
+                    class="fas fa-user-plus">Agregar Mascota</i></a>
+            <div class="row">
+                <form class="form-inline ml-auto">
+                    <div class="form-group">
+                        <label for="">Criterio de Busqueda</label>
+                        <select class="form-control" name="criterio" id="criterio">
+                            <option value="todos">Todos</option>
+                            <option value="cedula">Cedula</option>
+                            <option value="apellidos">Apellidos</option>
+                        </select>
                     </div>
-                    <div style="font-size: 20px; color: green;">
-                        {{msg.info}}
-                    </div>
-                </div>
-                <form id="formularioM" method="POST" action="/registro/mascota">
 
-                    <div style="padding-left:200px; padding-right: 200px">
-                        <div role="tabpanel" class="tab-pane active" id="home">
+                    <button type="button" class="btn btn-success btn-md my-0 ml-sm-2" id="btnbuscar">Buscar <i
+                            class="fas fa-search"></i></button>
+                </form>
+            </div>
+        </div>
+        <div class="form-group">
+
+            <table id="tabla" class="table">
+                <thead>
+                    <tr>
+                        <th>Mascota</th>
+                        <th>Raza</th>
+                        <th>Especie</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each lista}}
+                    <tr>
+                       
+                        <td>
+                            {{nombre}}
+                        </td>
+                        <td>
+                            {{raza}}
+                        </td>
+                        <td>
+                            {{especie}}
+                        </td>
+                        <td>
+                            Modificar
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+
+            </table>
+        </div>
+    </div>
+</div>
+<!-- PARA GUARDAR PACIENTE--->
+<div class="modal fade" id="ModalMascota" tabindex="-1" role="dialog" aria-labelledby="modalpaciente"
+    aria-hidden="true">
+    <div class="modal-dialog modg-scrollable" role="document">
+        <div class="modal-content">
+            <div class="bg-success text-black">
+                <center>
+                    <h5 class="modal-title" id="modalpaciente">REGISTRAR MASCOTA</h5>
+                </center>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="error1"></div>
+                <form id="tablareg" method="POST" action="/registro/mascota">
+                    <input type="hidden" value="0" id="external" name="external" />
+                    <div id="mensaje"></div>
+                    
+                    <div class="tab-content">
+                        {{!-- MODAL-CLIENTE --}}
+                    
+
                             <div class="form-group">
                                 <label for="nombre">Nombre</label>
                                 <input type="text" class="form-control" id="nombre" name="nombre"
-                                    placeholder="Ingrese su nombre">
+                                    placeholder="Ingrese el nombre de la mascota">
                             </div>
                             <div class="form-group">
                                 <label for="raza">Raza:</label>
                                 <input type="text" class="form-control" id="raza" name="raza"
-                                    placeholder="Ingrese sus raza">
+                                    placeholder="Ingrese la raza">
                             </div>
                             <div class="form-group">
                                 <label for="edad">Edad:</label>
-                                <input type="text" class="form-control" id="edad" name="edad"
-                                    placeholder="Ingrese edad">
+                                {{!-- agregar iconos --}}
+                                <div class="input-group">
+                                    <input type="number"  class="form-control" id="edad" name="edad"
+                                        placeholder="Ingrese la edad">
+                                </div>
                             </div>
                             <label for="edad">Tipo:</label>
 
                             <div class="btn-group" style="padding-bottom: 15px">
 
-                                <select class="form-control" aria-describedby="espeHelp">
-                                    <option>TIPO</option>
+                                <select class="form-control" name="tipo" id="tipo" aria-describedby="espeHelp">
                                     <option value="domestica">Domestica</option>
                                     <option value="granja">Granja</option>
                                     <option value="salvaje">Salvaje</option>
@@ -56,24 +123,36 @@
 
                             </div>
 
-
                             <div class="form-group">
+
                                 <label>Especie:</label>
-                                <input type="label" class="form-control" id="especie"
+                                <input type="label" class="form-control" name="especie" id="especie"
                                     placeholder="ejemplo: (perro, gato, vaca, pato)">
                             </div>
+                            <div class="modal-footer">
+                                <button type="button" id="btncancelar" class="btn btn-danger"
+                                    data-dismiss="modal">Cerrar</button>
 
-                        </div>
+                                <button type="submit" id="guardar" class="btn btn-info">GUARDAR<i
+                                        class="far fa-edit"></i></button>
+                            </div>
 
-
-                        <div class="modal-footer">
-                            <button type="submit" id="guardar" class="btn btn-outline-success">Registrar</button>
-                            <a href="/" class="btn btn-outline-secondary">Regresar</a>
-                        </div>
                     </div>
-                    <br><br><br>
+
                 </form>
             </div>
         </div>
     </div>
-</section>
+</div>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>

@@ -4,9 +4,16 @@ var mascota = require('../modelos/mascota');
 
 
 class MascotaControl {
+
     visualizar(req, res) {
-        res.render('index', {title: 'Veterinaria', fragmento: 'registroMascota',
-            msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+        mascota.then(function (lista) {
+            res.render('index', {title: 'Veterinaria', fragmento: 'registroMascota', lista:lista,
+                msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+        }).error(function (error) {
+            req.flash('error', 'No se pudo encontrar');
+            res.redirect('/administracion/pacientes');
+        });
+
     }
     guardar(req, res) {
         var idper = req.session.cuenta.external;

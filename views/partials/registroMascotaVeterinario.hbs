@@ -9,6 +9,7 @@
 
 
 <div class="card">
+    
     <div class="card-header bg-succses">
         LISTADO DE CLIENTE-MASCOTA
     </div>
@@ -67,13 +68,13 @@
             </div>
             <div class="modal-body">
                 <div id="error1"></div>
-                <form id="tablareg" method="POST" action="">
+                <form id="tablareg" method="POST" action="/registro/mascota">
                     <input type="hidden" value="0" id="external" name="external" />
                     <div id="mensaje"></div>
                     <ul class="nav nav-tabs">
 
-                        <li class="nav-item"><a class="nav-link" data-toggle="tab" href="#dc">Cliente</a></li>
-                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dm">Mascota </a></li>
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dc">Cliente</a></li>
+                        <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#dm">Mascota </a></li>
                     </ul>
                     <div class="tab-content">
                         {{!-- MODAL-CLIENTE --}}
@@ -124,8 +125,7 @@
                                 <label for="edad">Edad:</label>
                                 {{!-- agregar iconos --}}
                                 <div class="input-group">
-                                    <span class="input-group-text"></span>
-                                    <input type="text" class="form-control" id="edad" name="edad"
+                                    <input type="number"  class="form-control" id="edad" name="edad"
                                         placeholder="Ingrese edad">
                                 </div>
                             </div>

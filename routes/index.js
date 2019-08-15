@@ -4,6 +4,7 @@ var router = express.Router();
 var bd = require('../modelos/rol');
 
 
+
 var veterinarioControl = require('../controladores/veterinarioControlador');
 var veterinario = new veterinarioControl();
 var cuentaControlador = require('../controladores/CuentaControlador');
@@ -37,6 +38,7 @@ var sacar = function (req, res, next) {
 };
 router.get('/', function (req, res, next) {
     utilidades.creacionRoles();
+    utilidades.creacionVeterinario();
     
     if (req.session !== undefined && req.session.cuenta !== undefined) {
         res.render('index', {title: "Veterinaria", fragmento:'principal',sesion: true,external: req.session.cuenta.external, usuario: req.session.cuenta.usuario, persona: req.session.cuenta.persona,
@@ -74,7 +76,7 @@ router.get('/acerca', function (req, res, next) {
 
 //router.get('/miCuenta', inicio.cuenta_veterinario);
 //mascota
-router.get('/registro', sacar, mascota.visualizar);
+router.get('/registroMascota', sacar, mascota.visualizar);
 router.post('/registro/mascota',sacar, mascota.guardar);
 //Veterinario
 router.post('/registroVeterinario', veterinario.guardar);
@@ -93,12 +95,9 @@ router.get('/listaPagos', sacar, pago.verListaPagos);
 router.get('/GestionPagos', sacar, pago.verGestionPagos);
 
 //test
-router.get('/registroMascota',function (req, res, next) {
-    res.render('index', {title: 'Registro de mascota',fragmento:'registroMascota', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
-});
 router.get('/registroMascotaVeterinario',function (req, res, next) {
-    res.render('index', {title: 'Registro de mascota',fragmento:'registroMascotaVeterinario', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+    res.render('index', {title: 'Registro de mascota',fragmento:'registroMascotaVeterinario',ventanas:"ventanas", msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
 

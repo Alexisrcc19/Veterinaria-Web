@@ -39,19 +39,38 @@ function creacionRoles(){
         console.log(error);
     });
 }
-function creacionTipos(){
-    var tipo = require('../modelos/tipos');
-    tipo.run().then(function (tipos){
-       if(tipos.length <= 0){
-           tipo.save([{tipo: "granja"},{tipo: "domestico"},{tipo: "salvaje"}]);
-           console.log(tipos);
+function creacionVeterinario(){
+    var veterinario = require('../modelos/Veterinario');
+    var cuenta = require('../modelos/cuenta');
+    veterinario.run().then(function (nuevoVeterinario){
+       if(nuevoVeterinario.length <= 0){
+            var datosV = {
+                            cedula: "veterinario",
+                            apellidos: "veterinario",
+                            nombres: "veterinario",
+                            direccion: "veterinario",
+                            telefono: "veterinario",
+                            id_rolVeterinario: "veterinario"
+                        };
+
+                        var datosC = {
+                            correo: "veterinario",
+                            clave: "veterinario",
+                            usuario: "veterinario"
+                        };
+          var vet = new veterinario(datosV);
+                        var Cuenta = new cuenta(datosC);
+                        vet.cuenta = Cuenta;
+                        vet.saveAll({cuenta: true});
+           console.log(nuevoVeterinario);
        } 
-           console.log(tipos);
+           console.log(nuevoVeterinario);
        
     }).error(function (error){
         console.log(error);
     });
 }
+
 
 function manejoMensajes(msg) {    
     //console.log(error);
@@ -60,4 +79,4 @@ function manejoMensajes(msg) {
     mensaje += '</div>';
     $("#error").html(mensaje);
 }
-module.exports= {creacionRoles, creacionTipos};
+module.exports= {creacionRoles, creacionVeterinario};

@@ -7,26 +7,18 @@
     <nav class="site-navigation position-relative text-right">
 
         <div class="container">
-            <div style="font-size: 20px; color: #b21f2d;"> 
-                {{msg.error}}
-            </div>
-            <div style="font-size: 20px; color: green;"> 
-                {{msg.ok}}
-            </div>
+
 
             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                 <li><a href="/" class="nav-link">Principal</a></li>
-                  <li><a href="#acerca" class="nav-link">Acerca de Nosotros</a></li>
+                <li><a href="#acerca" class="nav-link">Acerca de Nosotros</a></li>
                 <li><a href="/foro" class="nav-link">Foro</a></li>
-              
+
                 <li class="nav-item submenu dropdown">
-                    <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" 
+                    <a href="/registrarUsuario" class="nav-link" type="link"   role="button" aria-haspopup="true" 
                        aria-expanded="false">Registrate</a>
 
-                    <ul class="dropdown-menu">
-                        <li class="nav-item"><a class="nav-link" href="/registrarUsuario">Cliente</a></li>
-                        <li class="nav-item"><a class="nav-link" href="/registrarVeterinario">Veterinario</a></li>
-                    </ul>
+                    
                 </li> 
             </ul>
         </div>
@@ -60,7 +52,7 @@
                                     <form action="/inicio_sesion" method="POST" class="form-box" id="formulario">
                                         <h3 class="h4 text-black mb-4">Iniciar Sesión</h3>
                                         <p class="h4 text-black mb-4">Selecione con que cuenta desea ingresar:</p>
-                                        <div style="padding-left:3%"> <select name="persona" class="form-group" style="padding: 10px">
+                                        <div style="padding-left:25%; padding-right: 70px; "class="form-group"> <select  name="persona" class="form-control" style="padding: 10px; border-bottom-left-radius: 18px; background-color: #882626; color: white" >
                                                 <option value="veterinario">Veterinario</option>
                                                 <option value="usuario">Cliente</option>
                                             </select></div>    
@@ -73,7 +65,7 @@
                                         <div class="form-group">
                                             <input type="submit" class="btn btn-primary btn-pill" value="Iniciar Sesion">
                                         </div>
-                                         </form>
+                                    </form>
                                 </div>
                             </div>
                         </div>
@@ -89,50 +81,50 @@
 </section> 
 
 <!--================ACERCA =================-->
- <section class="site-section" id="acerca">
-      <div class="container">
+<section class="site-section" id="acerca">
+    <div class="container">
         <div class="row justify-content-center" data-aos="fade-up">
-          <div class="col-lg-6 text-center heading-section mb-5">
-            
-            <h2 class="text-black mb-2">Bienvenido a Nuestro Sitio Web</h2>
-            <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
-          </div>
+            <div class="col-lg-6 text-center heading-section mb-5">
+
+                <h2 class="text-black mb-2">Bienvenido a Nuestro Sitio Web</h2>
+                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+            </div>
         </div>
 
         <div class="row hover-1-wrap mb-5 mb-lg-0">
-          <div class="col-12">
-            <div class="row">
-              <div class="mb-4 mb-lg-0 col-lg-6 order-lg-2" data-aos="fade-left">
-                <a href="#" class="rotate10">
-                  <img src="images/dog_3.jpg" alt="Image" class="img-fluid">
-                </a>
-              </div>
-              <div class="col-lg-5 mr-auto text-lg-right align-self-center order-lg-1" data-aos="fade-right">
-                <h2 class="text-black">Happy Pets</h2>
-                <p class="mb-4">Far far away, behind the word mountains, Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                <p><a href="#" class="btn btn-primary">Read More</a></p>
-              </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="mb-4 mb-lg-0 col-lg-6 order-lg-2" data-aos="fade-left">
+                        <a href="#" class="rotate10">
+                            <img src="images/dog_3.jpg" alt="Image" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-lg-5 mr-auto text-lg-right align-self-center order-lg-1" data-aos="fade-right">
+                        <h2 class="text-black">Happy Pets</h2>
+                        <p class="mb-4">Far far away, behind the word mountains, Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                        <p><a href="#" class="btn btn-primary">Read More</a></p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
         <div class="row hover-1-wrap mb-5 mb-lg-0">
-          <div class="col-12">
-            <div class="row">
-              <div class="mb-4 mb-lg-0 col-lg-6"  data-aos="fade-right">
-                <a href="#" class="rotate-reverse10">
-                  <img src="images/dog_4.jpg" alt="Image" class="img-fluid">
-                </a>
-              </div>
-              <div class="col-lg-5 ml-auto align-self-center"  data-aos="fade-left">
-                <h2 class="text-black">Modern Equipment</h2>
-                <p class="mb-4">Far far away, behind the word mountains, Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
-                <p><a href="#" class="btn btn-primary">Read More</a></p>
-              </div>
+            <div class="col-12">
+                <div class="row">
+                    <div class="mb-4 mb-lg-0 col-lg-6"  data-aos="fade-right">
+                        <a href="#" class="rotate-reverse10">
+                            <img src="images/dog_4.jpg" alt="Image" class="img-fluid">
+                        </a>
+                    </div>
+                    <div class="col-lg-5 ml-auto align-self-center"  data-aos="fade-left">
+                        <h2 class="text-black">Modern Equipment</h2>
+                        <p class="mb-4">Far far away, behind the word mountains, Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
+                        <p><a href="#" class="btn btn-primary">Read More</a></p>
+                    </div>
+                </div>
             </div>
-          </div>
         </div>
 
-      </div>
-    </section>
+    </div>
+</section>
 

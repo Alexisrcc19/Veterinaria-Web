@@ -4,13 +4,11 @@ var r = thinky.r;
 var Veterinario = thinky.createModel("Veterinario", {
     id: type.string(),
     external_id: type.string().default(r.uuid()), 
-    correo: type.string(),
     nombre: type.string(),
     apellido: type.string(),
     direccion: type.string(),
     telefono: type.string(),
     cedula: type.string(),
-    nro_registro: type.string(),
     id_rolVeterinario: type.string()
 });
 

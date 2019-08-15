@@ -31,12 +31,7 @@
                     <div class="col-12 col-md-10 d-none d-xl-block">
                         <nav class="site-navigation position-relative text-right" role="navigation">
                             <div class="form-group">
-                                <div style="font-size: 20px; color: #b21f2d;"> 
-                                    {{msg.error}}
-                                </div>
-                                <div style="font-size: 20px; color: green;"> 
-                                    {{msg.ok}}
-                                </div>
+                                
                             </div>
                             {{#if sesion}}
 
@@ -80,6 +75,13 @@
                                 <li><a href="/cerrar_sesion" class="nav-link">Cerrar Sesion</a></li>
                             </ul>
                             {{/unless}} 
+                           
+                            {{/if}}
+                            {{#if ventanas}}
+                            <ul>
+                                
+                                <a href="/" class="nav-link" type="link">regresar</a>
+                            </ul>
                             {{/if}}
                             
                         </nav>
