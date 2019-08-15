@@ -2,7 +2,7 @@
 var rol = require('../modelos/rol');
 var usuario = require('../modelos/cliente');
 var cuenta = require('../modelos/cuenta');
-class VeterinarioControl {
+class usuarioControl {
     guardar(req, res) {
         rol.filter({nombre: "usuario"}).run().then(function (roles) {
             if (roles.length > 0) {
@@ -55,7 +55,7 @@ class VeterinarioControl {
 
     }
 }
-module.exports = VeterinarioControl;
+module.exports = usuarioControl;
 
 
 

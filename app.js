@@ -37,7 +37,12 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(flash());
-
+//para los mensajes
+app.use((req, res, next)=>{
+  app.locals.succsees=req.flash('succses');
+  app.locals.info=req.flash('info');
+  next();
+})
 
 app.use('/', indexRouter);
 app.use('/users', usersRouter);

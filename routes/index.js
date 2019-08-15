@@ -97,5 +97,9 @@ router.get('/registroMascota',function (req, res, next) {
     res.render('index', {title: 'Registro de mascota',fragmento:'registroMascota', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
+router.get('/registroMascotaVeterinario',function (req, res, next) {
+    res.render('index', {title: 'Registro de mascota',fragmento:'registroMascotaVeterinario', msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+
+});
 
 module.exports = router;

@@ -2,12 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/veterinaria/controladores/utilidades.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/veterinaria/modelos/tipos.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/veterinaria/views/partials/registroUsuario.hbs</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/veterinaria/routes/index.js</file>
-            <file>file:/home/daniel/Documentos/Programacion/Proyecto/veterinaria/views/partials/registroMascota.hbs</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

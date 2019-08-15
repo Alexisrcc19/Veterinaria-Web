@@ -35,19 +35,19 @@ class CuentaController {
                             res.redirect('/');
                         } catch (error) {
                             req.flash('error', 'Los datos no son de un veterinario');
-                            res.redirect('/miCuenta');
+                            res.redirect('/');
                         }
                     } else {
                         req.flash('error', 'Los datos son incorrectos');
-                        res.redirect('/miCuenta');
+                        res.redirect('/');
                     }
                 } else {
                     req.flash('error', 'No existe la cuenta');
-                    res.redirect('/miCuenta');
+                    res.redirect('/');
                 }
             }).error(function (error) {
                 req.flash('error', 'Algo salio mal, comuniquese con los desarroladores');
-                res.redirect('/miCuenta');
+                res.redirect('/');
             });
         } else if (ver === "usuario") {
             cuentaC.getJoin({cliente: {rol: true}, veterinario: {rol: true}}).filter({correo: req.body.correo}).run().then(function (verificar) {
@@ -64,15 +64,15 @@ class CuentaController {
                             res.redirect('/');
                         } catch (error) {
                             req.flash('error', 'los datos no son de un cliente');
-                            res.redirect('/miCuenta');
+                            res.redirect('/');
                         }
                     } else {
                         req.flash('error', 'Los datos son incorrectos');
-                        res.redirect('/miCuenta');
+                        res.redirect('/');
                     }
                 } else {
                     req.flash('error', 'La cuenta no existe');
-                    res.redirect('/miCuenta');
+                    res.redirect('/');
                 }
             }).error(function (error) {
                 req.flash('error', 'Algo salio mal, comuniquese con los desarroladores');
