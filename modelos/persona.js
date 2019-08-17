@@ -1,7 +1,7 @@
 var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
-var Cliente = thinky.createModel("Cliente", {
+var Persona = thinky.createModel("Persona", {
     id: type.string(),
     external_id: type.string().default(r.uuid()), 
     nombre: type.string(),
@@ -9,17 +9,17 @@ var Cliente = thinky.createModel("Cliente", {
     direccion: type.string(),
     telefono: type.string(),
     cedula: type.string(),
-    id_rolUsuario: type.string()
+    id_rolPersona: type.string()
 });
 
-module.exports = Cliente;
+module.exports = Persona;
 //relacion de cliente y rol
 var Rol = require('./rol');
-Cliente.belongsTo(Rol, "rol", "id_rolUsuario", "id");
+Persona.belongsTo(Rol, "rol", "id_rolPersona", "id");
 //relacion de cliente y cuenta
 var Cuenta = require("./cuenta");
-Cliente.hasOne(Cuenta, "cuenta", "id", "id_usuario");
+Persona.hasOne(Cuenta, "cuenta", "id", "id_persona");
 //relacion de cliente y mascota
 var Mascota = require('./mascota');
-Cliente.hasMany(Mascota, "mascota", "id", "id_cliente");
+Persona.hasMany(Mascota, "mascota", "id", "id_cliente");
 

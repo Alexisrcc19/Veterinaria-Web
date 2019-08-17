@@ -15,3 +15,4 @@ class controladorMV{
     }
     
 }
+module.exports = controladorMV;

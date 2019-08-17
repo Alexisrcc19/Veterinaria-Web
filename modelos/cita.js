@@ -10,8 +10,8 @@ var Cita = thinky.createModel("Cita", {
     });
 
 module.exports = Cita;
-var Cliente = require('./cliente');
-Cita.belongsTo(Cliente, "cita", "id_cita", "id_cliente");
+var persona = require('./persona');
+Cita.belongsTo(persona, "persona", "id_cita", "id_cliente");
 
 
 

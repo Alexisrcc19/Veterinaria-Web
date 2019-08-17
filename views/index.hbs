@@ -36,6 +36,15 @@
                             {{#if sesion}}
 
                             {{#if persona }}
+
+                            <div style="font-size: 20px; color: #b21f2d;"> 
+                                    {{msg.error}}
+                                </div>
+                                <div style="font-size: 20px; color: green;"> 
+                                    {{msg.ok}}
+                                </div>
+                                                       
+
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                 <li><a href="/" class="nav-link">Principal</a></li>
                                 <li class="nav-item submenu dropdown">
@@ -55,17 +64,31 @@
                                         <li><a href="#" class="nav-link">Historial de citas medicas</a></li>
                                     </ul>
                                 </li>
+                                 <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" 
+                                       aria-expanded="false">Cuenta</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="/registrarVeterinario" class="nav-link">Registrar veterinario</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/configuracionVeterinario/{{external}}">Configuracion</a></li>
+                                    </ul>
+                                </li>
                                  <li><a href="/cerrar_sesion" class="nav-link">Cerrar Sesion</a></li>
                             </ul>
                             {{/if}}
                             {{#unless persona }}
+                            <div style="font-size: 20px; color: #b21f2d;"> 
+                                    {{msg.error}}
+                                </div>
+                                <div style="font-size: 20px; color: green;"> 
+                                    {{msg.ok}}
+                                </div>
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                 <li><a href="/" class="nav-link">Principal</a></li>
                                <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" 
                                        aria-expanded="false">Mascota</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="/registroMascota" class="nav-link">Registrar Mascota</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/registroMascota" class="nav-link">Mascotas Registradas</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#">Agendar Cita</a></li>
                                     </ul>
                                 </li>
@@ -74,13 +97,13 @@
                                 <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
                                 <li><a href="/cerrar_sesion" class="nav-link">Cerrar Sesion</a></li>
                             </ul>
+                        
                             {{/unless}} 
                            
                             {{/if}}
                             {{#if ventanas}}
                             <ul>
-                                
-                                <a href="/" class="nav-link" type="link">regresar</a>
+                              <a href="/" class="nav-item" type="link">regresar</a>
                             </ul>
                             {{/if}}
                             
@@ -103,13 +126,13 @@
 
 </header>
 
-
 <!--================Header Area =================-->
 <section>
 
     {{> (lookup . 'fragmento') }}
 
 </section>
+
 <footer class="site-footer">
     <div class="container">
         <div class="row">

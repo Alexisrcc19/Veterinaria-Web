@@ -9,9 +9,9 @@
 
 
 <div class="card">
-    
+
     <div class="card-header bg-succses">
-         MASCOTAS REGISTRADAS
+        MASCOTAS REGISTRADAS
     </div>
     <div class="card-body">
         <div class="form-group">
@@ -20,12 +20,13 @@
             <div class="row">
                 <form class="form-inline ml-auto">
                     <div class="form-group">
-                        <label for="">Criterio de Busqueda</label>
+                       
                         <select class="form-control" name="criterio" id="criterio">
                             <option value="todos">Todos</option>
                             <option value="cedula">Cedula</option>
                             <option value="apellidos">Apellidos</option>
                         </select>
+                         <input type="text" value="" class="form-control" placeholder="Criterio de busqueda"/>
                     </div>
 
                     <button type="button" class="btn btn-success btn-md my-0 ml-sm-2" id="btnbuscar">Buscar <i
@@ -33,11 +34,16 @@
                 </form>
             </div>
         </div>
+        
         <div class="form-group">
-
+            {{#unless mas}}
+            <h1>Aun no tiene mascotas registradas</h1>
+            {{/unless}}
+            {{#if mas}}
             <table id="tabla" class="table">
                 <thead>
                     <tr>
+                        <th>Nro</th>
                         <th>Mascota</th>
                         <th>Raza</th>
                         <th>Especie</th>
@@ -45,9 +51,11 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{#each lista}}
+                    {{#each lista as |listaL i|}}
                     <tr>
-                       
+                        <td>
+                            {{i}}
+                        </td>
                         <td>
                             {{nombre}}
                         </td>
@@ -58,19 +66,21 @@
                             {{especie}}
                         </td>
                         <td>
-                            Modificar
+                           <a href="#" class="btn btn-warning">Opciones</a>
                         </td>
                     </tr>
-                    {{/each}}
+                
+                {{/each}}              
                 </tbody>
 
             </table>
+            {{/if}}
         </div>
     </div>
 </div>
 <!-- PARA GUARDAR PACIENTE--->
 <div class="modal fade" id="ModalMascota" tabindex="-1" role="dialog" aria-labelledby="modalpaciente"
-    aria-hidden="true">
+     aria-hidden="true">
     <div class="modal-dialog modg-scrollable" role="document">
         <div class="modal-content">
             <div class="bg-success text-black">
@@ -85,57 +95,58 @@
             <div class="modal-body">
                 <div id="error1"></div>
                 <form id="tablareg" method="POST" action="/registro/mascota">
+                    
                     <input type="hidden" value="0" id="external" name="external" />
                     <div id="mensaje"></div>
-                    
+
                     <div class="tab-content">
                         {{!-- MODAL-CLIENTE --}}
-                    
 
-                            <div class="form-group">
-                                <label for="nombre">Nombre</label>
-                                <input type="text" class="form-control" id="nombre" name="nombre"
-                                    placeholder="Ingrese el nombre de la mascota">
+
+                        <div class="form-group">
+                            <label for="nombre">Nombre</label>
+                            <input type="text" class="form-control" id="nombre" name="nombre"
+                                   placeholder="Ingrese el nombre de la mascota">
+                        </div>
+                        <div class="form-group">
+                            <label for="raza">Raza:</label>
+                            <input type="text" class="form-control" id="raza" name="raza"
+                                   placeholder="Ingrese la raza">
+                        </div>
+                        <div class="form-group">
+                            <label for="edad">Edad:</label>
+                            {{!-- agregar iconos --}}
+                            <div class="input-group">
+                                <input type="number"  class="form-control" id="edad" name="edad"
+                                       placeholder="Ingrese la edad">
                             </div>
-                            <div class="form-group">
-                                <label for="raza">Raza:</label>
-                                <input type="text" class="form-control" id="raza" name="raza"
-                                    placeholder="Ingrese la raza">
-                            </div>
-                            <div class="form-group">
-                                <label for="edad">Edad:</label>
-                                {{!-- agregar iconos --}}
-                                <div class="input-group">
-                                    <input type="number"  class="form-control" id="edad" name="edad"
-                                        placeholder="Ingrese la edad">
-                                </div>
-                            </div>
-                            <label for="edad">Tipo:</label>
+                        </div>
+                        <label for="edad">Tipo:</label>
 
-                            <div class="btn-group" style="padding-bottom: 15px">
+                        <div class="btn-group" style="padding-bottom: 15px">
 
-                                <select class="form-control" name="tipo" id="tipo" aria-describedby="espeHelp">
-                                    <option value="domestica">Domestica</option>
-                                    <option value="granja">Granja</option>
-                                    <option value="salvaje">Salvaje</option>
+                            <select class="form-control" name="tipo" id="tipo" aria-describedby="espeHelp">
+                                <option value="domestica">Domestica</option>
+                                <option value="granja">Granja</option>
+                                <option value="salvaje">Salvaje</option>
 
-                                </select>
+                            </select>
 
-                            </div>
+                        </div>
 
-                            <div class="form-group">
+                        <div class="form-group">
 
-                                <label>Especie:</label>
-                                <input type="label" class="form-control" name="especie" id="especie"
-                                    placeholder="ejemplo: (perro, gato, vaca, pato)">
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" id="btncancelar" class="btn btn-danger"
+                            <label>Especie:</label>
+                            <input type="label" class="form-control" name="especie" id="especie"
+                                   placeholder="ejemplo: (perro, gato, vaca, pato)">
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" id="btncancelar" class="btn btn-danger"
                                     data-dismiss="modal">Cerrar</button>
 
-                                <button type="submit" id="guardar" class="btn btn-info">GUARDAR<i
-                                        class="far fa-edit"></i></button>
-                            </div>
+                            <button type="submit" id="guardar" class="btn btn-info">GUARDAR<i
+                                    class="far fa-edit"></i></button>
+                        </div>
 
                     </div>
 

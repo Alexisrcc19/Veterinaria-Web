@@ -1,5 +1,6 @@
 {{#if persona}}
 <br>
+
 <section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
       <div class="container">
         
@@ -85,7 +86,6 @@
     </section>
 {{/if}}
 {{#unless persona}}
-
 <section class="site-section bg-light trainers" id="trainers-section">
       <div class="container">
         <div class="row">
@@ -102,6 +102,7 @@
         </div>
       </div>
     </section>
+
 <section class="site-section " id="services-section">
       <div class="container">
         <div class="row justify-content-center" data-aos="fade-up">
@@ -241,5 +242,25 @@
         </div>
       </div>
     </section>
+    <!--agregar nueva mascota-->
+                            <div class="modal fade" id="ModalMascota" tabindex="-1" role="dialog" aria-labelledby="modalpaciente"
+     aria-hidden="true">
+    <div class="modal-dialog modg-scrollable" role="document">
+        <div class="modal-content">
+            <div class="bg-success text-black">
+                <center>
+                    <h5 class="modal-title" id="modalpaciente">REGISTRAR MASCOTA</h5>
+                </center>
 
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="error1"></div>
+                <
+            </div>
+        </div>
+    </div>
+<!--</div>terminacion de agregacion de mascota-->
 {{/unless}}

@@ -89,9 +89,11 @@ function validarveterinario() {
                 required: true,
                 number: true
             },
-            nro_registro: {
-                required: true,
-                registro: true
+           claveAnterior: {
+                required: true
+            },
+           claveActual: {
+                required: true
             },
             usuario: {
                 required: true

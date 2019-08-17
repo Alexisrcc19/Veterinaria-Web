@@ -14,8 +14,8 @@ module.exports = Mascota;
 var Historial = require('./historial');
 Mascota.belongsTo(Historial, "mascota", "id_mascota", "id_historial");
 //relacion de mascota y cliente
-var Cliente = require('./cliente');
-Mascota.belongsTo(Cliente, "cliente", "id_cliente", "id");
+var Persona = require('./persona');
+Mascota.belongsTo(Persona, "persona", "id_cliente", "id");
 
 
 

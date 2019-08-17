@@ -5,8 +5,7 @@ var r = thinky.r;
     correo: type.string(),
     usuario: type.string(),
     clave: type.string(),
-    id_veterinario: type.string(),    
-    id_usuario: type.string(),
+    id_persona: type.string(),
     id: type.string(),
     external_id: type.string().default(r.uuid())
     
@@ -14,10 +13,8 @@ var r = thinky.r;
 });
 
 module.exports = Cuenta;
-var Veterinario = require('./Veterinario');
-Cuenta.belongsTo(Veterinario, "veterinario", "id_veterinario", "id");
-var Cliente = require('./cliente');
-Cuenta.belongsTo(Cliente, "cliente", "id_usuario", "id");
+var persona = require('./persona');
+Cuenta.belongsTo(persona, "persona", "id_persona", "id");
 
 
 

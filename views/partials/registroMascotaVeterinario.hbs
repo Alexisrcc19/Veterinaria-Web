@@ -38,7 +38,7 @@
             <table id="tabla" class="table">
                 <thead>
                     <tr>
-                        <th>Nro</th>
+                        <th>Nro.</th>
                         <th>Cedula</th>
                         <th>Cliente</th>
                         <th>Mascota</th>
@@ -47,7 +47,35 @@
                         <th>Acciones</th>
                     </tr>
                 </thead>
-
+                <tbody>
+                    {{#each lista as |lis i|}}
+        
+                    <tr>
+                        <td>
+                            {{i}}
+                        </td>
+                        <td>
+                            {{persona.cedula}}
+                        </td>
+                        <td>
+                            {{persona.nombres}} {{persona.apellidos}}
+                        </td>
+                        <td>
+                            {{nombre}}
+                        </td>
+                        <td>
+                            {{raza}}
+                        </td>
+                        <td>
+                            {{especie}}
+                        </td>
+                        <td>
+                           <a href="#" class="btn btn-warning">Opciones</a>
+                        </td>
+                    </tr>
+                
+                {{/each}}              
+                </tbody>
             </table>
         </div>
     </div>

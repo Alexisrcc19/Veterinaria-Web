@@ -3,12 +3,10 @@ var type = thinky.type;
 var r = thinky.r;
 var Rol = thinky.createModel("Rol", {
     id: type.string(),
-    nombre: type.string()
+    nombre: type.boolean()
     });
 
 module.exports = Rol;
-var Veterinario = require('./Veterinario');
-Rol.hasMany(Veterinario, "veterinario", "id", "id_rolVeterinario");
-var Usuario = require('./cliente');
-Rol.hasMany(Usuario, "usuario", "id", "id_rolUsuario");
+var Usuario = require('./persona');
+Rol.hasMany(Usuario, "usuario", "id", "id_rolPersona");
 
