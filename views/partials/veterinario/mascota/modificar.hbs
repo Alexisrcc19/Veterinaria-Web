@@ -13,35 +13,35 @@
             </div>
             <div class="modal-body">
                 <div id="error1"></div>
-                <form id="tablareg" method="POST" action="#">
-                    <input type="hidden" value="0" id="externalM" name="externalM" />
+                <form id="tablareg" method="POST" action="/actualizarMascota">
+                    <input type="hidden" value="0" id="externalMa" name="externalMa" />
+                    <input type="hidden" value="{{cliente.external_id}}" id="externalCliente" name="externalCliente" />
                     <div id="mensaje"></div>
-                     <div class="form-group">
+                    <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-text">Nombre:</span>
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+                            <input type="text" class="form-control" id="nombreMa" name="nombreMa" placeholder="Ingrese su nombre">
                         </div>
 
                     </div>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-text">Raza:</span>
-                            <input type="text" class="form-control" id="raza" name="raza" placeholder="Ingrese sus raza">
+                            <input type="text" class="form-control" id="razaMa" name="razaMa" placeholder="Ingrese sus raza">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-text">Edad:</span>
-                            <input type="text" class="form-control" id="edad" name="edad" placeholder="Ingrese edad">
+                            <input type="text" class="form-control" id="edadMa" name="edadMa" placeholder="Ingrese edad">
                         </div>
                     </div>
                     {{!-- <label for="edad">Tipo:</label> --}}
                     <div class="input-group">
-                        
+
                         <div class="btn-group" style="padding-bottom: 15px">
                             <span class="input-group-text">Tipo:</span>
-                            <select class="form-control" name="tipo" id="tipo" aria-describedby="espeHelp">
-                                <option>TIPO</option>
+                            <select class="form-control" name="tipoMa" id="tipoMa" aria-describedby="espeHelp">
                                 <option value="domestica">Domestica</option>
                                 <option value="granja">Granja</option>
                                 <option value="salvaje">Salvaje</option>
@@ -52,7 +52,7 @@
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-text">Especie:</span>
-                            <input type="label" class="form-control" id="especie" name="especie" placeholder="ejemplo: (perro, gato, vaca, pato)">
+                            <input type="label" class="form-control" id="especieMa" name="especieMa" placeholder="ejemplo: (perro, gato, vaca, pato)">
                         </div>
                     </div>
                     <div class="modal-footer">

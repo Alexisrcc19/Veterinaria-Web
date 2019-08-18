@@ -69,6 +69,7 @@
                                     <th>Nro</th>
                                     <th>Mascota</th>
                                     <th>Raza</th>
+                                    <th>Tipo</th>
                                     <th>Especie</th>
                                     <th>Acciones</th>
                                 </tr>
@@ -85,11 +86,14 @@
                                         {{raza}}
                                     </td>
                                     <td>
+                                        {{tipo}}
+                                    </td>
+                                    <td>
                                         {{especie}}
                                     </td>
                                     <td>
                                         <div class="btn-group">
-                                            <a href="#" data-toggle="modal" data-target="#modificarMascota" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="visualizarModificar({{external_id}})"><i class="far fa-edit"></i></a>
+                                            <a href="#" data-toggle="modal" data-target="#modificarMascota" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenardatosMascota('{{external_id}}')"><i class="far fa-edit"></i></a>
 
                                         </div>
                                         {{!-- <div class="btn-group">

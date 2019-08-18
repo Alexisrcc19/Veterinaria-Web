@@ -7,7 +7,8 @@ var Mascota = thinky.createModel("Mascota", {
     edad: type.string(),
     tipo: type.string(),
     especie: type.string(),
-    id_cliente: type.string()
+    id_cliente: type.string(),
+    external_id: type.string().default(r.uuid())
     });
 
 module.exports = Mascota;

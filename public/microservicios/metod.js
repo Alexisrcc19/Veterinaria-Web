@@ -25,3 +25,29 @@ function llenardatosCliente(external) {
         }
     });
 };
+/**
+ * metodo para llenar datos en formulario de odificar
+ * @param {external_id de mascota} external 
+ */
+
+function llenardatosMascota(external) {
+    var url = url_base + "cargarDatosMascota";
+    console.log(external);
+    //en el controlador se recibe los mismo datos que estan aqui en el servicio texto = a req.query.texto en el contrlador
+    var external = external;
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        data: 'external=' + external,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            // console.log(data.edad);
+            $("#externalMa").val(data.external_id);
+            $("#nombreMa").val(data.nombre);
+            $("#razaMa").val(data.raza);
+            $("#edadMa").val(data.edad);
+            $("#tipoMa").val(data.tipo);
+            $("#especieMa").val(data.especie);
+        }
+    });
+};

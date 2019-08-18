@@ -136,7 +136,6 @@ class usuarioControl {
         persona.filter({ external_id: req.body.externalM }).getJoin({ cuenta: true }).then(function (resultM1) {
             if (resultM1.length > 0) {
                 var clienteM = resultM1[0];
-
                 clienteM.cedula = req.body.cedulaM;
                 clienteM.nombres = req.body.nombresM;
                 clienteM.apellidos = req.body.apellidosM;
@@ -155,10 +154,10 @@ class usuarioControl {
                     req.flash('error','error al modificado');
                     res.redirect('/listaclientes')
                    
-                })
+                });
 
             }
-        })
+        });
 
     }
 }
