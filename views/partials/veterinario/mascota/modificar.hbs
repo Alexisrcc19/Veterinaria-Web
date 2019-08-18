@@ -1,0 +1,66 @@
+<!-- PARA GUARDAR PACIENTE--->
+<div class="modal fade" id="modificarMascota" tabindex="-1" role="dialog" aria-labelledby="modalmascota" aria-hidden="true">
+    <div class="modal-dialog modg-scrollable" role="document">
+        <div class="modal-content">
+            <div class="bg-success text-black">
+                <center>
+                    <h5 class="modal-title" id="modalpaciente">MODIFICAR MASCOTA</h5>
+                </center>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div id="error1"></div>
+                <form id="tablareg" method="POST" action="#">
+                    <input type="hidden" value="0" id="externalM" name="externalM" />
+                    <div id="mensaje"></div>
+                     <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text">Nombre:</span>
+                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+                        </div>
+
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text">Raza:</span>
+                            <input type="text" class="form-control" id="raza" name="raza" placeholder="Ingrese sus raza">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text">Edad:</span>
+                            <input type="text" class="form-control" id="edad" name="edad" placeholder="Ingrese edad">
+                        </div>
+                    </div>
+                    {{!-- <label for="edad">Tipo:</label> --}}
+                    <div class="input-group">
+                        
+                        <div class="btn-group" style="padding-bottom: 15px">
+                            <span class="input-group-text">Tipo:</span>
+                            <select class="form-control" name="tipo" id="tipo" aria-describedby="espeHelp">
+                                <option>TIPO</option>
+                                <option value="domestica">Domestica</option>
+                                <option value="granja">Granja</option>
+                                <option value="salvaje">Salvaje</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text">Especie:</span>
+                            <input type="label" class="form-control" id="especie" name="especie" placeholder="ejemplo: (perro, gato, vaca, pato)">
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" id="btncancelar" class="btn-danger" data-dismiss="modal"> CANCELAR</i></button>
+                        <button type="submit" id="guardar" class=" btn-info">GUARDAR </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

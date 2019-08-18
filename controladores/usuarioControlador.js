@@ -23,7 +23,7 @@ class usuarioControl {
          * 
          * then() = funcion la en la cual se realiza un collback para la manupulacion del rol
          */
-        rol.filter({nombre: false}).run().then(function (roles) {
+        rol.filter({ nombre: false }).run().then(function (roles) {
             /**
              * role.length = verifica si los roles se crearon
              */
@@ -40,7 +40,7 @@ class usuarioControl {
                  * 
                  * then() = funcion en la cual se realiza el collback de la cuenta para poder registrar
                  */
-                cuenta.filter({correo: req.body.correo}).then(function (verificarCuenta) {
+                cuenta.filter({ correo: req.body.correo }).then(function (verificarCuenta) {
                     /**
                      * verificarCuenta = usada para evitar la repeticion de cuentas
                      */
@@ -87,7 +87,7 @@ class usuarioControl {
                          * 
                          * cuenta=true = referencia en donde la cuenta tambien esta relacionada al momento de guardar
                          */
-                        Usuario.saveAll({cuenta: true}).then(function (result) {
+                        Usuario.saveAll({ cuenta: true }).then(function (result) {
                             /**
                              * success = mensaje usado para dar a conocer al cliente que la cuenta fue registrada exitosametne
                              */
@@ -118,6 +118,48 @@ class usuarioControl {
             req.flash('error', 'ocurrio un error porfavor comuniquese con los desarrolladores');
             res.redirect('/');
         });
+    }
+
+
+    cargardatosCliente(req, res) {
+        var external = req.query.external;
+        persona.filter({ external_id: external }).getJoin({ cuenta: true }).then(function (resultP) {
+            // res.send(resultP);
+            var persona = resultP[0];
+            res.json(persona);
+        }).error(function (error) {
+
+        });
+
+    }
+    modificarC(req, res) {
+        persona.filter({ external_id: req.body.externalM }).getJoin({ cuenta: true }).then(function (resultM1) {
+            if (resultM1.length > 0) {
+                var clienteM = resultM1[0];
+
+                clienteM.cedula = req.body.cedulaM;
+                clienteM.nombres = req.body.nombresM;
+                clienteM.apellidos = req.body.apellidosM;
+                clienteM.telefono = req.body.telefonoM;
+                clienteM.direccion = req.body.direccionM;
+                clienteM.cuenta.usuario = req.body.usuarioM;
+                clienteM.cuenta.correo = req.body.correoM;
+                clienteM.cuenta.clave = req.body.claveM;
+
+                clienteM.saveAll({ cuenta: true }).then(function (modificadoM) {
+                    req.flash('success','registro modificado');
+                    res.redirect('/listaclientes')
+                    // res.send(modificadoM);
+                }).error(function (error) {
+                    // req.flash('modificado con exito');
+                    req.flash('error','error al modificado');
+                    res.redirect('/listaclientes')
+                   
+                })
+
+            }
+        })
+
     }
 }
 /**

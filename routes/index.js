@@ -6,6 +6,10 @@ var router = express.Router();
  */
 var bd = require('../modelos/rol');
 
+var mascotavControl = require('../controladores/mascotavControlador');
+var mascota1 = new mascotavControl();
+
+
 
 /*
  * 
@@ -147,6 +151,8 @@ router.get('/registroMascota', sacar, mascota.visualizar);
  */
 router.post('/registro/mascota',sacar, mascota.guardar);
 
+router.post('/veterinario/registro/mascota',sacar, mascota.guardarDesdeVeterinario);
+
 //<-------------------Veterinario---------------->
 /*
  * post = permite la modificacion de los datos de un veterinario
@@ -194,7 +200,18 @@ router.get('/listaPagos', sacar, pago.verListaPagos);
 router.get('/GestionPagos', sacar, pago.verGestionPagos);
 
 
+router.get('/listaclientes', mascota1.verReg);
+// router.post('/guardarmascotacliente', mascota1.guardarMV);
+router.get('/registroMascota/:external',sacar,mascota1.visualizarModificar);
+// router.post('/registroMascota', mascota1.guardarMascota);
 
+router.get('/veterinario/mascota/listaHistorial', function (req, res, next) {
+    res.render('index', {title: 'Historial',fragmento:'veterinario/mascota/historial/listaHistorial', inicio:'inicio',ventanas:"ventanas",msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+
+});
+
+router.get("/cargarDatosPersona",usuario.cargardatosCliente);
+router.post('/actualizar', usuario.modificarC);
 
 
 module.exports = router;

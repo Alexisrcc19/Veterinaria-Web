@@ -95,6 +95,64 @@ class MascotaControl {
             res.redirect('/');
         });
     }
+    guardarDesdeVeterinario(req, res) {
+        /**
+         * 
+         * @type idper = variable creada para conocer el id de la persona la cual esta iniciada sesion
+         */
+        var idper = req.body.idCli;
+        /**
+         * 
+         * @type data = son los datos de la mascota a guardar con el id_cliente respectivo, dependiendo del usuario en sesion
+         */
+        var data = {
+            raza: req.body.raza,
+            nombre: req.body.nombre,
+            edad: req.body.edad,
+            tipo: req.body.tipo,
+            especie: req.body.especie,
+            id_cliente: idper
+        };
+         /**
+          * 
+          * @type mascota = dato instanciado incluyendole la "data", la cual contiene toda la informacion de la mascota a registrar
+          */
+        var mascotaD = new mascota(data);
+        /**
+         * save() = metodo usado para guardar directametne en la base de datos
+         */
+        mascotaD.save().then(function () {
+            req.flash('info', 'mascota registrada');
+            res.redirect('/registroMascota');
+        }).error(function () {
+            req.flash('error', 'No se pudo guardar');
+            res.redirect('/');
+        });
+    }
+
+    visualizarModificar(req, res) {
+        var external = req.params.external;
+        console.log("cualqier huevada"+external);
+        mascota.getJoin({persona: true}).filter({id_cliente: req.session.cuenta.id}).then(function (datosM) {
+            //console.log(datosM);
+            if (datosM.length > 0) {
+                var mascotaM = datosM[0];
+                res.render('index',
+                        {title: 'Mascota',
+                            fragmento: "veterinario/mascota/modificar",
+                            sesion: true,
+                            masco: mascotaM,
+                            msg: {error: req.flash('error'), info: req.flash('info')}
+                        });
+
+            } else {
+                req.flash('error', 'Nose pudo mostrar lo solicitado');
+                res.redirect('veterinario/mascota/lista');
+            }
+        }).error(function (error) {
+
+        });
+    }
 }
 /**
  * exportacion de la clase MascotaControl

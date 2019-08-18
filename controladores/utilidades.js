@@ -137,7 +137,6 @@ function creacionVeterinario() {
                      * @param {type} error = mensaje mostrado en caso de que aun no esten cargados los roles
                      * @returns {undefined}
                      */
-                    alert('error', 'Aun no existen roles, recargue la pagina');
                 }
             }).error(function (error) {
                 /**
