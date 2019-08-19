@@ -7,37 +7,38 @@ var mascotaC = require('../modelos/mascota');
 var rol = require('../modelos/rol');
 class controladorMV {
     verReg(req, res) {
-        rol.filter({ nombre: false }).then(function (listado) {
-            var ver = listado[0];
-            var mos = ver.id;
-            console.log(mos);
-            personaC.getJoin({ mascota: true }).filter({ id_rolPersona: mos }).then(function (lista) {
-                res.render('index', {
-                    title: 'Veterinario', 
-                    fragmento: 'veterinario/cliente/listaClientes', 
-                    lista: lista, 
-                    ventanas: "ventanas",
-                    msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
+            rol.filter({nombre: false}).then(function (listado) {
+                var ver = listado[0];
+                var mos = ver.id;
+                console.log(mos);
+                personaC.getJoin({mascota: true}).filter({id_rolPersona: mos}).then(function (lista) {
+               
+                    res.render('index', {
+                        title: 'Veterinario',
+                        fragmento: 'veterinario/cliente/listaClientes',
+                        lista: lista,
+                        ventanas: "ventanas",
+                        msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}
+                    });
+                    console.log(listado)
                 });
-                console.log(listado)
-            });
 
-        });
+            });
     }
-    
 
     visualizarModificar(req, res) {
         var external = req.params.external;
         console.log("external: " + external);
-        personaC.filter({ external_id: external }).then(function (resultC) {
+        personaC.filter({external_id: external}).then(function (resultC) {
             var cliente = resultC[0];
             console.log(cliente);
-            mascotaC.filter({ id_cliente: cliente.id }).then(function (resultM) {
+            mascotaC.filter({id_cliente: cliente.id}).then(function (resultM) {
                 res.render('index', {
                     title: 'Administrar Mascota',
                     fragmento: 'veterinario/mascota/listaMascota',
                     cliente: cliente,
                     listaM: resultM,
+                    ventanas: "ventanas",
                     msg: {
                         error: req.flash('error'),
                         info: req.flash('info'), ok: req.flash('success')
@@ -52,7 +53,7 @@ class controladorMV {
     }
     guardarMascota(req, res) {
         var external = req.body.externalC;
-        personaC.filter({ id: external }).then(function (resultC) {
+        personaC.filter({id: external}).then(function (resultC) {
             //res.send(resultC);
             var cliente = resultC[0];
             var data = {

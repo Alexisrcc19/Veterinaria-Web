@@ -173,11 +173,11 @@ class VeterinarioControl {
         });
     }
     verHistorialClinico(req, res) {
-        res.render('index', {title: 'Historial Clinico', fragmento: 'historialClinico'
+        res.render('index', {title: 'Historial Clinico', fragmento: 'historialClinico',ventanas: "ventanas"
             , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     }
     verListaVeterinario(req, res) {
-        res.render('index', {title: 'Lista de Veterinarios', fragmento: 'listaVeterinarios'
+        res.render('index', {title: 'Lista de Veterinarios', fragmento: 'listaVeterinarios',ventanas:"ventanas"
             , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     }
     /*

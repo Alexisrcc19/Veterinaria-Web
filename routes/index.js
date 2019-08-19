@@ -99,6 +99,30 @@ var sacar = function (req, res, next) {
         res.redirect('/');
     }
 };
+var CuentaVeterinario = function (req, res, next) {
+    var ver = req.session.cuenta.persona;
+
+if(ver === true){
+        next();
+    }else{
+    req.flash('error', 'esto le pertenece al veterinario');
+        res.redirect('/');
+    
+    }
+
+};   
+var CuentaUsuario = function (req, res, next) {
+    var ver = req.session.cuenta.persona;
+
+if(ver === false){
+        next();
+    }else{
+    req.flash('error', 'esto le pertenece al usuario');
+        res.redirect('/');
+    
+    }
+
+}  
 router.get('/', function (req, res, next) {
     /*
      * creacionRoles() = permite generar por primera vez los roles
@@ -132,7 +156,7 @@ router.get('/', function (req, res, next) {
  * permite redireccionar a la plantilla para poder registrar un clietne
  */
 router.get('/registrarUsuario', function (req, res, next) {
-    res.render('index', { title: 'Registrate', fragmento: 'registroUsuario', registro: 'registro', msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') } });
+    res.render('index', { title: 'Registrate', fragmento: 'registroUsuario', registro: 'registro',ventanas: "ventanas", msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') } });
 
 });
 
@@ -151,38 +175,38 @@ router.get('/acerca', function (req, res, next) {
 /*
  * get = permite visualizar la parte del formulario previo al registro de la mascota
  */
-router.get('/registroMascota', sacar, mascota.visualizar);
+router.get('/registroMascota', sacar,CuentaUsuario, mascota.visualizar);
 /*
  * post = permite registrar una nueva mascota
  */
-router.post('/registro/mascota', sacar, mascota.guardar);
+router.post('/registro/mascota', sacar,CuentaUsuario, mascota.guardar);
 
-router.post('/veterinario/registro/mascota', sacar, mascota.guardarDesdeVeterinario);
+router.post('/veterinario/registro/mascota', sacar,CuentaVeterinario, mascota.guardarDesdeVeterinario);
 
 //<-------------------Veterinario---------------->
 /*
  * post = permite la modificacion de los datos de un veterinario
  */
-router.post('/configuracionVeterinario', veterinario.configuracionVeterinario);
+router.post('/configuracionVeterinario',sacar,CuentaVeterinario, veterinario.configuracionVeterinario);
 /*
  * get = permite visualizar losd atos a modificar el veterinario
  */
-router.get('/configuracionVeterinario/:external', sacar, veterinario.visualizarConfiguracion);
+router.get('/configuracionVeterinario/:external', sacar,CuentaVeterinario, veterinario.visualizarConfiguracion);
 /*
  * get = permite la visualizacion del formulario previo a registrar
  */
-router.get('/registrarVeterinario', sacar, veterinario.registroVeterinario);
+router.get('/registrarVeterinario', sacar,CuentaVeterinario, veterinario.registroVeterinario);
 /*
  * post = permite guardar los datos de un nuevo veterinario
  */
-router.post('/registroVeterinario', veterinario.guardar);
+router.post('/registroVeterinario',sacar,CuentaVeterinario, veterinario.guardar);
 
-router.get('/historialClinico', sacar, veterinario.verHistorialClinico);
-router.get('/listaVeterinarios', sacar, veterinario.verListaVeterinario);
+router.get('/historialClinico', sacar,CuentaVeterinario, veterinario.verHistorialClinico);
+router.get('/listaVeterinarios', sacar,CuentaVeterinario, veterinario.verListaVeterinario);
 /*
  * get = permite visualizar el listado de paciente con sus respectivas mascotas
  */
-router.get('/registroMascotaVeterinario', sacar, veterinario.listadoPacientes);
+router.get('/registroMascotaVeterinario', sacar,CuentaVeterinario, veterinario.listadoPacientes);
 
 //<-----------------------------usuario------------------------>
 /*
@@ -206,20 +230,20 @@ router.get('/listaPagos', sacar, pago.verListaPagos);
 router.get('/GestionPagos', sacar, pago.verGestionPagos);
 
 
-router.get('/listaclientes', mascota1.verReg);
+router.get('/listaclientes',sacar,CuentaVeterinario, mascota1.verReg);
 // router.post('/guardarmascotacliente', mascota1.guardarMV);
-router.get('/registroMascota/:external', sacar, mascota1.visualizarModificar);
+router.get('/registroMascota/:external', sacar,CuentaVeterinario, mascota1.visualizarModificar);
 // router.post('/registroMascota', mascota1.guardarMascota);
 
-router.get('/veterinario/mascota/listaHistorial', function (req, res, next) {
+router.get('/veterinario/mascota/listaHistorial',sacar,CuentaVeterinario, function (req, res, next) {
     res.render('index', { title: 'Historial', fragmento: 'veterinario/mascota/historial/listaHistorial', inicio: 'inicio', ventanas: "ventanas", msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') } });
 
 });
 /**
  * rutas para cargar datos para modificar y actualizar clientes
  */
-router.get("/cargarDatosPersona", usuario.cargardatosCliente);
-router.post('/actualizar', usuario.modificarC);
+router.get("/cargarDatosPersona",sacar, CuentaVeterinario, usuario.cargardatosCliente);
+router.post('/actualizar',sacar, usuario.modificarC);
 
 router.get("/cargarDatosMascota", mascota.cargardatosMascota);
 router.post('/actualizarMascota', mascota.modificarM);
