@@ -51,3 +51,23 @@ function llenardatosMascota(external) {
         }
     });
 };
+function llenardatosHistorial(external) {
+    var url = url_base + "cargarDatosHistorial";
+    console.log(external);
+    //en el controlador se recibe los mismo datos que estan aqui en el servicio texto = a req.query.texto en el contrlador
+    var external = external;
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        data: 'external=' + external,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            $("#externalHistorialH").val(data.external_id);
+            $("#causaH").val(data.causa);
+            $("#estadoH").val(data.estado);
+            $("#enfermedadesH").val(data.enfermedades);
+            $("#tratamientoH").val(data.tratamiento);
+
+        }
+    });
+};

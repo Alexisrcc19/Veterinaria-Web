@@ -11,54 +11,37 @@
 
             <div class="modal-body">
                 <div id="error1"></div>
-                <form id="tablareg" method="POST" action="#">
-                    <input type="hidden" value="{{mascota.id}}" id="idMas" name="idMas" />
-                    {{mascota.id}}
+                <form id="tablareg" method="POST" action="/veterinario/registro/historial">
+                    {{#each lista}}
+                    <input type="hidden" value="{{external_id}}" id="externalMasc" name="externalMasc" />
+                    {{/each}}
                     <div id="mensaje"></div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-text">N° Historial:</span>
-                            <input type="text" class="form-control" id="numhistorial" name="numhistorial" placeholder="Ingrese su nombre">
-                        </div>
-
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-text">Nombre:</span>
-                            <input type="text" class="form-control" id="nombreH" name="nombreH" placeholder="Ingrese sus raza">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
-                            <span class="input-group-text">Edad:</span>
-                            <input type="text" class="form-control" id="edadH" name="edadH" placeholder="Ingrese edad">
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <div class="input-group">
                             <span class="input-group-text">Enfermedades:</span>
-                            <input type="text" class="form-control" id="enfermedades" name="enfermedades" placeholder="Ingrese edad">
+                            <input type="text" class="form-control" id="enfermedades" name="enfermedades" placeholder="Ingrese las enfermedades">
                         </div>
-                    </div>
-                    {{!-- <label for="edad">Tipo:</label> --}}
-                    <div class="input-group">
 
-                        <div class="btn-group" style="padding-bottom: 15px">
-                            <span class="input-group-text">Sexo:</span>
-                            <select class="form-control" name="sexo" id="sexo" aria-describedby="espeHelp">
-                                <option value="domestica">Hembra</option>
-                                <option value="granja">Macho</option>
-                                
-                            </select>
-                        </div>
                     </div>
-
                     <div class="form-group">
                         <div class="input-group">
                             <span class="input-group-text">Estado:</span>
-                            <input type="label" class="form-control" id="estado" name="estado" placeholder="ejemplo: (perro, gato, vaca, pato)">
+                            <input type="text" class="form-control" id="estado" name="estado" placeholder="Ingrese el estado">
                         </div>
                     </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text">Causa:</span>
+                            <input type="text" class="form-control" id="causa" name="causa" placeholder="Ingrese la causa">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <div class="input-group">
+                            <span class="input-group-text">Tratamiento:</span>
+                            <input type="text" class="form-control" id="tratamiento" name="tratamiento" placeholder="Ingrese el tratamiento">
+                        </div>
+                    </div>
+                    {{!-- <label for="edad">Tipo:</label> --}}
                     <div class="modal-footer">
                         <button type="button" id="btncancelar" class="btn-danger" data-dismiss="modal"> CANCELAR</i></button>
                         <button type="submit" id="guardar" class=" btn-info">GUARDAR </button>

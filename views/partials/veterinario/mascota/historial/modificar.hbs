@@ -1,55 +1,52 @@
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+        validarRegistro()
+    });
+</script>
 <div class="modal fade" id="modificarHistorial" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
     <div class="modal-dialog modg-scrollable" role="document">
         <div class="modal-content">
-            <div class="card-header bg-succses">
-                <div class="card-title text-center">
-                    <p class="card-text "><h4>REGISTRAR MASCOTA</h4>  </p>
-                </div>
+            <div class="bg-success text-black">
+                <center>
+                    <h5 class="modal-title" id="">MODIFICAR HISTORIAL</h5>
+                </center>
+
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
             </div>
-           
             <div class="modal-body">
                 <div id="error1"></div>
-                <form id="tablareg" method="POST" action="/veterinario/registro/mascota">
-                    <input type="hidden" value="{{cliente.id}}" id="idCli" name="idCli" />
-                    {{cliente.id}}
+                <form id="tablareg" method="POST" action="/actualizarHistorial">
+                    
+                    <input type="hidden" value="" id="externalHistorialH" name="externalHistorialH" />
                     <div id="mensaje"></div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-text">Nombre:</span>
-                            <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese su nombre">
+                            <span class="input-group-text">Causa:</span>
+                            <input type="text" class="form-control" id="causaH" name="causaH" placeholder="Ingrese su nombre">
                         </div>
 
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-text">Raza:</span>
-                            <input type="text" class="form-control" id="raza" name="raza" placeholder="Ingrese sus raza">
+                            <span class="input-group-text">Estado:</span>
+                            <input type="text" class="form-control" id="estadoH" name="estadoH" placeholder="Ingrese sus raza">
                         </div>
                     </div>
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-text">Edad:</span>
-                            <input type="text" class="form-control" id="edad" name="edad" placeholder="Ingrese edad">
+                            <span class="input-group-text">Enfermedades:</span>
+                            <input type="text" class="form-control" id="enfermedadesH" name="enfermedadesH" placeholder="Ingrese edad">
                         </div>
                     </div>
-                    {{!-- <label for="edad">Tipo:</label> --}}
-                    <div class="input-group">
-                        
-                        <div class="btn-group" style="padding-bottom: 15px">
-                            <span class="input-group-text">Tipo:</span>
-                            <select class="form-control" name="tipo" id="tipo" aria-describedby="espeHelp">
-                                <option>TIPO</option>
-                                <option value="domestica">Domestica</option>
-                                <option value="granja">Granja</option>
-                                <option value="salvaje">Salvaje</option>
-                            </select>
-                        </div>
-                    </div>
+                    
 
                     <div class="form-group">
                         <div class="input-group">
-                            <span class="input-group-text">Especie:</span>
-                            <input type="label" class="form-control" id="especie" name="especie" placeholder="ejemplo: (perro, gato, vaca, pato)">
+                            <span class="input-group-text">Tratamiento:</span>
+                            <input type="label" class="form-control" id="tratamientoH" name="tratamientoH" placeholder="ejemplo: (perro, gato, vaca, pato)">
                         </div>
                     </div>
                     <div class="modal-footer">

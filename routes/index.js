@@ -9,7 +9,8 @@ var bd = require('../modelos/rol');
 var mascotavControl = require('../controladores/mascotavControlador');
 var mascota1 = new mascotavControl();
 
-
+var historialControlador = require('../controladores/HistorialControlador');
+var historial = new historialControlador();
 
 /*
  * 
@@ -201,7 +202,6 @@ router.get('/registrarVeterinario', sacar,CuentaVeterinario, veterinario.registr
  */
 router.post('/registroVeterinario',sacar,CuentaVeterinario, veterinario.guardar);
 
-router.get('/historialClinico', sacar,CuentaVeterinario, veterinario.verHistorialClinico);
 router.get('/listaVeterinarios', sacar,CuentaVeterinario, veterinario.verListaVeterinario);
 /*
  * get = permite visualizar el listado de paciente con sus respectivas mascotas
@@ -235,16 +235,24 @@ router.get('/listaclientes',sacar,CuentaVeterinario, mascota1.verReg);
 router.get('/registroMascota/:external', sacar,CuentaVeterinario, mascota1.visualizarModificar);
 // router.post('/registroMascota', mascota1.guardarMascota);
 
-router.get('/veterinario/mascota/listaHistorial',sacar,CuentaVeterinario, function (req, res, next) {
-    res.render('index', { title: 'Historial', fragmento: 'veterinario/mascota/historial/listaHistorial', inicio: 'inicio', ventanas: "ventanas", msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') } });
+router.get('/veterinario/mascota/listaHistorial/:external',sacar,CuentaVeterinario, historial.verHistorial);
+router.post('/veterinario/registro/historial', sacar,CuentaVeterinario, historial.guardarHistorial);
+router.get('/listaHistorialMascotas', sacar,CuentaVeterinario, historial.listaHistorialMascotas);
 
-});
 /**
  * rutas para cargar datos para modificar y actualizar clientes
  */
 router.get("/cargarDatosPersona",sacar, CuentaVeterinario, usuario.cargardatosCliente);
-router.post('/actualizar',sacar, usuario.modificarC);
+/*
+ * rutas para cargar y modificar datos del historial
+ */
+router.get("/cargarDatosHistorial",sacar, historial.cargardatosHistorial);
+router.post('/actualizarHistorial', historial.modificarH);
 
+router.post('/actualizar',sacar, usuario.modificarC);
+/*
+ * rutas para cargar y modifiacr datos de la mascota 
+ */
 router.get("/cargarDatosMascota", mascota.cargardatosMascota);
 router.post('/actualizarMascota', mascota.modificarM);
 

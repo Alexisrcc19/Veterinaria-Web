@@ -1,4 +1,4 @@
-
+<script src="/js/metodos.js"></script>
 <section class="site-section bg-white " id="testimonials-section" data-aos="fade">
     <div class="container">
         <h1 class="text-center">{{title}}</h1>
@@ -7,31 +7,31 @@
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
                         <p class="card-text">
-                            <h4>Datos Mascota</h4>
+                        <h4>Datos Mascota</h4>
                         </p>
                     </div>
                 </div>
-                <div class="card-body">
+                <div class="card-body">{{#each lista}}
                     <div class="form-group">
-                        <label for="cedula">Nombre</label>
-                        <input type="text" class="form-control" value="{{mascota.nombre}}" readonly>
+                        <a for="cedula">Nro. Historial:</a>
+                        <input type="text" class="form-control" value="{{nro_historial}}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="nombres">Raza:</label>
-                        <input type="text" class="form-control" value="{{mascota.raza}}" readonly>
+                        <a for="nombres">Nombre:</a>
+                        <input type="text" class="form-control" value="{{nombre}}" readonly>
                     </div>
                     <div class="form-group">
-                        <label for="direccion">Especie:</label>
-                        <input type="text" class="form-control" value="{{mascota.especie}}" readonly>
+                        <a for="direccion">Especie:</a>
+                        <input type="text" class="form-control" value="{{especie}}" readonly>
                     </div>
-                </div>
+                </div>{{/each}}
             </div>
             <div class="col-md-1"> </div>
             <div class="card" style="width:700px">
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
                         <p class="card-text ">
-                            <h6>LISTADO DE HISTORIAL  </h6>
+                        <h6>LISTADO DE HISTORIAL  </h6>
                         </p>
 
                         <a href="" data-toggle="modal" class=" btn btn-outline-primary ml-auto float-left" title="Registrar" data-target="#registroHistorial">Nuevo <i class="fas fa-paw"></i></a>
@@ -62,37 +62,38 @@
                             <thead>
                                 <tr>
                                     <th>Nro</th>
-                                    <th>N° Historial</th>
-                                    <th>Nombre</th>
-                                    <th>edad</th>
-                                    <th>Enfermedades</th>
-                                    <th>Sexo</th>
+                                    <th>Causa</th>
                                     <th>Estado</th>
+                                    <th>Enfermedades</th>
+                                    <th>Tratamiento</th>
                                 </tr>
                             </thead>
-                            {{!-- <tbody>
-                                {{#each listaM}}
-                                <tr>
-                                    <td>
-                                    </td>
-                                    <td>
-                                        {{nombre}}
-                                    </td>
-                                    <td>
-                                        {{raza}}
-                                    </td>
-                                    <td>
-                                        {{especie}}
-                                    </td> --}}
-                                    <td>
-                                        {{!-- <div class="btn-group">
-                                            <a href="#" data-toggle="modal" data-target="#modificarHistorial" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="visualizarModificar({{external_id}})"><i class="far fa-edit"></i></a>
+                            {{#each listado as |list i|}}
+                            <tr>
+                                <td>
+                                    {{i}}
+                                </td>
+                                <td>
+                                    {{causa}}
+                                </td>
+                                <td>
+                                    {{estado}}
+                                </td>
+                                <td>
+                                    {{enfermedades}}
+                                </td>
+                                <td>
+                                    {{tratamiento}}
+                                </td>
+                                <td>
+                                    <div class="btn-group">
+                                        <a href="#" data-toggle="modal" data-target="#modificarHistorial" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenardatosHistorial('{{external_id}}')"><i class="far fa-edit"></i></a>
 
-                                        </div> --}}
-                                                                               
-                                    </td>
-                                </tr>
-                                {{!-- {{/each}} --}}
+                                    </div>
+                                    </div>                                                                                
+                                </td>
+                            </tr>
+                            {{/each}}
                             </tbody>   
                         </table>
                     </div>

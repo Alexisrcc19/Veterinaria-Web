@@ -46,7 +46,7 @@ class VeterinarioControl {
                 /**
                  * datos: datos = se envia todos los datos contenidos en persona incluido el modelo de cuenta
                  */
-                res.render('index', {title: 'Configuracion', fragmento: 'configuracionVeterinario', datos: datos, ventanas: "ventanas",
+                res.render('index', {title: 'Configuracion', fragmento: 'veterinario/configuracionVeterinario', datos: datos, ventanas: "ventanas",
                     msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
             } else {
                 /**
@@ -146,7 +146,7 @@ class VeterinarioControl {
         /**
          * registroVeterianrio = usado para redireccion a la plantilla de registro de veterinario
          */
-        res.render('index', {title: 'Registrate', fragmento: 'registroVeterinario', registro: 'registro', ventanas: "ventanas",
+        res.render('index', {title: 'Registrate', fragmento: 'veterinario/registroVeterinario', registro: 'registro', ventanas: "ventanas",
             msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     }
     /*
@@ -172,10 +172,7 @@ class VeterinarioControl {
             res.redirect('/');
         });
     }
-    verHistorialClinico(req, res) {
-        res.render('index', {title: 'Historial Clinico', fragmento: 'historialClinico',ventanas: "ventanas"
-            , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
-    }
+   
     verListaVeterinario(req, res) {
         res.render('index', {title: 'Lista de Veterinarios', fragmento: 'listaVeterinarios',ventanas:"ventanas"
             , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});

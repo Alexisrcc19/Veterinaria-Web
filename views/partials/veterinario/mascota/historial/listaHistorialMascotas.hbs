@@ -1,0 +1,58 @@
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+        validarRegistro()
+    });</script>
+
+
+<section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-succses">
+                LISTADO DE CLIENTES
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+                    <div class="table-responsive">
+                        <table id="tabla" class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Nro</th>
+                                    <th>Nro. Historial</th>
+                                    <th>Mascota</th>
+                                    <th>Propietario</th>
+                                    <th>Acciones</th>
+
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each lista as |lis i|}}
+                                <tr>
+                                    <td>
+                                        {{i}}
+                                    </td>
+                                    <td>
+                                        {{nro_historial}}
+                                    </td>
+                                    <td>
+                                        {{nombre}}
+                                    </td>
+                                    <td>
+                                         {{persona.nombres}} {{persona.apellidos}}
+                                    </td>
+
+                                    <td>
+                                       <div class="btn-group">
+                                            <a href="/veterinario/mascota/listaHistorial/{{external_id}}" data-tooltip="tooltip" data-placement="top" title="Registrar Mascota" class="btn-warning btn-sm"><i class="far fa-calendar-alt"></i></a>
+                                        </div>
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
