@@ -271,3 +271,75 @@ function validarRegistro() {
 
 
 }
+function validarConfiguracionUsuario() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+
+    $.validator.addMethod("registro", function (value, element) {
+        return this.optional(element) || /^[N]-[0-9]{4}-[R]-[0-9]{3}$/.test(value);
+    }, "Ingrese un registro valido ejemplo N-0000-R-000");
+
+    $.validator.addMethod("validacedula", function (value, element) {
+        return this.optional(element) || validarCedula(value);
+    }, "Cedula no valida");
+
+
+    $("#tablaconfigU").validate({
+        rules: {
+            cedulaU: {
+                number: true,
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                validacedula: true
+            },
+            apellidosU: {
+                required: true,
+                soloLetras: true
+            },
+            nombresU: {
+                required: true,
+                soloLetras: true
+            },
+            direccionU: {
+                required: true
+            },
+            telefonoU: {
+                required: true,
+                number: true
+            },
+
+            usuarioU: {
+                required: true
+            },
+            correoU: {
+                required: true
+            },
+            claveU: {
+                required: true,
+                minlength: 5,
+                maxlength: 10
+            },
+            clavenU1: {
+                required: true,
+                minlength: 5,
+                maxlength: 10
+            },
+            clavenU2: {
+                required: true,
+                minlength: 5,
+                maxlength: 10,
+                equalTo: "#clavenU1"
+            }
+        },
+        messages: {
+            clavenU1: {
+                required: ""
+            },
+            clavenU2: {
+                required: "no coinsiden los caracteres"
+            }
+        }
+    });
+}

@@ -1,6 +1,3 @@
-
-
-
 <!--================Header Area =================-->
 <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
 
@@ -15,19 +12,18 @@
                 <li><a href="/foro" class="nav-link">Foro</a></li>
 
                 <li class="nav-item submenu dropdown">
-                    <a href="/registrarUsuario" class="nav-link" type="link"   role="button" aria-haspopup="true" 
-                       aria-expanded="false">Registrate</a>
+                    <a href="/registrarUsuario" class="nav-link" type="link" role="button" aria-haspopup="true" aria-expanded="false">Registrate</a>
 
 
-                </li> 
+                </li>
             </ul>
-            
+
         </div>
 
     </nav>
 
 </header>
- <br><br>
+<br><br>
 <!--================Header Area =================-->
 
 <!--================INICIO =================-->
@@ -42,21 +38,25 @@
                         <div class="container">
                             <div class="frame">
 
-
-                                <div style="font-size: 20px; color: #b21f2d;"> 
+                                {{#if msg.error}}
+                                <div style="font-size: 20px; color: #b21f2d;">
                                     {{msg.error}}
                                 </div>
-                                <div style="font-size: 20px; color: green;"> 
+                                {{/if}}
+                                {{#if msg.ok}}
+                                <div style="font-size: 20px; color: green;">
                                     {{msg.ok}}
                                 </div>
-                                <div style="font-size: 20px; color: green;"> 
+                                {{/if}}
+                                {{#if msg.info}}
+                                <div style="font-size: 20px; color: green;">
                                     {{msg.info}}
                                 </div>
-
-                                <div class="container " data-aos="fade-up" >
+                                {{/if}}
+                                <div class="container " data-aos="fade-up">
                                     <form action="/inicio_sesion" method="POST" class="form-box" id="formulario">
                                         <h3 class="h4 text-black mb-4">Iniciar Sesión</h3>
-                                          
+
                                         <div class="form-group">
                                             <input type="text" class="form-control" placeholder="Correo" name="correo">
                                         </div>
@@ -79,7 +79,7 @@
             </div>
         </div>
     </div>
-</section> 
+</section>
 
 <!--================ACERCA =================-->
 <section class="site-section" id="acerca">
@@ -112,12 +112,12 @@
         <div class="row hover-1-wrap mb-5 mb-lg-0">
             <div class="col-12">
                 <div class="row">
-                    <div class="mb-4 mb-lg-0 col-lg-6"  data-aos="fade-right">
+                    <div class="mb-4 mb-lg-0 col-lg-6" data-aos="fade-right">
                         <a href="#" class="rotate-reverse10">
                             <img src="images/dog_4.jpg" alt="Image" class="img-fluid">
                         </a>
                     </div>
-                    <div class="col-lg-5 ml-auto align-self-center"  data-aos="fade-left">
+                    <div class="col-lg-5 ml-auto align-self-center" data-aos="fade-left">
                         <h2 class="text-black">Modern Equipment</h2>
                         <p class="mb-4">Far far away, behind the word mountains, Separated they live in Bookmarksgrove right at the coast of the Semantics, a large language ocean.</p>
                         <p><a href="#" class="btn btn-primary">Read More</a></p>
@@ -128,4 +128,3 @@
 
     </div>
 </section>
-

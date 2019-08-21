@@ -124,6 +124,7 @@ if(ver === false){
     }
 
 }  
+
 router.get('/', function (req, res, next) {
     /*
      * creacionRoles() = permite generar por primera vez los roles
@@ -142,6 +143,7 @@ router.get('/', function (req, res, next) {
             msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
         });
     } else {
+        
         res.render('index', {
             title: 'Publico', msg: {
                 error: req.flash('error'),
@@ -255,6 +257,11 @@ router.post('/actualizar',sacar, usuario.modificarC);
  */
 router.get("/cargarDatosMascota", mascota.cargardatosMascota);
 router.post('/actualizarMascota', mascota.modificarM);
+/**
+ * ruta para vizualizar y configurar cuenta de usuario
+ */
+router.get("/cargarDatosUsuario", usuario.cargardatosUsuario);
+router.post('/configurarUsuario', usuario.configurarUsuario);
 
 
 module.exports = router;

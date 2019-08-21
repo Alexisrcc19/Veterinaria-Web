@@ -160,6 +160,55 @@ class usuarioControl {
         });
 
     }
+/**metodo para visualizar el registro de  la cuenta del usuario para modificar
+ * 
+ * @param {*} req 
+ * @param {*} res 
+ */
+    cargardatosUsuario(req, res) {
+        var external = req.query.external;
+        persona.filter({ external_id: external }).getJoin({ cuenta: true }).then(function (resultU) {
+            // res.send(resultP);
+            var usuario = resultU[0];
+            res.json(usuario);
+        }).error(function (error) {
+        });
+
+    }
+/**
+ * metodo para configurar la cuenta del usuario 
+ */
+    configurarUsuario(req, res) {
+        persona.filter({ external_id: req.body.externalU }).getJoin({ cuenta: true }).then(function (usuario1) {
+            if (usuario1.length > 0) {
+                var clienteM = usuario1[0];
+                clienteM.cedula = req.body.cedulaU;
+                clienteM.nombres = req.body.nombresU;
+                clienteM.apellidos = req.body.apellidosU;
+                clienteM.telefono = req.body.telefonoU;
+                clienteM.direccion = req.body.direccionU;
+                clienteM.cuenta.usuario = req.body.usuarioU;
+                clienteM.cuenta.correo = req.body.correoU;
+                clienteM.cuenta.clave = req.body.clavenU2;
+                clienteM.saveAll({ cuenta: true }).then(function (modificadoM) {
+
+                    req.flash('success', 'actualizado correctamente inicie session');
+                    req.session.destroy();
+                    res.redirect('/')
+                    // res.send(modificadoM);
+                }).error(function (error) {
+                    // req.flash('modificado con exito');
+                    req.flash('error', 'error al actualizar cuenta');
+                    req.session.destroy();
+                    res.redirect('')
+
+                });
+
+            }
+        });
+
+
+    }
 }
 /**
  * exportacion de la clase usuarioControl

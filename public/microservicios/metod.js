@@ -72,3 +72,31 @@ function llenardatosHistorial(external) {
         }
     });
 };
+/**mfuncion para cargar datos de la cuenta de usuario en la vista y configurar cuenta
+ * 
+ * @param {*} external traemos el external del usuario
+ */
+function llenardatosUsuario(external) {
+    var url = url_base + "cargarDatosUsuario";
+    console.log(external);
+    //en el controlador se recibe los mismo datos que estan aqui en el servicio texto = a req.query.texto en el contrlador
+    var external = external;
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        data: 'external=' + external,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            // console.log(data.edad);
+            $("#externalU").val(data.external_id);
+            $("#externalU").val(data.external_id);
+            $("#cedulaU").val(data.cedula);
+            $("#nombresU").val(data.nombres);
+            $("#apellidosU").val(data.apellidos);
+            $("#telefonoU").val(data.telefono);
+            $("#direccionU").val(data.direccion);
+            $("#usuarioU").val(data.cuenta.usuario);
+            $("#correoU").val(data.cuenta.correo);
+        }
+    });
+};

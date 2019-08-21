@@ -1,0 +1,114 @@
+
+<script src="/js/metodos.js"></script>
+<script>
+    $().ready(function () {
+        validarConfiguracionUsuario();
+    });
+</script>
+
+
+<div class="modal fade" id="configuracionUsuario" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog modg-scrollable" role="document">
+        <div class="modal-content">
+            <div class="card-header bg-succses">
+                <div class="card-title text-center">
+                    <p class="card-text ">Configuracion de Cuenta</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="error1"></div>
+                <form id="tablaconfigU" method="POST" action="/configurarUsuario">
+                    <input type="hidden" value="0" id="externalU" name="externalU" />
+                    <div id="mensaje"></div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dcM">Cliente</a></li>
+                        <li class="nav-item"><a class="nav-link " data-toggle="tab" href="#dmM">Cuenta </a></li>
+                    </ul>
+                    <div class="tab-content">
+                        {{!-- MODAL-CLIENTE --}}
+                        <div role="tabpanel" class="tab-pane active" id="dcM">
+                            <div class="form-group">
+                                <label for="cedula">Cedula</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="far fa-id-card"></i></span>
+                                    <input type="text" class="form-control" id="cedulaU" name="cedulaU" placeholder="Ingrese su cedula">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="nombres">Nombres:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                    <input type="text" class="form-control" id="nombresU" name="nombresU" placeholder="Ingrese sus nombres">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="apellidos">Apellidos:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fab fa-adn"></i></span>
+                                    <input type="text" class="form-control" id="apellidosU" name="apellidosU" placeholder="Ingrese sus apellidos">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="direccion">Direccion:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-map-marker-alt"></i></span>
+                                    <input type="text" class="form-control" id="direccionU" name="direccionU" placeholder="Ingrese su direccion">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="telefono">Telefono:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-phone-volume"></i></span>
+                                    <input type="text" class="form-control " id="telefonoU" name="telefonoU" placeholder="Ingrese su telefono">
+                                </div>
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane" id="dmM">
+                            <div class="form-group">
+                                <label for="usuario">Usuario:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="far fa-user"></i></span>
+                                    <input type="text" class="form-control" id="usuarioU" name="usuarioU" placeholder="Ingrese su usuario">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="correo">Correo:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-at"></i></span>
+                                    <input type="text" class="form-control" id="correoU" name="correoU" placeholder="Ingrese su correo">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="clave">Clave:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                    <input type="password" class="form-control" id="claveU" name="claveU" placeholder="clave actual">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="form-group col-md-6">
+                                    <label for="correo">Nueva Clave</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        <input type="password" name="clavenU1" id="clavenU1" class="form-control" placeholder="clave nueva"  />
+                                    </div>
+                                </div>
+                                <div class=" form-group col-md-6">
+                                    <label for="contrasenia">Nueva Clave</label>
+                                    <div class="input-group">
+                                        <span class="input-group-text"><i class="fas fa-key"></i></span>
+                                        <input type="password" name="clavenU2" id="clavenU2" class="form-control" placeholder="clave nueva"  />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn-outline-primary">Guardar Cambios <i class="fas fa-save"></i></button>
+                                <button class="button"><a href="/" class="btn-outline-secondary">Cancelar</a></button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

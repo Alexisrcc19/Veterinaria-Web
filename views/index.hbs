@@ -1,20 +1,20 @@
 {{#unless inicio }}
 {{#unless registro}}
 <style>
-    .ventana{
-        background:#721c24;
-        width:40%;
-        color:rgba(255,255,255,1);
-        font-family:Arial, Helvetica, sans-serif;
-        font-size:18px;
-        text-align:center;
-        padding:33px;
-        min-height:200px;
-        border-radius:22px;
-        position:absolute;
-        left:25%;
-        top:80%;
-        display:none;
+    .ventana {
+        background: #721c24;
+        width: 40%;
+        color: rgba(255, 255, 255, 1);
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: 18px;
+        text-align: center;
+        padding: 33px;
+        min-height: 200px;
+        border-radius: 22px;
+        position: absolute;
+        left: 25%;
+        top: 80%;
+        display: none;
     }
 </style>
 <script>
@@ -35,15 +35,15 @@
             </div>
             <div class="site-mobile-menu-body"></div>
         </div>
-        <header class="site-navbar js-sticky-header site-navbar-target" role="banner" >
+        <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
             <div class="container">
                 <div class="row align-items-center">
-                    <div class="col-6 col-xl-2">                     
+                    <div class="col-6 col-xl-2">
                         <div class="form-group">
                             <div class="label label-success" style="font-size: 13px">
                                 <h1 class="mb-0 site-logo"><a href="/" class="h2 mb-0"><strong>Hospital</strong>Veterinario<span class="text-primary">.</span> </a></h1>
-                            </div>                        
-                        </div>                  
+                            </div>
+                        </div>
                     </div>
                     <div class="col-12 col-md-10 d-none d-xl-block">
                         <nav class="site-navigation position-relative text-right" role="navigation">
@@ -55,32 +55,30 @@
                                     <p style="font-size: 20px">Desea cerrar sesion?</p>
                                 </div>
                                 <br>
-                            <div class="modal-footer">
-                                <a href="javascript:cerrar()" class="btn btn-outline-danger">Cancelar</a>
-                                <a href="/cerrar_sesion" class="btn btn-outline-secondary">Salir</a>
-                                </div>    
+                                <div class="modal-footer">
+                                    <a href="javascript:cerrar()" class="btn btn-outline-danger">Cancelar</a>
+                                    <a href="/cerrar_sesion" class="btn btn-outline-secondary">Salir</a>
+                                </div>
                             </div>
 
                             {{#if persona }}
-                            <div style="font-size: 20px; color: #b21f2d;"> 
+                            <div style="font-size: 20px; color: #b21f2d;">
                                 {{msg.error}}
                             </div>
-                            <div style="font-size: 20px; color: green;"> 
+                            <div style="font-size: 20px; color: green;">
                                 {{msg.ok}}
                             </div>
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                 <li><a href="/" class="nav-link">Principal</a></li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" 
-                                       aria-expanded="false">Paciente</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paciente</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="/listaHistorialMascotas" class="nav-link">Historial Clinico</a></li>
                                         <li><a href="#" class="nav-link">Consulta Medica</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" 
-                                       aria-expanded="false">Gestion</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestion</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="#" class="nav-link">Historial de Pagos</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/listaclientes">Listado de Pacientes</a></li>
@@ -88,8 +86,7 @@
                                     </ul>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" 
-                                       aria-expanded="false">Cuenta</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="/registrarVeterinario" class="nav-link">Registrar veterinario</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/configuracionVeterinario/{{external}}">Configuracion</a></li>
@@ -100,17 +97,16 @@
 
                             {{/if}}
                             {{#unless persona }}
-                            <div style="font-size: 20px; color: #b21f2d;"> 
+                            <div style="font-size: 20px; color: #b21f2d;">
                                 {{msg.error}}
                             </div>
-                            <div style="font-size: 20px; color: green;"> 
+                            <div style="font-size: 20px; color: green;">
                                 {{msg.ok}}
                             </div>
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                 <li><a href="/" class="nav-link">Principal</a></li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" 
-                                       aria-expanded="false">Mascota</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mascota</a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="/registroMascota" class="nav-link">Mascotas Registradas</a></li>
                                         <li class="nav-item"><a class="nav-link" href="#">Agendar Cita</a></li>
@@ -119,10 +115,19 @@
 
                                 <li><a href="#services-section" class="nav-link">Nuestros Servicios</a></li>
                                 <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
-                                <li><li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li></li>
+                                {{!-- item cerrar session y configuracion de usuario --}}
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta</a>
+                                    <ul class="dropdown-menu">
+
+                                        <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración</a></li>
+                                        {{!-- <li class="nav-item"><a class="nav-link" href="7configuracionUsuario" class="nav-link">Configuracion</a></li> --}}
+                                        <li><a href="/cerrar_sesion" class="nav-link">Cerrar Sesion</a></li>
+                                    </ul>
+                                </li>
                             </ul>
 
-                            {{/unless}} 
+                            {{/unless}}
 
                             {{/if}}
                             {{#if ventanas}}
@@ -133,16 +138,11 @@
 
                         </nav>
                     </div>
-
-
-
                 </div>
             </div>
-
         </header>
         {{/unless}}
         {{/unless}}
-
     </div> <!-- .site-wrap -->
 
 
@@ -214,3 +214,4 @@
         </div>
     </div>
 </footer>
+{{> 'configuracionUsuario'}}
