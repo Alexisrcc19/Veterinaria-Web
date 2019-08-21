@@ -82,58 +82,65 @@ class VeterinarioControl {
          *  
          *  cuenta = modelo relacionado con persona
          */
-        persona.getJoin({cuenta: true}).filter({external_id: req.body.external}).then(function (data) {
-            if (data.length > 0) {
-                var veterinario = data[0];
-                /**
-                 * datos en los cuales se sobreescribiran en el modelo
-                 */
-                veterinario.apellidos = req.body.apellidos;
-                veterinario.nombres = req.body.nombres;
-                veterinario.direccion = req.body.direccion;
-                veterinario.telefono = req.body.telefono;
-                veterinario.cedula = req.body.cedula;
-                /**
-                 * datos incluidos los de la cuenta 
-                 */
-                veterinario.cuenta.usuario = req.body.usuario;
-                veterinario.cuenta.correo = req.body.correo;
-                veterinario.cuenta.clave = req.body.claveActual;
-                /**
-                 * veterinario = modelo en el cual se guardaran los datos actuales
-                 * 
-                 * saveAll() = funcion usada para guardar modelos relacionados
-                 * 
-                 * then()= funcion en la cual se realiza el collback de veterinario
-                 */
-                veterinario.saveAll({cuenta: true}).then(function () {
-                    /**
-                     * info = mensaje de informacion al usuario indicando que se modifico el veterinario con exito
-                     */
-                    req.flash('info', 'cuenta modificada');
-                    res.redirect('/');
-                }).error(function () {
-                    /**
-                     * error = mensaje mostrado al usuario en caso de no poder modificar el veterinario correctamente
-                     */
-                    req.flash('error', 'No se pudo modificar');
-                    res.redirect('/');
-                });
+        rol.filter({nombre: true}).then(function (roles) {
+            var ver = roles[0];
+            var role = ver;
 
-            } else {
+            persona.getJoin({cuenta: true}).filter({external_id: req.body.external}).then(function (data) {
+                if (data.length > 0) {
+                    var veterinario = data[0];
+                    /**
+                     * datos en los cuales se sobreescribiran en el modelo
+                     */
+                    veterinario.apellidos = req.body.apellidos;
+                    veterinario.nombres = req.body.nombres;
+                    veterinario.direccion = req.body.direccion;
+                    veterinario.telefono = req.body.telefono;
+                    veterinario.cedula = req.body.cedula;
+                    veterinario.id_rolPersona = role.id;
+                    /**
+                     * datos incluidos los de la cuenta 
+                     */
+                    veterinario.cuenta.usuario = req.body.usuario;
+                    veterinario.cuenta.correo = req.body.correo;
+                    veterinario.cuenta.clave = req.body.claveActual;
+                    /**
+                     * veterinario = modelo en el cual se guardaran los datos actuales
+                     * 
+                     * saveAll() = funcion usada para guardar modelos relacionados
+                     * 
+                     * then()= funcion en la cual se realiza el collback de veterinario
+                     */
+                    veterinario.saveAll({cuenta: true}).then(function () {
+                        /**
+                         * info = mensaje de informacion al usuario indicando que se modifico el veterinario con exito
+                         */
+
+                        req.session.destroy();
+                        res.redirect('/');
+                    }).error(function () {
+                        /**
+                         * error = mensaje mostrado al usuario en caso de no poder modificar el veterinario correctamente
+                         */
+                        req.flash('error', 'No se pudo modificar');
+                        res.redirect('/');
+                    });
+
+                } else {
+                    /**
+                     * error = mensaje mostrado al usuario en caso de no encontrar los datos del veterinario en sesion
+                     */
+                    req.flash('error', 'No se pudo encontrar');
+                    res.redirect('/');
+                }
+
+            }).error(function () {
                 /**
                  * error = mensaje mostrado al usuario en caso de no encontrar los datos del veterinario en sesion
                  */
-                req.flash('error', 'No se pudo encontrar');
+                req.flash('error', 'ocurrio un problema, comuniquese con los desarrolladore');
                 res.redirect('/');
-            }
-
-        }).error(function () {
-            /**
-             * error = mensaje mostrado al usuario en caso de no encontrar los datos del veterinario en sesion
-             */
-            req.flash('error', 'ocurrio un problema, comuniquese con los desarrolladore');
-            res.redirect('/');
+            });
         });
     }
     /**
@@ -172,9 +179,9 @@ class VeterinarioControl {
             res.redirect('/');
         });
     }
-   
+
     verListaVeterinario(req, res) {
-        res.render('index', {title: 'Lista de Veterinarios', fragmento: 'listaVeterinarios',ventanas:"ventanas"
+        res.render('index', {title: 'Lista de Veterinarios', fragmento: 'listaVeterinarios', ventanas: "ventanas"
             , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
     }
     /*
@@ -255,6 +262,7 @@ class VeterinarioControl {
                              * success = mensaje en caso de que el veterinario se haya registrado correctamente
                              */
                             req.flash('success', 'Se ha registrado correctamente!');
+                            req.session.destroy();
                             res.redirect('/');
                         }).error(function () {
                             /*

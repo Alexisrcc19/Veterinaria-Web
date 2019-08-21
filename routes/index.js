@@ -96,7 +96,7 @@ var sacar = function (req, res, next) {
     if (verificar_inicio(req)) {
         next();
     } else {
-        req.flash('error', 'Debes iniciar sesion primero!');
+        req.flash('error', 'Debes estar iniciado sesion');
         res.redirect('/');
     }
 };

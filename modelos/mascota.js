@@ -6,12 +6,13 @@ var Mascota = thinky.createModel("Mascota", {
     raza: type.string(),
     nombre: type.string(),
     edad: type.string(),
+    sexo: type.string(),
     tipo: type.string(),
     especie: type.string(),
     id_cliente: type.string(),
     id_historial: type.string(),
     external_id: type.string().default(r.uuid())
-    });
+});
 
 module.exports = Mascota;
 var Historial = require('./historial');

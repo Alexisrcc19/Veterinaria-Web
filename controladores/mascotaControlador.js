@@ -83,6 +83,7 @@ class MascotaControl {
                 raza: req.body.raza,
                 nombre: req.body.nombre,
                 edad: req.body.edad,
+                sexo: req.body.sexo,
                 tipo: req.body.tipo,
                 especie: req.body.especie,
                 id_cliente: idper
@@ -123,6 +124,7 @@ class MascotaControl {
                     raza: req.body.raza,
                     nombre: req.body.nombre,
                     edad: req.body.edad,
+                    sexo: req.body.sexo,
                     tipo: req.body.tipo,
                     especie: req.body.especie,
                     id_cliente: persona.id
@@ -171,6 +173,7 @@ class MascotaControl {
                 mascotaM.nombre = req.body.nombreMa;
                 mascotaM.raza = req.body.razaMa;
                 mascotaM.edad = req.body.edadMa;
+                mascotaM.sexo = req.body.sexoMa;
                 mascotaM.tipo = req.body.tipoMa;
                 mascotaM.especie = req.body.especieMa;
 

@@ -63,6 +63,7 @@ class controladorMV {
                     raza: req.body.raza,
                     nombre: req.body.nombre,
                     edad: req.body.edad,
+                    sexo: req.body.sexo,
                     tipo: req.body.tipo,
                     especie: req.body.especie,
                     id_cliente: cliente.id

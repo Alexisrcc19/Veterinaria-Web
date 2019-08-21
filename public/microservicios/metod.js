@@ -47,6 +47,7 @@ function llenardatosMascota(external) {
             $("#razaMa").val(data.raza);
             $("#edadMa").val(data.edad);
             $("#tipoMa").val(data.tipo);
+            $("#sexoMa").val(data.sexo);
             $("#especieMa").val(data.especie);
         }
     });

@@ -28,6 +28,7 @@
                                     <th>Nombre</th>
                                     <th>Raza</th>
                                     <th>Tipo</th>
+                                    <th>Sexo</th>
                                     <th>Acciones</th>
 
                                 </tr>
@@ -47,7 +48,9 @@
                                     <td>
                                         {{tipo}}
                                     </td>
-
+                                    <td>
+                                        {{sexo}}
+                                    </td>
                                     <td>
                                         <div class="btn-group">
                                             <button type="button" data-toggle="modal" data-target="#modificarMascota" data-tooltip="tooltip" data-placement="top" title="Editar" class="btn-danger btn-sm" onclick="llenardatosMascota('{{external_id}}')"><i class="fa fa-edit"></i></button>
