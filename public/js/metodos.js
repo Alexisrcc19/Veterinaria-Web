@@ -109,6 +109,17 @@ function validarveterinario() {
         }
     });
 }
+function validarcomentario() {
+
+
+    $("#formulario").validate({
+        rules: {
+            comentario: {
+                required: true
+            }
+        }
+    });
+}
 
 function validarcliente() {
     $.validator.addMethod("soloLetras", function (value, element) {

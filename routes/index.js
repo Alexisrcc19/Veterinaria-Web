@@ -5,6 +5,10 @@ var router = express.Router();
  * bd = usada para la genreacion de roles 
  */
 var bd = require('../modelos/rol');
+var com = require('../modelos/comentarios');
+
+var comentarioControlador = require('../controladores/comentarioControlador');
+var comentario = new comentarioControlador();
 
 var mascotavControl = require('../controladores/mascotavControlador');
 var mascota1 = new mascotavControl();
@@ -129,12 +133,20 @@ router.get('/', function (req, res, next) {
     /*
      * verifica si existe una sesion activa, caso contrario se encontrara en el principal(publico)
      */
-    if (req.session !== undefined && req.session.cuenta !== undefined) {
+ if (req.session !== undefined && req.session.cuenta !== undefined) {
+        var verificar = req.session.cuenta.ver;
+        var restringir = true;
+        if( verificar === "veterinario"){
+            restringir = true;
+        }else{
+            restringir = false;
+        }
         res.render('index', {
-            title: "Veterinaria", fragmento: 'principal', sesion: true, id: req.session.cuenta.id, external: req.session.cuenta.external, usuario: req.session.cuenta.usuario, persona: req.session.cuenta.persona,
+            //hacer una consulta de solo veterinario para filtrarlos y que aparezcan solo si es veterinario 
+            title: "Veterinaria", fragmento: 'principal', sesion: true, restringir:restringir,id: req.session.cuenta.id, external: req.session.cuenta.external, usuario: req.session.cuenta.usuario, persona: req.session.cuenta.persona,
             msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
         });
-    } else {     
+    } else {
         res.render('index', {
             title: 'Publico', msg: {
                 error: req.flash('error'),
@@ -142,6 +154,7 @@ router.get('/', function (req, res, next) {
             },
             fragmento: 'Publico'
         });
+
     }
 });
 /*
@@ -239,4 +252,10 @@ router.post('/actualizarMascota', mascota.modificarM);
  */
 router.get("/cargarDatosUsuario", usuario.cargardatosUsuario);
 router.post('/configurarUsuario', usuario.configurarUsuario);
+/*
+ * comentarios que el cliente puede dejar a un veterinario
+ */
+router.get('/comentario', sacar,CuentaUsuario, comentario.dejarComentario );
+router.post('/registroComentario', sacar,CuentaUsuario, comentario.guardarComentario );
+
 module.exports = router;

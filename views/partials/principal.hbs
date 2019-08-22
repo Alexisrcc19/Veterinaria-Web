@@ -1,4 +1,5 @@
 {{#if persona}}
+{{#unless restringir}}
 <br>
 
 <section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
@@ -84,6 +85,14 @@
         </div>
       </div>
     </section>
+{{/unless}}
+{{#if restringir}}
+<section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
+      <div class="container">
+       
+      </div>
+    </section>
+{{/if}}
 {{/if}}
 {{#unless persona}}
 <section class="site-section bg-light trainers" id="trainers-section">

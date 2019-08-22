@@ -224,6 +224,7 @@ class VeterinarioControl {
                          * datosV = datos del veterinario a registrar
                          */
                         var datosV = {
+                            vet: true,
                             cedula: req.body.cedula,
                             apellidos: req.body.apellidos,
                             nombres: req.body.nombres,

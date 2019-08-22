@@ -68,6 +68,21 @@
                             <div style="font-size: 20px; color: green;">
                                 {{msg.ok}}
                             </div>
+                            {{#if restringir}}
+                           <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+                                
+                                </li>
+                                <li class="nav-item submenu dropdown">
+                                    <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" 
+                                       aria-expanded="false">Cuenta</a>
+                                    <ul class="dropdown-menu">
+                                        <li class="nav-item"><a class="nav-link" href="/registrarVeterinario" class="nav-link">Registrar veterinario</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            {{/if}}
+                            {{#unless restringir}}
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                 <li><a href="/" class="nav-link">Principal</a></li>
                                 <li class="nav-item submenu dropdown">
@@ -94,7 +109,7 @@
                                     </ul>
                                 </li>
                             </ul>
-
+ {{/unless}}
                             {{/if}}
                             {{#unless persona }}
                             <div style="font-size: 20px; color: #b21f2d;">
@@ -202,4 +217,4 @@
         </div>
     </div>
 </footer>
-{{> 'configuracionUsuario'}}
+{{> 'usuario/configuracionUsuario'}}

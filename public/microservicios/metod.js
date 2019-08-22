@@ -97,6 +97,7 @@ function llenardatosUsuario(external) {
             $("#direccionU").val(data.direccion);
             $("#usuarioU").val(data.cuenta.usuario);
             $("#correoU").val(data.cuenta.correo);
+            $("#claveU").val(data.cuenta.clave);
         }
     });
 };

@@ -4,6 +4,16 @@
     $().ready(function () {
         validarConfiguracionUsuario();
     });
+    $(document).ready(function(){
+    $("#claveActual").change(function (){
+       var claveActual = $("#claveU").val();
+       var claveAnterior = $("#claveActual").val();
+       if(claveAnterior !== claveActual){
+           alert("la clave anterior es incorrecta");
+           $("#claveActual").val("");
+       }
+    });
+    });
 </script>
 
 
@@ -19,6 +29,7 @@
                 <div id="error1"></div>
                 <form id="tablaconfigU" method="POST" action="/configurarUsuario">
                     <input type="hidden" value="0" id="externalU" name="externalU" />
+                    <input type="hidden" value="0" id="claveU" name="claveU" />
                     <div id="mensaje"></div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dcM">Cliente</a></li>
@@ -82,7 +93,7 @@
                                 <label for="clave">Clave:</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    <input type="password" class="form-control" id="claveU" name="claveU" placeholder="clave actual">
+                                    <input type="password" class="form-control" id="claveActual" name="claveActual" placeholder="clave actual">
                                 </div>
                             </div>
                             <div class="row">
