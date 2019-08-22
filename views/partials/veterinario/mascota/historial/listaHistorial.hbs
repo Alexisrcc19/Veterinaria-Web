@@ -7,7 +7,7 @@
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
                         <p class="card-text">
-                        <h4>Datos Mascota</h4>
+                            <h4>Datos Mascota</h4>
                         </p>
                     </div>
                 </div>
@@ -30,35 +30,17 @@
             <div class="card" style="width:700px">
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
-                        <p class="card-text ">
-                        <h6>LISTADO DE HISTORIAL  </h6>
-                        </p>
-
+                        <div class="card-header bg-light">
+                            <h5>LISTADO DE HISTORIAL</h5> 
+                        </div>
+                        <br>
                         <a href="" data-toggle="modal" class=" btn btn-outline-primary ml-auto float-left" title="Registrar" data-target="#registroHistorial">Nuevo <i class="fas fa-paw"></i></a>
-                        {{!-- <a href="/listaCliente" data-tooltip="tooltip" data-placement="top" title="Regresar" class="float-right btn btn-succses btn-lg"><i class="fas fa-window-close"></i></a> --}}
-                    </div>
-
+                    </div>                  
                 </div>
                 <div class="card-body">
-                    <div class="form-group">
 
-                        <div class="row">
-                            <form class="form-inline ml-auto">
-                                <div class="form-group">
-                                    <label for="">Criterio de Busqueda</label>
-                                    <select class="form-control" name="criterio" id="criterio">
-                                        <option value="todos">Todos</option>
-                                        <option value="cedula">Cedula</option>
-                                        <option value="apellidos">Apellidos</option>
-                                    </select>
-                                </div>
-
-                                <button type="button" class=" btn btn-outline-dark btn-md my-0 ml-sm-2" id="btnbuscar">Buscar <i class="fas fa-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
                     <div class="form-group">
-                        <table id="tabla" class="table table-sm">
+                        <table id="tablaLHistorial" class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>Nro</th>
@@ -68,33 +50,34 @@
                                     <th>Tratamiento</th>
                                 </tr>
                             </thead>
-                            {{#each listado as |list i|}}
-                            <tr>
-                                <td>
-                                    {{i}}
-                                </td>
-                                <td>
-                                    {{causa}}
-                                </td>
-                                <td>
-                                    {{estado}}
-                                </td>
-                                <td>
-                                    {{enfermedades}}
-                                </td>
-                                <td>
-                                    {{tratamiento}}
-                                </td>
-                                <td>
-                                    <div class="btn-group">
-                                        <a href="#" data-toggle="modal" data-target="#modificarHistorial" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenardatosHistorial('{{external_id}}')"><i class="far fa-edit"></i></a>
+                            <tbody>
+                                {{#each listado as |list i|}}
+                                <tr>
+                                    <td>
+                                        {{i}}
+                                    </td>
+                                    <td>
+                                        {{causa}}
+                                    </td>
+                                    <td>
+                                        {{estado}}
+                                    </td>
+                                    <td>
+                                        {{enfermedades}}
+                                    </td>
+                                    <td>
+                                        {{tratamiento}}
+                                    </td>
+                                    <td>
+                                        <div class="btn-group">
+                                            <a href="#" data-toggle="modal" data-target="#modificarHistorial" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenardatosHistorial('{{external_id}}')"><i class="far fa-edit"></i></a>
 
-                                    </div>
-                                    </div>                                                                                
-                                </td>
-                            </tr>
-                            {{/each}}
-                            </tbody>   
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
                         </table>
                     </div>
                 </div>

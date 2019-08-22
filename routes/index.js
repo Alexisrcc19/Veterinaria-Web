@@ -91,7 +91,6 @@ function verificar_inicio(req) {
 /*
  * funcion que me permite negar el acceso a la pagina sin antes haber iniciado sesion
  */
-
 var sacar = function (req, res, next) {
     if (verificar_inicio(req)) {
         next();
@@ -102,29 +101,22 @@ var sacar = function (req, res, next) {
 };
 var CuentaVeterinario = function (req, res, next) {
     var ver = req.session.cuenta.persona;
-
 if(ver === true){
         next();
     }else{
     req.flash('error', 'esto le pertenece al veterinario');
-        res.redirect('/');
-    
+        res.redirect('/');  
     }
-
 };   
 var CuentaUsuario = function (req, res, next) {
     var ver = req.session.cuenta.persona;
-
 if(ver === false){
         next();
     }else{
     req.flash('error', 'esto le pertenece al usuario');
         res.redirect('/');
-    
     }
-
 }  
-
 router.get('/', function (req, res, next) {
     /*
      * creacionRoles() = permite generar por primera vez los roles
@@ -142,8 +134,7 @@ router.get('/', function (req, res, next) {
             title: "Veterinaria", fragmento: 'principal', sesion: true, id: req.session.cuenta.id, external: req.session.cuenta.external, usuario: req.session.cuenta.usuario, persona: req.session.cuenta.persona,
             msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
         });
-    } else {
-        
+    } else {     
         res.render('index', {
             title: 'Publico', msg: {
                 error: req.flash('error'),
@@ -151,10 +142,8 @@ router.get('/', function (req, res, next) {
             },
             fragmento: 'Publico'
         });
-
     }
 });
-
 /*
  * permite redireccionar a la plantilla para poder registrar un clietne
  */
@@ -162,7 +151,6 @@ router.get('/registrarUsuario', function (req, res, next) {
     res.render('index', { title: 'Registrate', fragmento: 'registroUsuario', registro: 'registro',ventanas: "ventanas", msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') } });
 
 });
-
 //foro
 router.get('/foro', function (req, res, next) {
     res.render('index', { title: 'Foro', fragmento: 'foro', inicio: 'inicio', ventanas: "ventanas", msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') } });
@@ -173,7 +161,6 @@ router.get('/acerca', function (req, res, next) {
     res.render('index', { title: 'Foro', fragmento: 'AcercadeNosotros', inicio: 'inicio', ventanas: "ventanas", msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') } });
 
 });
-
 //<----------------mascota---------------->
 /*
  * get = permite visualizar la parte del formulario previo al registro de la mascota
@@ -183,9 +170,7 @@ router.get('/registroMascota', sacar,CuentaUsuario, mascota.visualizar);
  * post = permite registrar una nueva mascota
  */
 router.post('/registro/mascota', sacar,CuentaUsuario, mascota.guardar);
-
 router.post('/veterinario/registro/mascota', sacar,CuentaVeterinario, mascota.guardarDesdeVeterinario);
-
 //<-------------------Veterinario---------------->
 /*
  * post = permite la modificacion de los datos de un veterinario
@@ -203,19 +188,16 @@ router.get('/registrarVeterinario', sacar,CuentaVeterinario, veterinario.registr
  * post = permite guardar los datos de un nuevo veterinario
  */
 router.post('/registroVeterinario',sacar,CuentaVeterinario, veterinario.guardar);
-
 router.get('/listaVeterinarios', sacar,CuentaVeterinario, veterinario.verListaVeterinario);
 /*
  * get = permite visualizar el listado de paciente con sus respectivas mascotas
  */
 router.get('/registroMascotaVeterinario', sacar,CuentaVeterinario, veterinario.listadoPacientes);
-
 //<-----------------------------usuario------------------------>
 /*
  * post = permite guardar los datos de nuevo cliente 
  */
 router.post('/registroUsuario', usuario.guardar);
-
 //<---------------inicio de sesion----------->
 /*
  * post = permite el ingreso de la persona previamente registrada
@@ -230,17 +212,13 @@ router.get('/listaCitas', sacar, cita.verListaCitas);
 //pagos en linea
 router.get('/listaPagos', sacar, pago.verListaPagos);
 router.get('/GestionPagos', sacar, pago.verGestionPagos);
-
-
 router.get('/listaclientes',sacar,CuentaVeterinario, mascota1.verReg);
 // router.post('/guardarmascotacliente', mascota1.guardarMV);
 router.get('/registroMascota/:external', sacar,CuentaVeterinario, mascota1.visualizarModificar);
 // router.post('/registroMascota', mascota1.guardarMascota);
-
 router.get('/veterinario/mascota/listaHistorial/:external',sacar,CuentaVeterinario, historial.verHistorial);
 router.post('/veterinario/registro/historial', sacar,CuentaVeterinario, historial.guardarHistorial);
 router.get('/listaHistorialMascotas', sacar,CuentaVeterinario, historial.listaHistorialMascotas);
-
 /**
  * rutas para cargar datos para modificar y actualizar clientes
  */
@@ -250,7 +228,6 @@ router.get("/cargarDatosPersona",sacar, CuentaVeterinario, usuario.cargardatosCl
  */
 router.get("/cargarDatosHistorial",sacar, historial.cargardatosHistorial);
 router.post('/actualizarHistorial', historial.modificarH);
-
 router.post('/actualizar',sacar, usuario.modificarC);
 /*
  * rutas para cargar y modifiacr datos de la mascota 
@@ -262,6 +239,4 @@ router.post('/actualizarMascota', mascota.modificarM);
  */
 router.get("/cargarDatosUsuario", usuario.cargardatosUsuario);
 router.post('/configurarUsuario', usuario.configurarUsuario);
-
-
 module.exports = router;

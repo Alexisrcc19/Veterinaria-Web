@@ -35,35 +35,16 @@
             <div class="card" style="width:700px">
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
-                        <p class="card-text ">
-                            <h6>LISTADO DE MASCOTAS </h6>
-                        </p>
-
-                        <a href="" data-toggle="modal" class=" btn btn-outline-primary ml-auto float-left" title="Registrar" data-target="#registroMascota">Nuevo <i class="fas fa-paw"></i></a>
-                        {{!-- <a href="/listaCliente" data-tooltip="tooltip" data-placement="top" title="Regresar" class="float-right btn btn-succses btn-lg"><i class="fas fa-window-close"></i></a> --}}
+                        <div class="card-header bg-light">
+                            <h5>LISTADO DE MASCOTAS</h5> 
+                        </div>
+                        <br>
+                        <a href="#" class="btn btn-outline-primary ml-auto float-right" data-toggle="modal" data-target="#registroMascota">NUEVO <i class="fas fa-dog"></i></a>
                     </div>
-
                 </div>
                 <div class="card-body">
                     <div class="form-group">
-
-                        <div class="row">
-                            <form class="form-inline ml-auto">
-                                <div class="form-group">
-                                    <label for="">Criterio de Busqueda</label>
-                                    <select class="form-control" name="criterio" id="criterio">
-                                        <option value="todos">Todos</option>
-                                        <option value="cedula">Cedula</option>
-                                        <option value="apellidos">Apellidos</option>
-                                    </select>
-                                </div>
-
-                                <button type="button" class=" btn btn-outline-dark btn-md my-0 ml-sm-2" id="btnbuscar">Buscar <i class="fas fa-search"></i></button>
-                            </form>
-                        </div>
-                    </div>
-                    <div class="form-group">
-                        <table id="tabla" class="table table-sm">
+                        <table id="tablaLMascota" class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>Nro</th>
@@ -78,6 +59,7 @@
                                 {{#each listaM}}
                                 <tr>
                                     <td>
+                                        {{1}}
                                     </td>
                                     <td>
                                         {{nombre}}
@@ -96,21 +78,15 @@
                                             <a href="#" data-toggle="modal" data-target="#modificarMascota" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenardatosMascota('{{external_id}}')"><i class="far fa-edit"></i></a>
 
                                         </div>
-                                        {{!-- <div class="btn-group">
-                                            <a href="#" data-toggle="modal" data-target="#registroHistorial" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="visualizarModificar({{external_id}})"><i class="far fa-calendar"></i></a>
-
-                                        </div> --}}
-                                         <div class="btn-group">
+                                        <div class="btn-group">
                                             <a href="/veterinario/mascota/listaHistorial/{{external_id}}" data-tooltip="tooltip" data-placement="top" title="Registrar Mascota" class="btn-warning btn-sm"><i class="far fa-calendar-alt"></i></a>
                                         </div>
-
-
                                     </td>
                                 </tr>
                                 {{/each}}
                             </tbody>
                         </table>
-         </div>
+                    </div>
                 </div>
             </div>
         </div>

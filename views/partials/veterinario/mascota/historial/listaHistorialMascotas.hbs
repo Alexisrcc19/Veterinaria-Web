@@ -9,12 +9,12 @@
     <div class="container">
         <div class="card">
             <div class="card-header bg-succses">
-                LISTADO DE CLIENTES
+                LISTADO DE HISTORIALES DE CADA MASCOTA
             </div>
             <div class="card-body">
                 <div class="form-group">
                     <div class="table-responsive">
-                        <table id="tabla" class="table table-sm">
+                        <table id="tablaHmascotas" class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>Nro</th>
@@ -38,11 +38,10 @@
                                         {{nombre}}
                                     </td>
                                     <td>
-                                         {{persona.nombres}} {{persona.apellidos}}
+                                        {{persona.nombres}} {{persona.apellidos}}
                                     </td>
-
                                     <td>
-                                       <div class="btn-group">
+                                        <div class="btn-group">
                                             <a href="/veterinario/mascota/listaHistorial/{{external_id}}" data-tooltip="tooltip" data-placement="top" title="Registrar Mascota" class="btn-warning btn-sm"><i class="far fa-calendar-alt"></i></a>
                                         </div>
                                     </td>

@@ -119,23 +119,19 @@
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta</a>
                                     <ul class="dropdown-menu">
-
                                         <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración</a></li>
                                         {{!-- <li class="nav-item"><a class="nav-link" href="7configuracionUsuario" class="nav-link">Configuracion</a></li> --}}
                                         <li><a href="/cerrar_sesion" class="nav-link">Cerrar Sesion</a></li>
                                     </ul>
                                 </li>
                             </ul>
-
                             {{/unless}}
-
                             {{/if}}
                             {{#if ventanas}}
                             <ul>
                                 <a href="/" class="nav-item" type="link">regresar</a>
                             </ul>
                             {{/if}}
-
                         </nav>
                     </div>
                 </div>
@@ -144,19 +140,11 @@
         {{/unless}}
         {{/unless}}
     </div> <!-- .site-wrap -->
-
-
-
-
 </header>
-
 <!--================Header Area =================-->
 <section>
-
     {{> (lookup . 'fragmento') }}
-
 </section>
-
 <footer class="site-footer">
     <div class="container">
         <div class="row">
