@@ -152,7 +152,7 @@ function dataTable() {
             }
         }
     });
-    $('#tablaLHistorial').DataTable({
+    $('#tablaUmascota').DataTable({
         // "dom": "Blfrtip",
         // "buttons": ['excel', 'pdf', 'copy'],
         "language": {

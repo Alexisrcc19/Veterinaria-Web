@@ -19,10 +19,10 @@
 </style>
 <script>
     function abrir() {
-        document.getElementById("vent").style.display = "block";
+    document.getElementById("vent").style.display = "block";
     }
     function cerrar() {
-        document.getElementById("vent").style.display = "none";
+    document.getElementById("vent").style.display = "none";
     }
 </script>
 <header class="site-navbar js-sticky-header site-navbar-target" role="banner">
@@ -69,8 +69,8 @@
                                 {{msg.ok}}
                             </div>
                             {{#if restringir}}
-                           <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                
+                            <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
+
                                 </li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle"  data-toggle="dropdown" role="button" aria-haspopup="true" 
@@ -109,7 +109,7 @@
                                     </ul>
                                 </li>
                             </ul>
- {{/unless}}
+                            {{/unless}}
                             {{/if}}
                             {{#unless persona }}
                             <div style="font-size: 20px; color: #b21f2d;">
@@ -119,7 +119,6 @@
                                 {{msg.ok}}
                             </div>
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                <li><a href="/" class="nav-link">Principal</a></li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mascota</a>
                                     <ul class="dropdown-menu">
@@ -127,7 +126,7 @@
                                         <li class="nav-item"><a class="nav-link" href="/cliente/cita/agendar">Agendar Cita</a></li>
                                     </ul>
                                 </li>
-
+                                <li><a href="/comentario" class="nav-link">Dejar un comentario</a></li>
                                 <li><a href="#services-section" class="nav-link">Nuestros Servicios</a></li>
                                 <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
                                 {{!-- item cerrar session y configuracion de usuario --}}
@@ -136,7 +135,7 @@
                                     <ul class="dropdown-menu">
                                         <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración</a></li>
                                         {{!-- <li class="nav-item"><a class="nav-link" href="7configuracionUsuario" class="nav-link">Configuracion</a></li> --}}
-                                        <li><a href="/cerrar_sesion" class="nav-link">Cerrar Sesion</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li>
                                     </ul>
                                 </li>
                             </ul>
@@ -217,4 +216,4 @@
         </div>
     </div>
 </footer>
-{{> 'usuario/configuracionUsuario'}}
+{{>'usuario/configuracionUsuario'}}
