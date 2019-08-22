@@ -1,6 +1,8 @@
 var express = require('express');
 var router = express.Router();
-
+//CITA Y SERVICIOS
+var ci = require('../modelos/cita');
+var se = require('../modelos/servicio');
 /*
  * bd = usada para la genreacion de roles 
  */
@@ -257,5 +259,11 @@ router.post('/configurarUsuario', usuario.configurarUsuario);
  */
 router.get('/comentario', sacar,CuentaUsuario, comentario.dejarComentario );
 router.post('/registroComentario', sacar,CuentaUsuario, comentario.guardarComentario );
+
+/**
+ * rutas para agendar y gestionar Citas Medica 
+ */
+router.get("/cliente/cita/agendar", sacar, cita.verRegistro);
+router.post('/cliente/cita/agendar', sacar, cita.guardarCita);
 
 module.exports = router;
