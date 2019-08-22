@@ -47,9 +47,18 @@ function calcularEdad(fecha) {
     console.log("TIENES: " + edad + " ANIOS");
     return edad;
 }
-
-
-
+/**
+ * metodo para validar la clave de l a cuenta y poder gonfigurar la cunenta
+ * @param {clave} clave 
+ */
+function validarclave(clave) {
+    var claveActual = $("#claveU").val();
+    console.log(claveActual)
+    if (clave === claveActual) {
+        return true;
+    } 
+    return false;
+}
 
 function validarveterinario() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -89,10 +98,10 @@ function validarveterinario() {
                 required: true,
                 number: true
             },
-           claveAnterior: {
+            claveAnterior: {
                 required: true
             },
-           claveActual: {
+            claveActual: {
                 required: true
             },
             usuario: {
@@ -294,8 +303,9 @@ function validarConfiguracionUsuario() {
     $.validator.addMethod("validacedula", function (value, element) {
         return this.optional(element) || validarCedula(value);
     }, "Cedula no valida");
-
-
+    $.validator.addMethod("validaClave", function (value, element) {
+        return this.optional(element) || validarclave(value);
+    }, "CLAVE ACTUAL ERRONEA");
     $("#tablaconfigU").validate({
         rules: {
             cedulaU: {
@@ -327,10 +337,10 @@ function validarConfiguracionUsuario() {
             correoU: {
                 required: true
             },
-            claveU: {
+            claveActual: {
                 required: true,
-                minlength: 5,
-                maxlength: 10
+                validaClave: true
+               
             },
             clavenU1: {
                 required: true,
@@ -344,13 +354,10 @@ function validarConfiguracionUsuario() {
                 equalTo: "#clavenU1"
             }
         },
-        messages: {
-            clavenU1: {
-                required: ""
-            },
-            clavenU2: {
-                required: "no coinsiden los caracteres"
-            }
+        message: {
+            claveActual: "clave actual erronea"
         }
+
     });
+
 }
