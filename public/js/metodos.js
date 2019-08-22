@@ -354,3 +354,158 @@ function validarConfiguracionUsuario() {
         }
     });
 }
+
+/**
+ * Obtiene la fecha actual
+ * @returns {String}
+ */
+function fechaActual() {
+    
+            //alert(fecha);
+            var d = new Date();
+            //alert((d.getDate()+"/"+(d.getMonth()+1))+"/"+d.getFullYear());
+            var mes = (d.getMonth() + 1);
+            var dia = d.getDate();
+            var fecha = (d.getFullYear() + "-" + rellenarCeros(mes, 2) + "-" + rellenarCeros(dia, 2));
+          //  console.log("actual "+fecha);
+
+            $("#fecha").val(fecha);
+            return fecha;
+        }
+        /**
+         * Devuelve una fecha especificada
+         * @param {type} fecha 
+         * @returns {String}
+         */
+         function fechaE(fecha) {
+            var d = new Date(fecha);
+            var mes = (d.getMonth() + 1);
+            var dia = (d.getDate()+1);
+            var fecha = (d.getFullYear() + "-" + rellenarCeros(mes, 2) + "-" + rellenarCeros(dia, 2));
+           // console.log("escogida: "+fecha);
+            return fecha;
+        }
+        /**
+         * Da formato a la fecha para que se pueda ajustar al input de tipo date 
+         * @param {type} texto
+         * @param {type} nro_cero
+         * @returns {String}
+         */
+        function rellenarCeros(texto, nro_cero) {
+            texto = texto + "";
+            if (texto.length < nro_cero) {
+                var aux = "";
+                for (var i = texto.length; i < nro_cero; i++) {
+                    aux += "0";
+                }
+                return aux + texto;
+            } else {
+                return texto;
+            }
+        }
+        /**
+         * Pinta los horarios dependiendo si estos estan agendados o no
+         * #91DD68 -> Este color en caso de que la cita ya este agendada
+         * #F07979 -> Este color en caso de que la cita aun no este agendada
+         * @returns {undefined}
+         */
+        function selectColor() {
+            var dia = diaSemana();
+           // console.log("THIS DAY" + dia);
+            if (dia !== "fin") {
+                $("#inf").hide();
+                $("#horario").show();
+                $("select option[value='1']").css("background-color", "#F07979");
+                $("select option[value='0']").css("background-color", "#91DD68");
+            } else {
+                $("#inf").show();
+                $("#horario").hide();
+               // $("#inf").prop('disabled', 'disabled');
+            }
+
+        }
+/**
+ * Retorna el nombre del dia, segun la fecha.
+ * @returns {String}
+ */
+        function diaSemana() {
+            var fa = $("#fecha").val();
+            var f = new Date(fa);
+            var dia = f.getDate();
+            var mes = f.getMonth() + 1;
+            var anio = f.getFullYear();
+            return verificar_diaSemana(dia, mes, anio);
+
+        }
+        /**
+         * Retorna propiamente el valor(nombre) del dia actual
+         * @param {type} dia
+         * @param {type} mes
+         * @param {type} anio
+         * @returns {String}
+         */
+        function verificar_diaSemana(dia, mes, anio) {
+            // var dias = [ "lun", "mar", "mie", "jue", "vie", "sab", "dom"];
+            var dias = ["Lunes", "Martes", "Miércoles", "Jueves", "Viernes", "fin", "fin"];
+            var dt = new Date(mes + ' ' + dia + ', ' + anio + ' 12:00:00');
+            var d = dias[dt.getUTCDay()];
+           // console.log(d);
+            return d;
+        }
+        /**
+         * Retorna un valor booleano que permite inhabilitar fechas expiradas
+         * @returns {Boolean}
+         */
+        function fechasPasadas(){
+          //  console.log("FECHA ACTUAL.METODO FECHAS APSADAS: "+ fechaActual());
+            document.getElementById("fecha").setAttribute("min", fechaActual());
+            var fechaEntrada = fechaE($("#fecha").val());
+            var fechaLimite = fechaActual();
+            console.log("entrada "+fechaEntrada);
+            console.log("limite " +fechaLimite);
+            console.log("FE:"+ new Date(fechaEntrada).getTime());
+            console.log("FL:"+ new Date(fechaLimite).getTime());
+            if ((new Date(fechaEntrada).getTime() < new Date(fechaLimite).getTime()))
+            {
+                console.log("FEcha Entrada incorrecta");
+                $("#fechaError").show();
+                //$("#horario").prop('disabled', false);
+            }
+            
+            console.log("FechaEntrada correcta")
+                $("#fechaError").hide();
+        }
+        /**
+         * Comprueba la hora actual
+         * true= hora no disponible en el horario de atencion de la veterinario
+         * false= hora dentro del horario de atencion de la veterinaria
+         * @returns {Boolean}
+         */
+        function obtenerHora(){
+            var d = new Date();
+            var hora= d.getHours();
+            console.log("hora: "+hora);
+            if(hora<17 ){
+                return true;
+                console.log("verdadero");
+                $("#alerta").hide();
+            }else{
+                return false;
+                $("#alerta").show();
+                console.log("falso");
+            }
+}
+/**
+ * Devuelve la fecha siguiente a la fecha actual
+ * @param {type} fecha
+ * @returns {String}
+ */
+ function fechaSiguiente(fecha) {
+            var d = new Date(fecha);
+            var mes = (d.getMonth() + 1);
+            var dia = (d.getDate()+2);
+            var fecha = (d.getFullYear() + "-" + rellenarCeros(mes, 2) + "-" + rellenarCeros(dia, 2));
+         //   console.log("escogida: "+fecha);
+             $("#fecha").val(fecha);
+            return fecha;
+        }
