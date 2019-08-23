@@ -101,12 +101,53 @@ function llenardatosUsuario(external) {
         }
     });
 };
+function llenardatosForo(external) {
+    var url = url_base + "cargarDatosForo";
+    console.log(external);
+    //en el controlador se recibe los mismo datos que estan aqui en el servicio texto = a req.query.texto en el contrlador
+    var external = external;
+    $.ajax({
+        url: url,
+        dataType: 'json',
+        data: 'external=' + external,
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            // console.log(data.edad);
+            $("#externalF").val(data.external_id);
+            $("#temaF").val(data.foro);
+            $("#nombreF").val(data.persona)
+        }
+    });
+};
 /**
  * funcion utilizando data table para realizar la busqueda en la lista de clientes
  */
 function dataTable() {
     //tabla pedidos data tables para realizar busquedas
     $('#tablaLCliente').DataTable({
+        // "dom": "Blfrtip",
+        // "buttons": ['excel', 'pdf', 'copy'],
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "No se encontraron resultados en su busqueda",
+            "searchPlaceholder": "Buscar registros",
+            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+            "aria": {
+                "sortAscending": ": ordenar de manera Ascendente",
+                "sortDescending": ": ordenar de manera Descendente "
+            }
+        }
+    });
+    $('#tablaPforo').DataTable({
         // "dom": "Blfrtip",
         // "buttons": ['excel', 'pdf', 'copy'],
         "language": {

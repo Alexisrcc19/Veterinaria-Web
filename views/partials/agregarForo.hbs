@@ -1,0 +1,75 @@
+<script src="/js/metodos.js"></script>
+<script>
+    $().ready(function () {
+        validarforo();
+        $("#anonimo").change(function () {
+            var verificar = $("#anonimo").val();
+            if (verificar === "ON") {
+                $("#nombre").val("anonimo");
+                $("#nombre").prop("readOnly", true);
+                $("#anonimo").val("OFF");
+            } else if (verificar === "OFF") {
+                $("#nombre").val("");
+                $("#nombre").prop("readOnly", false);
+                $("#anonimo").val("ON");
+            }
+        });
+    });
+    var f = new Date();
+    var fec = (f.getDate() + "/0" + (f.getMonth() + 1) + "/" + f.getFullYear());
+    $().ready(function () {
+        $("#fecha").val(fec);
+    })
+
+</script>
+<!-- PARA GUARDAR FORO--->
+<div class="modal fade" id="foroDediscusion" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog modg-scrollable" role="document">
+        <div class="modal-content">
+            <div class="card-header bg-succses">
+                <div class="card-title text-center">
+                    <p class="card-text "><h4>REGISTRAR FORO</h4>  </p>
+
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div id="error1"></div>
+                <form id="formulario" method="POST" action="/registroForo">
+                    <input type="hidden" id="fecha" name="fecha">
+                    <div id="mensaje"></div>
+
+                    <div class="tab-content">
+                        {{!-- MODAL-CLIENTE --}}
+
+
+                        <div class="form-group">
+                            Ingrese su nombre
+                            <div class="form-group">
+                                <input type="text" class="form-control"  id="nombre" name="nombre"
+                                       placeholder="Ingrese su nombre">
+
+
+                            </div>
+                            <input type="checkbox" id="anonimo" name="anonimo" value="ON" /> Anonimo
+                        </div>
+                        <div class="form-group">
+                            Ingrese su tema de discusion:
+                            <input type="text" class="form-control"  name="foro" id="foro"
+                                       placeholder="Ingrese su tema de discusion">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" id="btncancelar" class="btn btn-danger"
+                                    data-dismiss="modal">Cerrar</button>
+
+                            <button type="submit" id="guardar" class="btn btn-info">GUARDAR</button>
+                        </div>
+
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

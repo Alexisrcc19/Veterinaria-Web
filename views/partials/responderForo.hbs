@@ -1,0 +1,78 @@
+<script src="/js/metodos.js"></script>
+<script>
+    $().ready(function () {
+        validarforo();
+        $("#anonimo").change(function () {
+            var verificar = $("#anonimo").val();
+            if (verificar === "ON") {
+                $("#nombre").val("anonimo");
+                $("#nombre").prop("readOnly", true);
+                $("#anonimo").val("OFF");
+            } else if (verificar === "OFF") {
+                $("#nombre").val("");
+                $("#nombre").prop("readOnly", false);
+                $("#anonimo").val("ON");
+            }
+        });
+    });
+    var f = new Date();
+    var fec = (f.getDate() + "/0" + (f.getMonth() + 1) + "/" + f.getFullYear());
+    $().ready(function () {
+        $("#fecha").val(fec);
+    })
+
+</script>
+<!-- PARA GUARDAR FORO--->
+<div class="modal fade" id="responderForo" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
+    <div class="modal-dialog modg-scrollable" role="document">
+        <div class="modal-content">
+            <div class="card-header bg-succses">
+                <div class="card-title text-center">
+                    <p class="card-text "><h4>Responder</h4>  </p>
+
+                </div>
+            </div>
+
+            <div class="modal-body">
+                <div id="error1"></div>
+                <form id="formulario" method="POST" action="/responderForo">
+                    <input type="hidden" value="" id="externalF" name="externalF">
+                    <div id="mensaje"></div>
+
+                    <div class="tab-content">
+                        {{!-- MODAL-CLIENTE --}}
+
+
+                        <div class="form-group">
+                            Nombre del usuario:
+                            <div class="form-group">
+                                <input type="text" class="form-control" readonly=""  id="nombreF" name="nombreF"
+                                       value="">
+
+
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            Tema:
+                            <input type="text" class="form-control" readonly=""  id="temaF" name="temaF"
+                                       value="">
+                        </div>
+                        <div class="form-group">
+                            Respuesta:
+                            <input type="text" class="form-control"   id="respuestaF" name="respuestaF"
+                                       value="">
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" id="btncancelar" class="btn btn-danger"
+                                    data-dismiss="modal">Cerrar</button>
+
+                            <button type="submit" id="guardar" class="btn btn-info">GUARDAR</button>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

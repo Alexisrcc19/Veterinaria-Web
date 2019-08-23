@@ -13,16 +13,16 @@
             </div>
             <div class="form-group">
                 <div class="form-group">
-                <a href="" data-toggle="modal" class=" btn btn-outline-danger ml-auto float-rigth" title="agregar discusion" data-target="#foroDediscusion">Agregar tema de discusion</a>
-                <a href="/" class=" btn btn-outline-warning ml-auto float-rigth" title="agregar discusion" >Cancelar</a>
-</div>
+                <a href="/" class=" btn btn-outline-warning ml-auto float-rigth" title="agregar discusion" >Regresar</a>
+                </div>
                 <div class="table-responsive">
-                    <table id="tablaPforo" class="table table-striped" >
+                    <table id="tablaPforo" class="table table-striped">
                         <thead class="thead-dark">
                             <tr>
                                 <th>Nro</th>
                                 <th>Tema</th>
                                 <th>Fecha</th>
+                                <th>Accinoes</th>
 
                             </tr>
                         </thead>
@@ -42,6 +42,12 @@
                                 <td>
                                     {{fecha}}
                                 </td>
+                                <td>
+
+                                    <div class="btn-group">
+                                        <button type="button" onclick="llenardatosForo('{{external_id}}')" data-toggle="modal" data-target="#responderForo" data-tooltip="tooltip" data-placement="top" title="Editar" class="btn-warning btn-sm" >Responder</button>
+                                    </div>
+                                </td>
                             </tr>
                             {{/each}}
                         </tbody>
@@ -52,4 +58,4 @@
     </div>
 </div>
 </section>
-{{> 'agregarForo'}}
+{{> 'responderForo'}}

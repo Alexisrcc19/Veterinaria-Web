@@ -84,7 +84,7 @@
                             {{/if}}
                             {{#unless restringir}}
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                <li><a href="/" class="nav-link">Principal</a></li>
+                                
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paciente</a>
                                     <ul class="dropdown-menu">
@@ -100,6 +100,7 @@
                                         <li><a href="#" class="nav-link">Historial de citas medicas</a></li>
                                     </ul>
                                 </li>
+                                <li><a href="/foroVeterinario" class="nav-link">Foro</a></li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta</a>
                                     <ul class="dropdown-menu">
@@ -107,6 +108,7 @@
                                         <li class="nav-item"><a class="nav-link" href="/configuracionVeterinario/{{external}}">Configuracion</a></li>
                                         <li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li>
                                     </ul>
+                                    
                                 </li>
                             </ul>
                             {{/unless}}
@@ -127,7 +129,7 @@
                                     </ul>
                                 </li>
                                 <li><a href="/comentario" class="nav-link">Dejar un comentario</a></li>
-                                <li><a href="#services-section" class="nav-link">Nuestros Servicios</a></li>
+                                <li><a href="/foro" class="nav-link">Foro</a></li>
                                 <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
                                 {{!-- item cerrar session y configuracion de usuario --}}
                                 <li class="nav-item submenu dropdown">
