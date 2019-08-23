@@ -274,7 +274,9 @@ function validarveterinario() {
         }
     });
 }
-
+/**
+ * funcion para validar la vista de los comentarios
+ */
 function validarcomentario() {
     $("#formulario").validate({
         rules: {
@@ -284,6 +286,9 @@ function validarcomentario() {
         }
     });
 }
+/**
+ * funcion para validar la vista del foro
+ */
 function validarforo() {
     $("#formulario").validate({
         rules: {
@@ -296,9 +301,10 @@ function validarforo() {
         }
     });
 }
-
+/**
+ * funcion para validar la vista del registro de usuario desde publico
+ */
 function validarcliente() {
-
     $.validator.addMethod("soloLetras", function (value, element) {
         return this.optional(element) || /^[a-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
@@ -485,7 +491,7 @@ function validarMascotaModificarU() {
             },
             especieMa: {
                 required: true,
-                soloLetras:true
+                soloLetras: true
             }
         }
     });
@@ -519,7 +525,7 @@ function registroMV() {
             },
             especie: {
                 required: true,
-                soloLetras:true
+                soloLetras: true
             }
         }
     });
@@ -553,7 +559,7 @@ function modificarMVe() {
             },
             especieMa: {
                 required: true,
-                soloLetras:true
+                soloLetras: true
             }
         }
     });
@@ -654,10 +660,8 @@ function validarConfiguracionUsuario() {
                 maxlength: 10,
                 equalTo: "#clavenU1"
             }
-        },
-        message: {
-            claveActual: "clave actual erronea"
         }
+
     });
 }
 /**
@@ -678,8 +682,8 @@ function validarregistroHistorial() {
                 soloLetras: true
             },
             causa: {
-                required: true,
-                number: true
+                required: true
+
             },
             tratamiento: {
                 required: true
@@ -714,4 +718,53 @@ function validarmodificarHistorial() {
         }
     });
 }
+/**
+ * funcion para validar la vista de servicios desde admsnistrador
+ */
+function validarServicios() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    $("#tablarerservicios").validate({
+        rules: {
+            nombre: {
+                required: true,
+                soloLetras: true
+            },
+            tipoPago: {
+                required: true,
+                soloLetras: true
+            },
+            costo: {
+                required: true,
+                number: true
+            }
+        }
+    });
+}
+/**
+ * funcion para validar la vista de servicios para modificar desde admsnistrador
+ */
+function tablaregModServicio() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    $("#tablaregModServicio").validate({
+        rules: {
+            nombreS: {
+                required: true,
+                soloLetras: true
+            },
+            tipoPagoS: {
+                required: true,
+                soloLetras: true
+            },
+            costoS: {
+                required: true,
+                number: true
+            }
+        }
+    });
+}
+
 

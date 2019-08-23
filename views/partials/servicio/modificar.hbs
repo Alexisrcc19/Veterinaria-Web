@@ -1,4 +1,9 @@
-
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+        tablaregModServicio();
+    });
+</script>
 <div class="modal fade" id="modificarServicio" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
     <div class="modal-dialog modg-scrollable" role="document">
         <div class="modal-content">
@@ -7,11 +12,10 @@
                     <p class="card-text ">ACTUALIZAR SERVICIO</p>
                 </div>
             </div>
-           
             <div class="modal-body">
                 <div id="error1"></div>
-                <form id="tablareg" method="POST" action="/veterinario/servicio/modificar">
-                    <input type="hidden"  id="externalS" name="externalS" />
+                <form id="tablaregModServicio" method="POST" action="/veterinario/servicio/modificar">
+                    <input type="hidden" id="externalS" name="externalS" />
                     <div id="mensaje"></div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dcM">Servicio</a></li>
@@ -19,8 +23,7 @@
                     <div class="tab-content">
                         {{!-- MODAL-SERVICIO --}}
                         <div role="tabpanel" class="tab-pane active" id="dcM">
-                            
-                           <div class="form-group">
+                            <div class="form-group">
                                 <label for="nombres">Nombre:</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-edit"></i></span>
@@ -47,7 +50,7 @@
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-primary">Modificar</button>
                                 <a href="/veterinario/servicio/listaServicio" class="btn btn-outline-secondary">Cancelar</a>
-                            </div> 
+                            </div>
                         </div>
                     </div>
                 </form>

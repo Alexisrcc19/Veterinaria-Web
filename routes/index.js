@@ -100,8 +100,6 @@ var servicioControl= require('../controladores/servicioControlador');
  */
 var servicio= new servicioControl();
 
-
-
 /* GET home page. */
 /*
  * verificar_inicio = funcion que permite verificar  si una persona se encuentra iniciada sesion
@@ -147,7 +145,6 @@ router.get('/registrarUsuario', function (req, res, next) {
     res.render('index', {title: 'Registrate', fragmento: 'registroUsuario', registro: 'registro', ventanas: "ventanas", msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
-
 /*
  * foro de discusiones
  */
@@ -172,14 +169,7 @@ router.get('/registroMascota', sacar, CuentaUsuario, mascota.visualizar);
 router.post('/registro/mascota', sacar, CuentaUsuario, mascota.guardar);
 router.post('/veterinario/registro/mascota', sacar, CuentaVeterinario, mascota.guardarDesdeVeterinario);
 //<-------------------Veterinario---------------->
-/*
- * post = permite la modificacion de los datos de un veterinario
- */
-router.post('/configuracionVeterinario', sacar, CuentaVeterinario, veterinario.configuracionVeterinario);
-/*
- * get = permite visualizar losd atos a modificar el veterinario
- */
-router.get('/configuracionVeterinario/:external', sacar, CuentaVeterinario, veterinario.visualizarConfiguracion);
+
 /*
  * get = permite la visualizacion del formulario previo a registrar
  */
@@ -216,7 +206,7 @@ router.get('/listaclientes', sacar, CuentaVeterinario, mascota1.verReg);
 // router.post('/guardarmascotacliente', mascota1.guardarMV);
 router.get('/registroMascota/:external', sacar, CuentaVeterinario, mascota1.visualizarModificar);
 // router.post('/registroMascota', mascota1.guardarMascota);
-router.get('/veterinario/mascota/listaHistorial/:external', sacar, CuentaVeterinario, historial.verHistorial);
+router.get('/veterinario/mascota/listaHistorial/:external/:external_idP', sacar, CuentaVeterinario, historial.verHistorial);
 router.post('/veterinario/registro/historial', sacar, CuentaVeterinario, historial.guardarHistorial);
 router.get('/listaHistorialMascotas', sacar, CuentaVeterinario, historial.listaHistorialMascotas);
 /**

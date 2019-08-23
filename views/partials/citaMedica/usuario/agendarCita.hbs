@@ -1,6 +1,6 @@
 <script src="/js/metodos.js"></script>
 <script>
-    
+
 </script>
 <script>
     $(document).ready(function () {
@@ -27,13 +27,16 @@
 
 <section class="site-section bg-white " id="testimonials-section" data-aos="fade">
     <div class="container">
+        <div class="form-group">
+            <a href="/" class=" btn btn-outline-primary ml-auto float-rigth" title="agregar discusion">Regresar</a>
+        </div>
         <h1 class="text-center">{{title}}</h1>
         <div class="row">
             <div class="card align-self-center" style="width:300px">
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
                         <p class="card-text">
-                        <h4>Datos Cliente</h4><input type="hidden" value="{{cliente.id}}" id="idCliente" name="idCliente" />
+                            <h4>Datos Cliente</h4><input type="hidden" value="{{cliente.id}}" id="idCliente" name="idCliente" />
                         </p>
                     </div>
                 </div>
@@ -57,7 +60,7 @@
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
                         <div class="card-header bg-light">
-                            <h5>DATOS CITA MEDICA</h5> 
+                            <h5>DATOS CITA MEDICA</h5>
                         </div>
                     </div>
                 </div>
@@ -70,9 +73,9 @@
                                 <option value="{{id}}"> {{nombre}} </option>
                                 {{/each}}
                             </select>
-                            <label class="text-black"   for="exampleFormControlSelect2">Seleccione el servicio</label>
-                            <div class="form-group"> 
-                                <select  class="form-control" name="servicio" id="servicio">
+                            <label class="text-black" for="exampleFormControlSelect2">Seleccione el servicio</label>
+                            <div class="form-group">
+                                <select class="form-control" name="servicio" id="servicio">
                                     <option>1</option>
                                     <option>2</option>
                                     <option>3</option>
@@ -88,14 +91,14 @@
                                 La fecha que escogiste no es válida
                             </div>
                             <div class="form-group">
-                                <input type="date"  id="fecha" name="fecha" class="form-control"  >
+                                <input type="date" id="fecha" name="fecha" class="form-control">
                             </div>
                             <div class="form-group">
-                                <label class="text-black"   for="exampleFormControlSelect2" >Seleccione hora</label>
-                                <select multiple class="form-control text-black dropdown-secondary"  id="inf" size="8" >
+                                <label class="text-black" for="exampleFormControlSelect2">Seleccione hora</label>
+                                <select multiple class="form-control text-black dropdown-secondary" id="inf" size="8">
 
                                 </select>
-                                <select multiple class="form-control text-black dropdown-secondary"  name="hora" id="horario" size="8" >
+                                <select multiple class="form-control text-black dropdown-secondary" name="hora" id="horario" size="8">
                                     <option value="8:00-8:30">8:00-8:30</option>
                                     <option value="8:30-9:00">8:30-9:00</option>
                                     <option value="9:00-9:30">9:00-9:30</option>
@@ -113,20 +116,18 @@
                                 </select>
                             </div>
                             <input id="valor" type="hidden" value="false" name="valor">
-                              <div class="alert alert-info" role="alert">
-                            Estimado(a) {{cliente.nombres}} {{cliente.apellidos}} una vez agendada tu cita no podras modificar los datos de la misma
-                        </div>
+                            <div class="alert alert-info" role="alert">
+                                Estimado(a) {{cliente.nombres}} {{cliente.apellidos}} una vez agendada tu cita no podras modificar los datos de la misma
+                            </div>
                             <div class="form-group">
                                 <input type="submit" class="btn btn-primary btn-pill" value="Generar Cita" id="genCit">
                                 <a href="/" class="btn btn-danger btn-pill">Volver</a>
                             </div>
                         </form>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-

@@ -6,6 +6,9 @@
 </script>
 <section class="site-section bg-white " id="testimonials-section" data-aos="fade">
     <div class="container">
+        <div class="btn-group">
+            <a href="/listaclientes" data-tooltip="tooltip" data-placement="top" title="REGRESAR" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-left fa-2x"></i></a>
+        </div>
         <h1 class="text-center">{{title}}</h1>
         <div class="row">
             <div class="card" style="width:300px">
@@ -23,7 +26,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nombres">Nombres:</label>
-                        <input type="text" class="form-control" value="{{cliente.nombres}} {{cliente.apellidos}}" readonly>
+                        <input type="text" class="form-control" value="{{cliente.nombres}} {{cliente.apellidos}} " readonly>
                     </div>
                     <div class="form-group">
                         <label for="direccion">Direccion:</label>
@@ -36,7 +39,7 @@
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
                         <div class="card-header bg-light">
-                            <h5>LISTADO DE MASCOTAS</h5> 
+                            <h5>LISTADO DE MASCOTAS</h5>
                         </div>
                         <br>
                         <a href="#" class="btn btn-outline-primary ml-auto float-right" data-toggle="modal" data-target="#registroMascota">NUEVO <i class="fas fa-dog"></i></a>
@@ -79,7 +82,7 @@
 
                                         </div>
                                         <div class="btn-group">
-                                            <a href="/veterinario/mascota/listaHistorial/{{external_id}}" data-tooltip="tooltip" data-placement="top" title="Registrar Mascota" class="btn-warning btn-sm"><i class="far fa-calendar-alt"></i></a>
+                                            <a href="/veterinario/mascota/listaHistorial/{{external_id}}/{{persona.external_id}}" data-tooltip="tooltip" data-placement="top" title="Registro Historial" class="btn-warning btn-sm"><i class="far fa-calendar-alt"></i></a>
                                         </div>
                                     </td>
                                 </tr>

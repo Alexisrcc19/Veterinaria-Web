@@ -235,7 +235,7 @@ function dataTable() {
             }
         }
     });
-    $('#tablaLHistorial').DataTable({
+    $('#tablaLHistorialP').DataTable({
         // "dom": "Blfrtip",
         // "buttons": ['excel', 'pdf', 'copy'],
         "language": {

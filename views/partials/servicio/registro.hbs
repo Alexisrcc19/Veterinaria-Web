@@ -1,11 +1,9 @@
 <script src="/js/metodos.js"></script>
 <script>
     $(document).ready(function () {
-        validarRegistro()
+        validarServicios();
     });
 </script>
-
-
 <div class="modal fade" id="ModalServicio" tabindex="-1" role="dialog" aria-labelledby="modalpaciente" aria-hidden="true">
     <div class="modal-dialog modg-scrollable" role="document">
         <div class="modal-content">
@@ -16,7 +14,7 @@
             </div>
             <div class="modal-body">
                 <div id="error1"></div>
-                <form id="tablareg" method="POST" action="/veterinario/servicio/registro">
+                <form id="tablarerservicios" method="POST" action="/veterinario/servicio/registro">
                     <div id="mensaje"></div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dc">Servicio</a></li>

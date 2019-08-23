@@ -1,6 +1,9 @@
 <script src="/js/metodos.js"></script>
 <section class="site-section bg-white " id="testimonials-section" data-aos="fade">
     <div class="container">
+        <div class="btn-group">
+            <a href="/registroMascota/{{external_idPer}}" data-tooltip="tooltip" data-placement="top" title="REGRESAR" class="btn btn-outline-primary btn-sm"><i class="fas fa-arrow-left fa-2x"></i></a>
+        </div>
         <h1 class="text-center">{{title}}</h1>
         <div class="row">
             <div class="card" style="width:300px">
@@ -31,16 +34,16 @@
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
                         <div class="card-header bg-light">
-                            <h5>LISTADO DE HISTORIAL</h5> 
+                            <h5>LISTADO DE HISTORIAL </h5>
                         </div>
                         <br>
-                        <a href="" data-toggle="modal" class=" btn btn-outline-primary ml-auto float-left" title="Registrar" data-target="#registroHistorial">Nuevo <i class="fas fa-paw"></i></a>
-                    </div>                  
+                        <a href="" data-toggle="modal" class=" btn btn-outline-primary ml-auto float-left" title="Nevo Registro" data-target="#registroHistorial">Nuevo <i class="fas fa-file-medical"></i></a>
+                    </div>
                 </div>
                 <div class="card-body">
 
                     <div class="form-group">
-                        <table id="tablaLHistorial" class="table table-sm">
+                        <table id="tablaLHistorialP" class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>Nro</th>
@@ -48,6 +51,7 @@
                                     <th>Estado</th>
                                     <th>Enfermedades</th>
                                     <th>Tratamiento</th>
+                                    <th>Acciones</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -71,9 +75,7 @@
                                     <td>
                                         <div class="btn-group">
                                             <a href="#" data-toggle="modal" data-target="#modificarHistorial" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenardatosHistorial('{{external_id}}')"><i class="far fa-edit"></i></a>
-
                                         </div>
-
                                     </td>
                                 </tr>
                                 {{/each}}

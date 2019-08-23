@@ -6,30 +6,40 @@ var persona = require('../modelos/persona');
 var rol = require('../modelos/rol');
 class HistorialController {
     listaHistorialMascotas(req, res) {
-        rol.filter({nombre: false}).then(function (listado) {
+        rol.filter({ nombre: false }).then(function (listado) {
             var rol = listado[0];
             var ver = rol.id;
-            mascota.getJoin({persona: true}).then(function (lista) {
-                res.render('index', {title: 'Historial', fragmento: 'veterinario/mascota/historial/listaHistorialMascotas', lista: lista, ventanas: "ventanas",
-                    msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
-console.log(lista)
+            mascota.getJoin({ persona: true }).then(function (lista) {
+                res.render('index', {
+                    title: 'Historial', fragmento: 'veterinario/mascota/historial/listaHistorialMascotas', lista: lista, ventanas: "ventanas",
+                    msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
+                });
+                console.log(lista)
             });
         });
     }
     verHistorial(req, res) {
         var masc = req.params.external;
-        mascota.getJoin({historial: true}).filter({external_id: masc}).then(function (lista) {
+        var externalPersona = req.params.external_idP;
+        mascota.getJoin({ historial: true }).filter({ external_id: masc }).then(function (lista) {
             var ver = lista[0];
             var id = ver.id;
-            historial.filter({id_mascota: id}).then(function (listado) {
-                res.render('index', {title: 'Historial', fragmento: 'veterinario/mascota/historial/listaHistorial', listado: listado, lista: lista, ventanas: "ventanas",
-                    msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+            historial.filter({ id_mascota: id }).then(function (listado) {
+                res.render('index', {
+                    title: 'Historial', 
+                    fragmento: 'veterinario/mascota/historial/listaHistorial',
+                     listado: listado, 
+                     lista: lista,
+                      external_idPer: externalPersona,
+                       ventanas: "ventanas",
+                    msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
+                });
             });
         });
     }
     cargardatosHistorial(req, res) {
         var external = req.query.external;
-        historial.filter({external_id: external}).then(function (resultPM) {
+        historial.filter({ external_id: external }).then(function (resultPM) {
             // res.send(resultP);
             var his = resultPM[0];
             res.json(his);
@@ -41,7 +51,7 @@ console.log(lista)
     }
     guardarHistorial(req, res) {
         var external = req.body.externalMasc;
-        mascota.filter({external_id: external}).then(function (datosM) {
+        mascota.filter({ external_id: external }).then(function (datosM) {
             var masc = datosM[0];
             var data = {
                 enfermedades: req.body.enfermedades,
@@ -68,7 +78,7 @@ console.log(lista)
     modificarH(req, res) {
         var external = req.body.externalHistorialH;
         console.log(external + "---------------")
-        historial.filter({external_id: external}).then(function (data) {
+        historial.filter({ external_id: external }).then(function (data) {
             if (data.length > 0) {
                 var Historial = data[0];
                 Historial.causa = req.body.causaH;
