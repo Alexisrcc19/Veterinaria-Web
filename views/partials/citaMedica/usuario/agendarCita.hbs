@@ -1,5 +1,8 @@
 <script src="/js/metodos.js"></script>
 <script>
+    
+</script>
+<script>
     $(document).ready(function () {
         fechaActual();
         selectColor();
@@ -21,12 +24,7 @@
         });
     });
 </script>
-<script src="/js/metodos.js"></script>
-<script>
-    $(document).ready(function () {
-        validarRegistro()
-    });
-</script>
+
 <section class="site-section bg-white " id="testimonials-section" data-aos="fade">
     <div class="container">
         <h1 class="text-center">{{title}}</h1>
@@ -66,6 +64,7 @@
                 <div class="card-body">
                     <div class="form-group">
                         <form action="/cliente/cita/agendar" method="POST" class="form-box" id="formulario">
+                            <label class="text-black">Seleccione su mascota</label>
                             <select class="form-control" id="mascota" name="mascota">
                                 {{#each mascota}}
                                 <option value="{{id}}"> {{nombre}} </option>

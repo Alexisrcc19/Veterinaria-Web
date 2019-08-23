@@ -1,0 +1,61 @@
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+        validarRegistro()
+    });
+</script>
+
+
+<div class="modal fade" id="ModalServicio" tabindex="-1" role="dialog" aria-labelledby="modalpaciente" aria-hidden="true">
+    <div class="modal-dialog modg-scrollable" role="document">
+        <div class="modal-content">
+            <div class="card-header bg-succses">
+                <div class="card-title text-center">
+                    <p class="card-text ">REGISTRAR SERVICIO</p>
+                </div>
+            </div>
+            <div class="modal-body">
+                <div id="error1"></div>
+                <form id="tablareg" method="POST" action="/veterinario/servicio/registro">
+                    <div id="mensaje"></div>
+                    <ul class="nav nav-tabs">
+                        <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dc">Servicio</a></li>
+                    </ul>
+                    <div class="tab-content">
+                        {{!-- MODAL-SERVICIO --}}
+                        <div role="tabpanel" class="tab-pane active" id="dc">
+                            <div class="form-group">
+                                <label for="nombres">Nombre:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-edit"></i></span>
+                                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Ingrese el nombre del servicio">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="formaPago">Forma de pago:</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="far fa-id-card"></i></span>
+                                    <select class="form-control" id="tipoPago" name="tipoPago">
+                                        <option value="online">En linea</option>
+                                        <option value="efectivo">Efectivo</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="valor">Costo del servicio</label>
+                                <div class="input-group">
+                                    <span class="input-group-text"><i class="fas fa-signature"></i></span>
+                                    <input type="text" class="form-control" id="costo" name="costo" placeholder="Ingrese el costo del servicio">
+                                </div>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="submit" class="btn btn-outline-primary">Registrar</button>
+                                <a href="/veterinario/servicio/listaServicio" class="btn btn-outline-secondary">Cancelar</a>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

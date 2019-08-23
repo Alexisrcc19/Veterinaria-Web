@@ -91,7 +91,14 @@ var pago = new pagoControl();
  * 
  * @type Module utilidades|Module utilidades
  */
-
+/**
+ * @type Module servicioControlador|Module servicioControlador
+ */
+var servicioControl= require('../controladores/servicioControlador');
+/**
+ * @type servicioControl |Servicio instanciado
+ */
+var servicio= new servicioControl();
 
 
 
@@ -243,5 +250,15 @@ router.post('/registroComentario', sacar, CuentaUsuario, comentario.guardarComen
  */
 router.get("/cliente/cita/agendar", sacar, cita.verRegistro);
 router.post('/cliente/cita/agendar', sacar, cita.guardarCita);
+router.get('/veterinario/cita/listaCitas', sacar, cita.verListaCitas);
+
+/**
+ * Servios de la veterinaria
+ */
+router.get('/veterinario/servicio/registro',sacar,servicio.verRegistroServicio);
+router.post('/veterinario/servicio/registro',sacar,servicio.guardarServicio);
+router.get('/veterinario/servicio/listaServicio',sacar,servicio.verListadoServicio);
+router.get('/servicio/datosModi',sacar,servicio.cargardatosServicio);
+router.post('/veterinario/servicio/modificar',sacar,servicio.modificarServicio);
 
 module.exports = router;

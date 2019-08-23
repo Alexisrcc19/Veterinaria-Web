@@ -1,0 +1,78 @@
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+    validarRegistro()
+    });</script>
+
+<section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-succses">
+                HISTORIAL CITAS MEDICAS
+            </div>
+            <div class="card-body">
+                <div class="form-group">
+
+                    <div style="font-size: 20px; color: #b21f2d;"> 
+                        {{msg.error}}
+                    </div>
+                    <div style="font-size: 20px; color: green;"> 
+                        {{msg.ok}}
+                    </div>
+                    <div style="font-size: 20px; color: green;"> 
+                        {{msg.info}}
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="table-responsive">
+                        <table id="tablaLCliente" class="table table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Nro</th>
+                                    <th>Cliente</th>
+                                    <th>Paciente</th>
+                                    <th>Servicio</th>
+                                    <th>Estado de Pago</th>
+                                    <th>Acciones</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {{#each lista as |lis i|}}
+                                <tr>
+                                    <td>
+                                        {{i}}
+                                    </td>
+                                    <td>
+                                        {{cedula}}
+                                    </td>
+                                    <td>
+                                        {{nombres}} {{apellidos}}
+                                    </td>
+                                    <td>
+                                        {{direccion}}
+                                    </td>
+                                    <td>
+                                        {{telefono}}
+                                    </td>
+
+                                    <td>
+                                        <div class="btn-group">
+                                            <button type="button" data-toggle="modal" data-target="#modificarCliente" data-tooltip="tooltip" data-placement="top" title="Editar" class="btn-danger btn-sm" onclick="llenardatosCliente('{{external_id}}')"><i class="fa fa-edit"></i></button>
+                                        </div>
+
+                                        <div class="btn-group">
+
+                                            <a href="/registroMascota/{{external_id}}" data-tooltip="tooltip" data-placement="top" title="Registrar Mascota" class="btn-warning btn-sm"><i class="fas fa-dog"></i></a>
+                                        </div>
+
+                                    </td>
+                                </tr>
+                                {{/each}}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

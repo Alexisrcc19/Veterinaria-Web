@@ -10,8 +10,16 @@ class CitaControl {
      * @returns {undefined}
      */
      verListaCitas(req, res){
-        res.render('index', {title: 'Lista de Citas',fragmento:'listaCitas',ventanas:"ventanas"
-            ,msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+         persona.getJoin({cita: true}).then(function (data) {
+             res.render('index', {
+                 title: 'Lista de Citas',
+                 fragmento:'citaMedica/veterinario/listaCitas',
+                 ventanas:"ventanas",
+                 msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
+         }).error(function (error) {
+            
+        });
+        
     }
     /**
      * Visualización del Registro de cita (Cliente)
@@ -26,7 +34,7 @@ class CitaControl {
                 var cliente = data[0];
                 res.render('index', {
                     title: 'Agendar Cita',
-                    fragmento: "citaMedica/agendarCita",
+                    fragmento: "citaMedica/usuario/agendarCita",
                     cliente: cliente,
                     mascota: cliente.mascota,
                     usuario: req.session.cuenta.usuario,
@@ -88,6 +96,12 @@ class CitaControl {
                             res.redirect('/cita/agendar');
         });
     }
+    
+    buscarFecha(req,res){
+        var fecha= $("#fecha").val();
+        console.log(fecha);
+    }
 
 }
 module.exports = CitaControl;
+

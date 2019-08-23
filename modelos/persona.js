@@ -22,4 +22,6 @@ Persona.hasOne(Cuenta, "cuenta", "id", "id_persona");
 //relacion de cliente y mascota
 var Mascota = require('./mascota');
 Persona.hasMany(Mascota, "mascota", "id", "id_cliente");
-
+//Relacion de cliente y cita
+var Cita = require("./cita");
+Persona.hasOne(Cuenta, "cita", "id", "id_cliente");

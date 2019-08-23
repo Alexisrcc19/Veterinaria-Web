@@ -84,7 +84,7 @@
                             {{/if}}
                             {{#unless restringir}}
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
-                                
+
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paciente</a>
                                     <ul class="dropdown-menu">
@@ -97,7 +97,9 @@
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="#" class="nav-link"><i class="fas fa-money-check-alt"></i>   Historial de Pagos</a></li>
                                         <li class="nav-item"><a class="nav-link" href="/listaclientes"><i class="far fa-list-alt"></i>  Lista de Clientes</a></li>
-                                        <li><a href="#" class="nav-link"><i class="fas fa-clipboard-list"></i>   Historial de citas medicas</a></li>
+                                        <li><a href="/veterinario/cita/listaCitas" class="nav-link">Historial de citas medicas</a></li>
+                                        <li><a href="/veterinario/servicio/listaServicio" class="nav-link">Servicios</a></li>
+
                                     </ul>
                                 </li>
                                 <li><a href="/foroVeterinario" class="nav-link">Foro</a></li>
@@ -108,7 +110,7 @@
                                         <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración  <i class="fas fa-user-cog"></i></a></li>
                                         <li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li>
                                     </ul>
-                                    
+
                                 </li>
                             </ul>
                             {{/unless}}
@@ -139,7 +141,7 @@
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  {{usuario}}     <i class="far fa-user"></i></a>
                                     <ul class="dropdown-menu">
                                         <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración  <i class="fas fa-user-cog"></i></a></li>
-                                        {{!-- <li class="nav-item"><a class="nav-link" href="7configuracionUsuario" class="nav-link">Configuracion</a></li> --}}
+{{!-- <li class="nav-item"><a class="nav-link" href="7configuracionUsuario" class="nav-link">Configuracion</a></li> --}}
                                         <li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li>
                                     </ul>
                                 </li>
