@@ -4,11 +4,16 @@ var router = express.Router();
 var comentario = require('../modelos/comentarios');
 var ci = require('../modelos/cita');
 var se = require('../modelos/servicio');
+var foro = require('../modelos/foro');
 /*
  * bd = usada para la genreacion de roles 
  */
 var bd = require('../modelos/rol');
 var com = require('../modelos/comentarios');
+
+var foroControlador = require('../controladores/foroControlador');
+var foro = new foroControlador();
+
 
 var comentarioControlador = require('../controladores/comentarioControlador');
 var comentario = new comentarioControlador();
@@ -87,7 +92,6 @@ var pago = new pagoControl();
  * @type Module utilidades|Module utilidades
  */
 
-var utilidades = require('../controladores/utilidades');
 
 
 
@@ -136,11 +140,15 @@ router.get('/registrarUsuario', function (req, res, next) {
     res.render('index', {title: 'Registrate', fragmento: 'registroUsuario', registro: 'registro', ventanas: "ventanas", msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
 });
-//foro
-router.get('/foro', function (req, res, next) {
-    res.render('index', {title: 'Foro', fragmento: 'foro', inicio: 'inicio', ventanas: "ventanas", msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
 
-});
+/*
+ * foro de discusiones
+ */
+router.get("/cargarDatosForo", foro.cargardatosForo);
+router.get('/foro', foro.listadoForo);
+router.get('/foroVeterinario', foro.listadoForoVeterinario);
+router.post('/registroForo', foro.guardar);
+router.post('/responderForo', sacar,CuentaVeterinario, foro.responder);
 //acerca
 router.get('/acerca', function (req, res, next) {
     res.render('index', {title: 'Foro', fragmento: 'AcercadeNosotros', inicio: 'inicio', ventanas: "ventanas", msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});

@@ -6,7 +6,7 @@ var veterinario = require('../modelos/persona');
 var rol = require('../modelos/rol');
 var comentario = require('../modelos/comentarios');
 
-class CuentaController {
+class comentarioControlador {
     
     dejarComentario(req, res){
         rol.filter({nombre: true}).then(function (lista){
@@ -42,6 +42,6 @@ class CuentaController {
     }
 }
 
-module.exports = (CuentaController);
+module.exports = (comentarioControlador);
 
 

@@ -274,10 +274,31 @@ function validarveterinario() {
         }
     });
 }
-/**
- * funcion para validar la vista de registro de usuario desde veterinario
- */
-function validarusuarioV() {
+
+function validarcomentario() {
+    $("#formulario").validate({
+        rules: {
+            comentario: {
+                required: true
+            }
+        }
+    });
+}
+function validarforo() {
+    $("#formulario").validate({
+        rules: {
+            foro: {
+                required: true
+            },
+            nombre: {
+                required: true
+            }
+        }
+    });
+}
+
+function validarcliente() {
+
     $.validator.addMethod("soloLetras", function (value, element) {
         return this.optional(element) || /^[a-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
@@ -579,10 +600,6 @@ function validarConfiguracionUsuario() {
     $.validator.addMethod("soloLetras", function (value, element) {
         return this.optional(element) || /^[a-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
-
-    $.validator.addMethod("registro", function (value, element) {
-        return this.optional(element) || /^[N]-[0-9]{4}-[R]-[0-9]{3}$/.test(value);
-    }, "Ingrese un registro valido ejemplo N-0000-R-000");
 
     $.validator.addMethod("validacedula", function (value, element) {
         return this.optional(element) || validarCedula(value);
