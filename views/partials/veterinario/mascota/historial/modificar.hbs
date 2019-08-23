@@ -1,7 +1,7 @@
 <script src="/js/metodos.js"></script>
 <script>
     $(document).ready(function () {
-        validarRegistro()
+        validarmodificarHistorial();
     });
 </script>
 <div class="modal fade" id="modificarHistorial" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
@@ -18,7 +18,7 @@
             </div>
             <div class="modal-body">
                 <div id="error1"></div>
-                <form id="tablareg" method="POST" action="/actualizarHistorial">
+                <form id="modificarHV" method="POST" action="/actualizarHistorial">
                     
                     <input type="hidden" value="" id="externalHistorialH" name="externalHistorialH" />
                     <div id="mensaje"></div>

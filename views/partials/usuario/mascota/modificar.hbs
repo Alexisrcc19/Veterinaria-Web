@@ -1,4 +1,9 @@
-<!-- PARA GUARDAR PACIENTE--->
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+        validarMascotaModificarU();
+    });
+</script>
 <div class="modal fade" id="modificarMascota" tabindex="-1" role="dialog" aria-labelledby="modalmascota" aria-hidden="true">
     <div class="modal-dialog modg-scrollable" role="document">
         <div class="modal-content">
@@ -12,8 +17,7 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div id="error1"></div>
-                <form id="tablareg" method="POST" action="/actualizarMascota">
+                <form id="tablarmm" method="POST" action="/actualizarMascota">
                     <input type="hidden" value="0" id="externalMa" name="externalMa" />
                     <input type="hidden" value="{{req.session.external}}" id="externalCliente" name="externalCliente" />
                     <div id="mensaje"></div>
@@ -37,12 +41,12 @@
                         </div>
                     </div>
                     <div class="btn-group" style="padding-bottom: 15px">
-                            <span class="input-group-text">Sexo:</span>
-                            <select class="form-control" name="sexoMa" id="sexoMa" aria-describedby="espeHelp">
-                                <option value="hembra">Hembra</option>
-                                <option value="macho">Macho</option>
-                            </select>
-                        </div>
+                        <span class="input-group-text">Sexo:</span>
+                        <select class="form-control" name="sexoMa" id="sexoMa" aria-describedby="espeHelp">
+                            <option value="hembra">Hembra</option>
+                            <option value="macho">Macho</option>
+                        </select>
+                    </div>
                     {{!-- <label for="edad">Tipo:</label> --}}
                     <div class="input-group">
 

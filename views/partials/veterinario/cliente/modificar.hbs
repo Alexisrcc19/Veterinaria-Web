@@ -1,4 +1,9 @@
-<!-- PARA GUARDAR PACIENTE--->
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+        modificarUV();
+    });
+</script>
 <div class="modal fade" id="modificarCliente" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
     <div class="modal-dialog modg-scrollable" role="document">
         <div class="modal-content">
@@ -9,8 +14,8 @@
             </div>
            
             <div class="modal-body">
-                <div id="error1"></div>
-                <form id="tablareg" method="POST" action="/actualizar">
+              
+                <form id="modificarUV" method="POST" action="/actualizar">
                     <input type="hidden" value="0" id="externalM" name="externalM" />
                     <div id="mensaje"></div>
                     <ul class="nav nav-tabs">

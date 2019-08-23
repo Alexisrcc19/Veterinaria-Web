@@ -88,23 +88,23 @@
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Paciente</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="/listaHistorialMascotas" class="nav-link">Historial Clinico</a></li>
-                                        <li><a href="#" class="nav-link">Consulta Medica</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/listaHistorialMascotas" class="nav-link"> <i class="fas fa-notes-medical"></i>  Historial Clinico</a></li>
+                                        <li><a href="#" class="nav-link"><i class="fas fa-stethoscope"></i>   Consulta Medica</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Gestion</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="#" class="nav-link">Historial de Pagos</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/listaclientes">Listado de Pacientes</a></li>
-                                        <li><a href="#" class="nav-link">Historial de citas medicas</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="#" class="nav-link"><i class="fas fa-money-check-alt"></i>   Historial de Pagos</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/listaclientes"><i class="far fa-list-alt"></i>  Lista de Clientes</a></li>
+                                        <li><a href="#" class="nav-link"><i class="fas fa-clipboard-list"></i>   Historial de citas medicas</a></li>
                                     </ul>
                                 </li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{usuario}}  <i class="fas fa-user-shield"></i></a>
                                     <ul class="dropdown-menu">
                                         <li class="nav-item"><a class="nav-link" href="/registrarVeterinario" class="nav-link">Registrar veterinario</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/configuracionVeterinario/{{external}}">Configuracion</a></li>
+                                        <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración  <i class="fas fa-user-cog"></i></a></li>
                                         <li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li>
                                     </ul>
                                 </li>
@@ -120,20 +120,20 @@
                             </div>
                             <ul class="site-menu main-menu js-clone-nav mr-auto d-none d-lg-block">
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Mascota</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><i class="fas fa-dog"></i>   Mascota</a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="/registroMascota" class="nav-link">Mascotas Registradas</a></li>
-                                        <li class="nav-item"><a class="nav-link" href="/cliente/cita/agendar">Agendar Cita</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/registroMascota" class="nav-link"><i class="fas fa-cat"></i><i class="fas fa-dog"></i>   Mis Mascotas</a></li>
+                                        <li class="nav-item"><a class="nav-link" href="/cliente/cita/agendar"><i class="far fa-file-alt"></i>   Agendar Cita</a></li>
                                     </ul>
                                 </li>
-                                <li><a href="/comentario" class="nav-link">Dejar un comentario</a></li>
+                                <li><a href="/comentario" class="nav-link"> <i class="far fa-comment-dots"></i>  Dejar un comentario</a></li>
                                 <li><a href="#services-section" class="nav-link">Nuestros Servicios</a></li>
                                 <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
                                 {{!-- item cerrar session y configuracion de usuario --}}
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Cuenta</a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">  {{usuario}}     <i class="far fa-user"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración</a></li>
+                                        <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración  <i class="fas fa-user-cog"></i></a></li>
                                         {{!-- <li class="nav-item"><a class="nav-link" href="7configuracionUsuario" class="nav-link">Configuracion</a></li> --}}
                                         <li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li>
                                     </ul>

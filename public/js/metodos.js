@@ -1,3 +1,7 @@
+/**
+ * funcion para validar el ingreso de la cédula
+ * @param {recibe la cedula como parametro} cedula 
+ */
 function validarCedula(cedula) {
     var cad = cedula.trim();
     var total = 0;
@@ -15,7 +19,6 @@ function validarCedula(cedula) {
                 total += parseInt(cad.charAt(i)); // parseInt o concatenará en lugar de sumar
             }
         }
-
         total = total % 10 ? 10 - total % 10 : 0;
 
         if (cad.charAt(longitud - 1) == total) {
@@ -25,7 +28,10 @@ function validarCedula(cedula) {
         }
     }
 }
-
+/**
+ * funcion para manejo de errores
+ * @param {sms como parametro para enviar mensaje} msg 
+ */
 function manejoMensajes(msg) {
     //console.log(error);
     var mensaje = '<div class="alert alert-danger">';
@@ -33,335 +39,6 @@ function manejoMensajes(msg) {
     mensaje += '</div>';
     $("#error").html(mensaje);
 }
-
-
-function calcularEdad(fecha) {
-    //    var fecha = document.getElementById("fecha");
-    var hoy = new Date();
-    var cumpleanos = new Date(fecha);
-    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-    var m = hoy.getMonth() - cumpleanos.getMonth();
-    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-        edad--;
-    }
-    console.log("TIENES: " + edad + " ANIOS");
-    return edad;
-}
-/**
- * metodo para validar la clave de l a cuenta y poder gonfigurar la cunenta
- * @param {clave} clave 
- */
-function validarclave(clave) {
-    var claveActual = $("#claveU").val();
-    console.log(claveActual)
-    if (clave === claveActual) {
-        return true;
-    }
-    return false;
-}
-
-function validarveterinario() {
-    $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
-    }, "Escriba Solo letras por Favor");
-
-    $.validator.addMethod("registro", function (value, element) {
-        return this.optional(element) || /^[N]-[0-9]{4}-[R]-[0-9]{3}$/.test(value);
-    }, "Ingrese un registro valido ejemplo N-0000-R-000");
-
-    $.validator.addMethod("validacedula", function (value, element) {
-        return this.optional(element) || validarCedula(value);
-    }, "Cedula no valida");
-
-
-    $("#formulario").validate({
-        rules: {
-            cedula: {
-                number: true,
-                required: true,
-                minlength: 10,
-                maxlength: 10,
-                validacedula: true
-            },
-            apellidos: {
-                required: true,
-                soloLetras: true
-            },
-            nombres: {
-                required: true,
-                soloLetras: true
-            },
-            direccion: {
-                required: true
-            },
-            telefono: {
-                required: true,
-                number: true
-            },
-            claveAnterior: {
-                required: true
-            },
-            claveActual: {
-                required: true
-            },
-            usuario: {
-                required: true
-            },
-            correo: {
-                required: true
-            },
-            clave: {
-                required: true,
-                minlength: 5,
-                maxlength: 10
-            }
-        }
-    });
-}
-function validarcomentario() {
-
-
-    $("#formulario").validate({
-        rules: {
-            comentario: {
-                required: true
-            }
-        }
-    });
-}
-
-function validarcliente() {
-    $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
-    }, "Escriba Solo letras por Favor");
-
-    $.validator.addMethod("registro", function (value, element) {
-        return this.optional(element) || /^[N]-[0-9]{4}-[R]-[0-9]{3}$/.test(value);
-    }, "Ingrese un registro valido ejemplo N-0000-R-000");
-
-    $.validator.addMethod("validacedula", function (value, element) {
-        return this.optional(element) || validarCedula(value);
-    }, "Cedula no valida");
-
-
-    $("#formularioC").validate({
-        rules: {
-            cedula: {
-                number: true,
-                required: true,
-                minlength: 10,
-                maxlength: 10,
-                validacedula: true
-            },
-            apellidos: {
-                required: true,
-                soloLetras: true
-            },
-            nombres: {
-                required: true,
-                soloLetras: true
-            },
-            direccion: {
-                required: true
-            },
-            telefono: {
-                required: true,
-                number: true
-            },
-
-            usuario: {
-                required: true
-            },
-            correo: {
-                required: true
-            },
-            clave: {
-                required: true,
-                minlength: 5,
-                maxlength: 10
-            }
-        }
-    });
-}
-
-function validarMascota() {
-    $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
-    }, "Escriba Solo letras por Favor");
-
-    $('#guardar').click(function () {
-        if ($('#especie').val().trim() === '') {
-            alert('selecione la especie');
-        } else {
-            //            alert('especie seleccionado correctamente');
-        }
-    });
-    $("#formularioM").validate({
-        rules: {
-
-            nombre: {
-                required: true,
-                soloLetras: true
-            },
-            raza: {
-                required: true,
-                soloLetras: true
-            },
-            edad: {
-                required: true,
-                number: true
-            },
-            tipo: {
-                required: true,
-                soloLetras: true
-            },
-
-
-        }
-    });
-}
-
-function validarRegistro() {
-    $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
-    }, "Escriba Solo letras por Favor");
-
-    $.validator.addMethod("registro", function (value, element) {
-        return this.optional(element) || /^[N]-[0-9]{4}-[R]-[0-9]{3}$/.test(value);
-    }, "Ingrese un registro valido ejemplo N-0000-R-000");
-
-    $.validator.addMethod("validacedula", function (value, element) {
-        return this.optional(element) || validarCedula(value);
-    }, "Cedula no valida");
-    $("#tablareg").validate({
-        rules: {
-
-            nombre: {
-                required: true,
-                soloLetras: true
-            },
-            raza: {
-                required: true,
-                soloLetras: true
-            },
-            edad: {
-                required: true,
-                number: true
-            },
-            tipo: {
-                required: true,
-                soloLetras: true
-            },
-            cedula: {
-                number: true,
-                required: true,
-                minlength: 10,
-                maxlength: 10,
-                validacedula: true
-            },
-            apellidos: {
-                required: true,
-                soloLetras: true
-            },
-            nombres: {
-                required: true,
-                soloLetras: true
-            },
-            direccion: {
-                required: true
-            },
-            telefono: {
-                required: true,
-                number: true
-            },
-
-            usuario: {
-                required: true
-            },
-            correo: {
-                required: true
-            },
-            clave: {
-                required: true,
-                minlength: 5,
-                maxlength: 10
-            }
-        }
-    });
-
-
-}
-function validarConfiguracionUsuario() {
-    $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
-    }, "Escriba Solo letras por Favor");
-
-    $.validator.addMethod("registro", function (value, element) {
-        return this.optional(element) || /^[N]-[0-9]{4}-[R]-[0-9]{3}$/.test(value);
-    }, "Ingrese un registro valido ejemplo N-0000-R-000");
-
-    $.validator.addMethod("validacedula", function (value, element) {
-        return this.optional(element) || validarCedula(value);
-    }, "Cedula no valida");
-    $.validator.addMethod("validaClave", function (value, element) {
-        return this.optional(element) || validarclave(value);
-    }, "CLAVE ACTUAL ERRONEA");
-    $("#tablaconfigU").validate({
-        rules: {
-            cedulaU: {
-                number: true,
-                required: true,
-                minlength: 10,
-                maxlength: 10,
-                validacedula: true
-            },
-            apellidosU: {
-                required: true,
-                soloLetras: true
-            },
-            nombresU: {
-                required: true,
-                soloLetras: true
-            },
-            direccionU: {
-                required: true
-            },
-            telefonoU: {
-                required: true,
-                number: true
-            },
-
-            usuarioU: {
-                required: true
-            },
-            correoU: {
-                required: true
-            },
-            claveActual: {
-                required: true,
-                validaClave: true
-
-            },
-            clavenU1: {
-                required: true,
-                minlength: 5,
-                maxlength: 10
-            },
-            clavenU2: {
-                required: true,
-                minlength: 5,
-                maxlength: 10,
-                equalTo: "#clavenU1"
-            }
-        },
-        message: {
-            claveActual: "clave actual erronea"
-        }
-
-    });
-
-}
-
 /**
  * Obtiene la fecha actual
  * @returns {String}
@@ -515,5 +192,509 @@ function fechaSiguiente(fecha) {
     $("#fecha").val(fecha);
     return fecha;
 }
+/**
+ * funcion para calcular la edad segun el ingreso de la fecha de nacimiento
+ * @param {fecha como parametro para realizar el calculo} fecha 
+ */
+function calcularEdad(fecha) {
+    //    var fecha = document.getElementById("fecha");
+    var hoy = new Date();
+    var cumpleanos = new Date(fecha);
+    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
+    var m = hoy.getMonth() - cumpleanos.getMonth();
+    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
+        edad--;
+    }
+    console.log("TIENES: " + edad + " ANIOS");
+    return edad;
+}
+/**
+ * metodo para validar la clave de l a cuenta y poder gonfigurar la cunenta
+ * @param {clave} clave 
+ */
+function validarclave(clave) {
+    var claveActual = $("#claveU").val();
+    console.log(claveActual)
+    if (clave === claveActual) {
+        return true;
+    }
+    return false;
+}
+/**
+ * funcion para validar la vista de registro de veterinario
+ */
+function validarveterinario() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    $.validator.addMethod("validacedula", function (value, element) {
+        return this.optional(element) || validarCedula(value);
+    }, "Cedula no valida");
+    $("#formulario").validate({
+        rules: {
+            cedula: {
+                number: true,
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                validacedula: true
+            },
+            apellidos: {
+                required: true,
+                soloLetras: true
+            },
+            nombres: {
+                required: true,
+                soloLetras: true
+            },
+            direccion: {
+                required: true
+            },
+            telefono: {
+                required: true,
+                number: true
+            },
+            claveAnterior: {
+                required: true
+            },
+            claveActual: {
+                required: true
+            },
+            usuario: {
+                required: true
+            },
+            correo: {
+                required: true
+            },
+            clave: {
+                required: true,
+                minlength: 5,
+                maxlength: 10
+            }
+        }
+    });
+}
+/**
+ * funcion para validar la vista de registro de usuario desde veterinario
+ */
+function validarusuarioV() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    $.validator.addMethod("validacedula", function (value, element) {
+        return this.optional(element) || validarCedula(value);
+    }, "Cedula no valida");
+    $("#tablaregUsuario").validate({
+        rules: {
+            cedula: {
+                number: true,
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                validacedula: true
+            },
+            apellidos: {
+                required: true,
+                soloLetras: true
+            },
+            nombres: {
+                required: true,
+                soloLetras: true
+            },
+            direccion: {
+                required: true
+            },
+            telefono: {
+                required: true,
+                number: true
+            },
+            usuario: {
+                required: true
+            },
+            correo: {
+                required: true
+            },
+            clave: {
+                required: true,
+                minlength: 5,
+                maxlength: 10
+            }
+        }
+    });
+}
+/**
+ * Funcion para modificar un cliente desde veterinario
+ */
+function modificarUV() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    $.validator.addMethod("validacedula", function (value, element) {
+        return this.optional(element) || validarCedula(value);
+    }, "Cedula no valida");
+    $("#modificarUV").validate({
+        rules: {
+            cedulaM: {
+                number: true,
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                validacedula: true
+            },
+            apellidosM: {
+                required: true,
+                soloLetras: true
+            },
+            nombresM: {
+                required: true,
+                soloLetras: true
+            },
+            direccionM: {
+                required: true
+            },
+            telefonoM: {
+                required: true,
+                number: true
+            },
+            usuarioM: {
+                required: true
+            },
+            correoM: {
+                required: true
+            },
+            claveM: {
+                required: true,
+                minlength: 5,
+                maxlength: 10
+            }
+        }
+    });
+}
+/**
+ * funcion para validar los comentarios echos por los clientes 
+ */
+function validarcomentario() {
+    $("#formulario").validate({
+        rules: {
+            comentario: {
+                required: true
+            }
+        }
+    });
+}
+/**
+ * funncion para validar la vista de registro de cliente desde publico
+ */
+function validarcliente() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
 
+    $.validator.addMethod("registro", function (value, element) {
+        return this.optional(element) || /^[N]-[0-9]{4}-[R]-[0-9]{3}$/.test(value);
+    }, "Ingrese un registro valido ejemplo N-0000-R-000");
+
+    $.validator.addMethod("validacedula", function (value, element) {
+        return this.optional(element) || validarCedula(value);
+    }, "Cedula no valida");
+    $("#formularioC").validate({
+        rules: {
+            cedula: {
+                number: true,
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                validacedula: true
+            },
+            apellidos: {
+                required: true,
+                soloLetras: true
+            },
+            nombres: {
+                required: true,
+                soloLetras: true
+            },
+            direccion: {
+                required: true
+            },
+            telefono: {
+                required: true,
+                number: true
+            },
+            usuario: {
+                required: true
+            },
+            correo: {
+                required: true
+            },
+            clave: {
+                required: true,
+                minlength: 5,
+                maxlength: 10
+            }
+        }
+    });
+}
+/**
+ * funcion para validar el registro de modificar desde usuario de mascota 
+ */
+function validarMascotaModificarU() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    // $('#guardar').click(function () {
+    //     if ($('#especie').val().trim() === '') {
+    //         alert('selecione la especie');
+    //     } else {
+    //     }
+    // });
+    $("#tablarmm").validate({
+        rules: {
+            nombreMa: {
+                required: true,
+                soloLetras: true
+            },
+            razaMa: {
+                required: true,
+                soloLetras: true
+            },
+            edadMa: {
+                required: true,
+                number: true
+            },
+            especieMa: {
+                required: true,
+                soloLetras:true
+            }
+        }
+    });
+}
+/**
+ * funcion para validar la vista de registro de mascota desde veterinario
+ */
+function registroMV() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    // $('#guardar').click(function () {
+    //     if ($('#especie').val().trim() === '') {
+    //         alert('selecione la especie');
+    //     } else {
+    //     }
+    // });
+    $("#tablaregMV").validate({
+        rules: {
+            nombre: {
+                required: true,
+                soloLetras: true
+            },
+            raza: {
+                required: true,
+                soloLetras: true
+            },
+            edad: {
+                required: true,
+                number: true
+            },
+            especie: {
+                required: true,
+                soloLetras:true
+            }
+        }
+    });
+}
+/**
+ * funcion para validar la vista de modificar de mascota desde veterinrio
+ */
+function modificarMVe() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    // $('#guardar').click(function () {
+    //     if ($('#especie').val().trim() === '') {
+    //         alert('selecione la especie');
+    //     } else {
+    //     }
+    // });
+    $("#modifiMVe").validate({
+        rules: {
+            nombreMa: {
+                required: true,
+                soloLetras: true
+            },
+            razaMa: {
+                required: true,
+                soloLetras: true
+            },
+            edadMa: {
+                required: true,
+                number: true
+            },
+            especieMa: {
+                required: true,
+                soloLetras:true
+            }
+        }
+    });
+}
+/**
+ * Método para validar el registro de mascota desde cliente
+ */
+function validarMascota() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+
+    // $('#guardar').click(function () {
+    //     if ($('#especie').val().trim() === '') {
+    //         alert('selecione la especie');
+    //     } else {
+    //         //            alert('especie seleccionado correctamente');
+    //     }
+    // });
+    $("#tablareg").validate({
+        rules: {
+            nombre: {
+                required: true,
+                soloLetras: true
+            },
+            raza: {
+                required: true,
+                soloLetras: true
+            },
+            edad: {
+                required: true,
+                number: true
+            },
+            especie: {
+                required: true
+            }
+        }
+    });
+}
+/**
+ * funcion para validar la vista de configuracion de cuenta de Cliente
+ */
+function validarConfiguracionUsuario() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+
+    $.validator.addMethod("registro", function (value, element) {
+        return this.optional(element) || /^[N]-[0-9]{4}-[R]-[0-9]{3}$/.test(value);
+    }, "Ingrese un registro valido ejemplo N-0000-R-000");
+
+    $.validator.addMethod("validacedula", function (value, element) {
+        return this.optional(element) || validarCedula(value);
+    }, "Cedula no valida");
+    $.validator.addMethod("validaClave", function (value, element) {
+        return this.optional(element) || validarclave(value);
+    }, "CLAVE ACTUAL ERRONEA");
+    $("#tablaconfigU").validate({
+        rules: {
+            cedulaU: {
+                number: true,
+                required: true,
+                minlength: 10,
+                maxlength: 10,
+                validacedula: true
+            },
+            apellidosU: {
+                required: true,
+                soloLetras: true
+            },
+            nombresU: {
+                required: true,
+                soloLetras: true
+            },
+            direccionU: {
+                required: true
+            },
+            telefonoU: {
+                required: true,
+                number: true
+            },
+
+            usuarioU: {
+                required: true
+            },
+            correoU: {
+                required: true
+            },
+            claveActual: {
+                required: true,
+                validaClave: true
+
+            },
+            clavenU1: {
+                required: true,
+                minlength: 5,
+                maxlength: 10
+            },
+            clavenU2: {
+                required: true,
+                minlength: 5,
+                maxlength: 10,
+                equalTo: "#clavenU1"
+            }
+        },
+        message: {
+            claveActual: "clave actual erronea"
+        }
+    });
+}
+/**
+ * funcion para validar la vista de registro de historial de la mascota desde veterinario
+ */
+function validarregistroHistorial() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    $("#registrarHV").validate({
+        rules: {
+            enfermedades: {
+                required: true,
+                soloLetras: true
+            },
+            estado: {
+                required: true,
+                soloLetras: true
+            },
+            causa: {
+                required: true,
+                number: true
+            },
+            tratamiento: {
+                required: true
+            }
+        }
+    });
+}
+/**
+ * funcion para validar la vista de modificar de historial de la mascota desde veterinario
+ */
+function validarmodificarHistorial() {
+    $.validator.addMethod("soloLetras", function (value, element) {
+        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+    }, "Escriba Solo letras por Favor");
+    $("#modificarHV").validate({
+        rules: {
+            enfermedadesH: {
+                required: true,
+                soloLetras: true
+            },
+            estadoH: {
+                required: true,
+                soloLetras: true
+            },
+            causaH: {
+                required: true,
+                number: true
+            },
+            tratamientoH: {
+                required: true
+            }
+        }
+    });
+}
 

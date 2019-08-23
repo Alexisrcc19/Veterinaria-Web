@@ -1,3 +1,9 @@
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+        validarregistroHistorial();
+    });
+</script>
 <div class="modal fade" id="registroHistorial" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
     <div class="modal-dialog modg-scrollable" role="document">
         <div class="modal-content">
@@ -10,8 +16,7 @@
             </div>
 
             <div class="modal-body">
-                <div id="error1"></div>
-                <form id="tablareg" method="POST" action="/veterinario/registro/historial">
+                <form id="registrarHV" method="POST" action="/veterinario/registro/historial">
                     {{#each lista}}
                     <input type="hidden" value="{{external_id}}" id="externalMasc" name="externalMasc" />
                     {{/each}}

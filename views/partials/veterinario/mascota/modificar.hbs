@@ -1,4 +1,9 @@
-<!-- PARA GUARDAR PACIENTE--->
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+        modificarMVe();
+    });
+</script>
 <div class="modal fade" id="modificarMascota" tabindex="-1" role="dialog" aria-labelledby="modalmascota" aria-hidden="true">
     <div class="modal-dialog modg-scrollable" role="document">
         <div class="modal-content">
@@ -12,8 +17,8 @@
                 </button>
             </div>
             <div class="modal-body">
-                <div id="error1"></div>
-                <form id="tablareg" method="POST" action="/actualizarMascota">
+                
+                <form id="modifiMVe" method="POST" action="/actualizarMascota">
                     <input type="hidden" value="0" id="externalMa" name="externalMa" />
                     <input type="hidden" value="{{cliente.external_id}}" id="externalCliente" name="externalCliente" />
                     <div id="mensaje"></div>

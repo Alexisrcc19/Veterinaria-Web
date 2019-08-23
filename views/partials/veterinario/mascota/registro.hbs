@@ -1,4 +1,9 @@
-<!-- PARA GUARDAR MASCOTA--->
+<script src="/js/metodos.js"></script>
+<script>
+    $(document).ready(function () {
+        registroMV();
+    });
+</script>
 <div class="modal fade" id="registroMascota" tabindex="-1" role="dialog" aria-labelledby="modal" aria-hidden="true">
     <div class="modal-dialog modg-scrollable" role="document">
         <div class="modal-content">
@@ -9,8 +14,8 @@
             </div>
            
             <div class="modal-body">
-                <div id="error1"></div>
-                <form id="tablareg" method="POST" action="/veterinario/registro/mascota">
+                
+                <form id="tablaregMV" method="POST" action="/veterinario/registro/mascota">
                     <input type="hidden" value="{{cliente.external_id}}" id="externalCli" name="externalCli" />
                     
                     <div id="mensaje"></div>
