@@ -73,9 +73,18 @@
                                         {{tratamiento}}
                                     </td>
                                     <td>
-                                        <div class="btn-group">
+                                         <form name="eliminarHistorialM" action="/eliminarHistorialM" method="POST">
+                                         <input type="hidden" value="{{external_id}}" id="borrarHistorial" name="borrarHistorial">
+                                           <div class="btn-group">
                                             <a href="#" data-toggle="modal" data-target="#modificarHistorial" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenardatosHistorial('{{external_id}}')"><i class="far fa-edit"></i></a>
                                         </div>
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn btn-sm " ><img title="Eliminar" src="/images/delete.png"></button>
+                                            </div>
+                                        </form>
+                                        
+                                        
+                                        
                                     </td>
                                 </tr>
                                 {{/each}}

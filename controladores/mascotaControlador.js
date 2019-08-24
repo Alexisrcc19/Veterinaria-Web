@@ -25,7 +25,7 @@ class MascotaControl {
          * 
          * then() = usado para realizar el collback dentro de la mascota con el modelo y el filter incluido
          */
-        mascota.getJoin({persona: true}).filter({id_cliente: req.session.cuenta.id}).then(function (lista) {
+        mascota.getJoin({persona: true}).filter({id_cliente: req.session.cuenta.id, visible:true}).then(function (lista) {
             var mas = false;
             /**
              * mas = variable ceada para verificar mas adelante
@@ -79,6 +79,7 @@ class MascotaControl {
             var reg = ("N-H-" + nroHistorial);
 
             var data = {
+                visible:true,
                 nro_historial: reg,
                 raza: req.body.raza,
                 nombre: req.body.nombre,
@@ -98,7 +99,7 @@ class MascotaControl {
              */
             mascotaD.save().then(function () {
                 req.flash('info', 'mascota registrada');
-                res.redirect('/registroMascota');
+                res.redirect('/');
             }).error(function () {
                 req.flash('error', 'No se pudo guardar');
                 res.redirect('/');
@@ -115,11 +116,11 @@ class MascotaControl {
         mascota.then(function (historial) {
             var nroHistorial = historial.length;
             var reg = ("N-H-" + nroHistorial);
-
-            persona.filter({external_id: external}).then(function (datosM) {
+            persona.filter({external_id: external,visible:true}).then(function (datosM) {
                 // console.log(datosM);
                 var persona = datosM[0];
                 var data = {
+                    visible:true,
                     nro_historial: reg,
                     raza: req.body.raza,
                     nombre: req.body.nombre,
@@ -155,7 +156,7 @@ class MascotaControl {
      */
     cargardatosMascota(req, res) {
         var external = req.query.external;
-        mascota.filter({external_id: external}).then(function (resultPM) {
+        mascota.filter({external_id: external,visible:true}).then(function (resultPM) {
             // res.send(resultP);
             var mascota = resultPM[0];
             res.json(mascota);
@@ -166,8 +167,7 @@ class MascotaControl {
     }
 
     modificarM(req, res) {
-        var externalCliente = req.body.externalCliente;
-        mascota.filter({external_id: req.body.externalMa}).then(function (resultM) {
+        mascota.filter({external_id: req.body.externalMa,visible:true}).then(function (resultM) {
             if (resultM.length > 0) {
                 var mascotaM = resultM[0];
                 mascotaM.nombre = req.body.nombreMa;
@@ -179,11 +179,11 @@ class MascotaControl {
 
                 mascotaM.saveAll().then(function (actualizadoM) {
                     req.flash('info', 'actualizado corectamnete');
-                    res.redirect('/registroMascota/' + externalCliente);
+                    res.redirect('/');
                 }).error(function (error) {
                     // req.flash('modificado con exito');
                     req.flash('error', 'error al modificado');
-                    res.redirect('/registroMascota/' + externalCliente);
+                    res.redirect('/');
 
                 });
 

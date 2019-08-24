@@ -73,6 +73,8 @@ function creacionVeterinario() {
      * genera por defecto 
      */
     veterinarioC.run().then(function (veterinario) {
+        var ver = veterinario[0];
+       
         /*
          * veterinario.length = permite verificar si el veterinario predeterminado ya existe, caso contrario para a crearlo
          */
@@ -95,6 +97,7 @@ function creacionVeterinario() {
                      * datosV = son todos los datos que se le enviaran al momento de crear el veterinario que se generara por defecto
                      */
                     var datosV = {
+                        visible:true,
                         cedula: "veterinario",
                         apellidos: "veterinario",
                         nombres: "veterinario",
@@ -106,6 +109,7 @@ function creacionVeterinario() {
                      * datosC = son los datos de la cuanta de dicho veterinario 
                      */
                     var datosC = {
+                        visible: true,
                         correo: "veterinario",
                         clave: "veterinario",
                         usuario: "veterinario"
@@ -145,6 +149,7 @@ function creacionVeterinario() {
                 console.log(error)
             });
         }
+    
     }).error(function (error) {
         /**
          * error = mesaje indicando un error interno del sistema

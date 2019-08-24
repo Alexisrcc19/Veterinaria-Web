@@ -24,6 +24,7 @@ class comentarioControlador {
        var external = req.body.veterinario;
         comentario.then(function (guardar) {
             var data = {
+                visible: true,
                 comentarios: req.body.comentario,
                 cliente: perso,
                 id_comentario: external

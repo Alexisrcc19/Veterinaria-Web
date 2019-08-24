@@ -2,6 +2,7 @@ var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
 var Mascota = thinky.createModel("Mascota", {
+    visible: type.boolean(),
     nro_historial: type.string(),
     raza: type.string(),
     nombre: type.string(),

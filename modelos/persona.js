@@ -2,6 +2,7 @@ var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
 var Persona = thinky.createModel("Persona", {
+    visible: type.boolean(),
     id: type.string(),
     external_id: type.string().default(r.uuid()), 
     nombre: type.string(),

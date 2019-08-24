@@ -2,6 +2,7 @@ var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
 var Cita = thinky.createModel("Cita", {
+    visible: type.boolean(),
     id: type.string(),
     tipo: type.string(),
     fecha: type.string(),

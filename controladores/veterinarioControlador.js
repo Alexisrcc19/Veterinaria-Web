@@ -32,7 +32,7 @@ class VeterinarioControl {
          *  
          *  cuenta = modelo relacionado con persona
          */
-        persona.getJoin({cuenta: true}).filter({external_id: external}).then(function (data) {
+        persona.getJoin({cuenta: true}).filter({external_id: external,visible:true}).then(function (data) {
             /**
              * data.length = usada para la verificacion de existencia de cuentas de veterinario
              */
@@ -86,7 +86,7 @@ class VeterinarioControl {
             var ver = roles[0];
             var role = ver;
 
-            persona.getJoin({cuenta: true}).filter({external_id: req.body.external}).then(function (data) {
+            persona.getJoin({cuenta: true}).filter({external_id: req.body.external,visible:true}).then(function (data) {
                 if (data.length > 0) {
                     var veterinario = data[0];
                     /**
@@ -165,7 +165,7 @@ class VeterinarioControl {
          * 
          * persona = modelo usado para poder ver los datos necesarios del cliente
          */
-        mascota.getJoin({persona: true}).then(function (lista) {
+        mascota.getJoin({persona: true}).filter({visible:true}).then(function (lista) {
             /**
              * lista: lista = usada para poder enviar todos los datos existentes de persona y mascoat
              */
@@ -212,7 +212,7 @@ class VeterinarioControl {
                  * then()= funcion en donde se realizara el collback de cuenta
                  * 
                  */
-                cuenta.filter({correo: req.body.correo}).then(function (verificarCuenta) {
+                cuenta.filter({correo: req.body.correo,visible:true}).then(function (verificarCuenta) {
                     if (verificarCuenta.length >= 1) {
                         /*
                          * error = mensaje en caso de que la cuenta ya exista
@@ -224,6 +224,7 @@ class VeterinarioControl {
                          * datosV = datos del veterinario a registrar
                          */
                         var datosV = {
+                            visible:true,
                             vet: true,
                             cedula: req.body.cedula,
                             apellidos: req.body.apellidos,
@@ -237,6 +238,7 @@ class VeterinarioControl {
                          * datosC = datos de la cuenta a registrar
                          */
                         var datosC = {
+                            visible:true,
                             correo: req.body.correo,
                             clave: req.body.clave,
                             usuario: req.body.usuario

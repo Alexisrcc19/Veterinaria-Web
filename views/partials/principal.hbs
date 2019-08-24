@@ -20,25 +20,39 @@
             <div class="owl-carousel nonloop-block-13">
                 {{#each comentar}}
                 <div>
-                    <div class="block-testimony-1 text-center">
-                        <blockquote class="mb-4">
-                            <p>&ldquo;{{comentarios}}&rdquo;</p>
-                        </blockquote>
-                        <h3 class="font-size-20 text-black">CLIENTE: {{cliente}}</h3>
-                    </div>
+                    <form name="eliminarComentario" action="/eliminarComentario" method="POST">
+                        <input type="hidden" value="{{external_id}}" id="borrarComentario" name="borrarComentario">
+
+                        <div class="block-testimony-1 text-center">
+                            <blockquote class="mb-4">
+                                <div style="right:  3px;top: 3px; position: absolute">
+                                    <button type="submit" id="guardar" class="btn btn-sm " ><img title="Eliminar" src="images/error.png"></button>
+                                </div>
+                                <p>&ldquo;{{comentarios}}&rdquo;</p>
+                            </blockquote>
+                            <h3 class="font-size-20 text-black">CLIENTE: {{cliente}}</h3>
+                        </div>
+                    </form>
                 </div>
 
                 {{/each}}
             </div>
-
+            <div class="form-group">
+                <center><img src="images/principalVeterinario.jpg" width="300"></center>
+            </div>
         </div>
-{{/if}}
-{{#unless verificar}}
-<h1>Aun no tiene comentarios de clientes</h1>
-{{/unless}}
+        {{/if}}
+        {{#unless verificar}}
+        <h1>Aun no tiene comentarios de clientes</h1>
+        <div class="form-group">
+            <center><img src="images/principalVeterinario.jpg" width="300"></center>
+        </div>
+        {{/unless}}
     </div>
 </section>
 {{/unless}}
+
+
 {{#if restringir}}
 <section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
     <div class="container">

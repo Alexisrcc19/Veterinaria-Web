@@ -40,18 +40,19 @@ class usuarioControl {
                  * 
                  * then() = funcion en la cual se realiza el collback de la cuenta para poder registrar
                  */
-                cuenta.filter({ correo: req.body.correo }).then(function (verificarCuenta) {
+                cuenta.filter({ correo: req.body.correo,visible:true }).then(function (verificarCuenta) {
                     /**
                      * verificarCuenta = usada para evitar la repeticion de cuentas
                      */
                     if (verificarCuenta.length >= 1) {
                         req.flash('error', 'la cuenta ya existe');
-                        res.redirect('/registrarUsuairo');
+                        res.redirect('/registrarUsuario');
                     } else {
                         /**
                          * datosV = es en donde se almacenan todos los datos rescatados del formulario de la plantilla 
                          */
                         var datosV = {
+                            visible:true,
                             cedula: req.body.cedula,
                             apellidos: req.body.apellidos,
                             nombres: req.body.nombres,
@@ -64,6 +65,7 @@ class usuarioControl {
                          * para posteriormente poder ingresar al sistema
                          */
                         var datosC = {
+                            visible:true,
                             correo: req.body.correo,
                             clave: req.body.clave,
                             usuario: req.body.usuario
@@ -123,7 +125,7 @@ class usuarioControl {
 
     cargardatosCliente(req, res) {
         var external = req.query.external;
-        persona.filter({ external_id: external }).getJoin({ cuenta: true }).then(function (resultP) {
+        persona.filter({ external_id: external,visible:true }).getJoin({ cuenta: true }).then(function (resultP) {
             // res.send(resultP);
             var persona = resultP[0];
             res.json(persona);
@@ -133,7 +135,7 @@ class usuarioControl {
 
     }
     modificarC(req, res) {
-        persona.filter({ external_id: req.body.externalM }).getJoin({ cuenta: true }).then(function (resultM1) {
+        persona.filter({ external_id: req.body.externalM ,visible:true}).getJoin({ cuenta: true }).then(function (resultM1) {
             if (resultM1.length > 0) {
                 var clienteM = resultM1[0];
                 clienteM.cedula = req.body.cedulaM;
@@ -167,7 +169,7 @@ class usuarioControl {
  */
     cargardatosUsuario(req, res) {
         var external = req.query.external;
-        persona.filter({ external_id: external }).getJoin({ cuenta: true }).then(function (resultU) {
+        persona.filter({ external_id: external,visible:true }).getJoin({ cuenta: true }).then(function (resultU) {
             // res.send(resultP);
             var usuario = resultU[0];
             res.json(usuario);
@@ -179,7 +181,7 @@ class usuarioControl {
  * metodo para configurar la cuenta del usuario 
  */
     configurarUsuario(req, res) {
-        persona.filter({ external_id: req.body.externalU }).getJoin({ cuenta: true }).then(function (usuario1) {
+        persona.filter({ external_id: req.body.externalU,visible:true }).getJoin({ cuenta: true }).then(function (usuario1) {
             if (usuario1.length > 0) {
                 var clienteM = usuario1[0];
                 clienteM.cedula = req.body.cedulaU;

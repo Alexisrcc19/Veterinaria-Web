@@ -24,7 +24,7 @@ class ServicioControl {
      * @returns {undefined}
      */
     verListadoServicio(req, res) {
-        servicio.then(function (data) {
+        servicio.filter({visible:true}).then(function (data) {
             res.render('index', {
                 title: 'Listados de Servicios',
                 fragmento: 'servicio/tablaServicio',
@@ -43,6 +43,7 @@ class ServicioControl {
  */
     guardarServicio(req, res) {
         var datosServicio = {
+            visible:true,
             nombre: req.body.nombre,
             formaPago: req.body.tipoPago,
             valor: req.body.costo
@@ -64,7 +65,7 @@ class ServicioControl {
      */
     cargardatosServicio(req, res) {
         var external = req.query.external;
-        servicio.filter({ id: external }).then(function (resultS) {
+        servicio.filter({ id: external ,visible:true}).then(function (resultS) {
             var servicio = resultS[0];
             res.json(servicio);
         }).error(function (error) {
@@ -79,7 +80,7 @@ class ServicioControl {
      * @returns {undefined}
      */
      modificarServicio(req, res) {
-        servicio.filter({ id: req.body.externalS }).then(function (resultS) {
+        servicio.filter({ id: req.body.externalS ,visible:true}).then(function (resultS) {
             if (resultS.length > 0) {
                 var servicio = resultS[0];
                 servicio.formaPago = req.body.tipoPagoS;

@@ -7,7 +7,7 @@ class foroControlador {
 
    cargardatosForo(req, res) {
         var external = req.query.external;
-        foro.filter({external_id: external}).then(function (resultPM) {
+        foro.filter({external_id: external,visible:true}).then(function (resultPM) {
             // res.send(resultP);
             var foroF = resultPM[0];
             res.json(foroF);
@@ -18,19 +18,20 @@ class foroControlador {
     }
 
     listadoForoVeterinario(req, res) {
-        foro.then(function (listado) {
+        foro.filter({visible:true}).then(function (listado) {
             res.render('index', {title: 'Foro', fragmento: 'foroVeterinario', inicio: 'inicio', listado: listado
                 , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
         });
     }
     listadoForo(req, res) {
-        foro.then(function (listado) {
+        foro.filter({visible:true}).then(function (listado) {
             res.render('index', {title: 'Foro', fragmento: 'foro', inicio: 'inicio', listado: listado
                 , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
         });
     }
     guardar(req, res) {
         var data = {
+            visible:true,
             persona: req.body.nombre,
             foro: req.body.foro,
             fecha: req.body.fecha,
@@ -48,7 +49,7 @@ class foroControlador {
     }
      responder(req, res) {
          var vet = req.session.cuenta.usuario;
-        foro.filter({external_id: req.body.externalF}).then(function (resultM) {
+        foro.filter({external_id: req.body.externalF,visible:true}).then(function (resultM) {
             if (resultM.length > 0) {
                 var ForoP = resultM[0];
                 ForoP.respuesta = req.body.respuestaF;

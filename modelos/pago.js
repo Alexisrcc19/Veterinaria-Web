@@ -2,6 +2,7 @@ var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
 var Pago = thinky.createModel("Pago", {
+    visible: type.boolean(),
     id_pago: type.string(),
     tipo: type.string(),
     descripcion: type.string(),

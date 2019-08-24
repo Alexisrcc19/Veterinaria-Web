@@ -2,6 +2,7 @@ var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
 var Foro = thinky.createModel("Foro", {
+    visible: type.boolean(),
     id: type.string(),
     persona:type.string(),
     respuesta:type.string(),

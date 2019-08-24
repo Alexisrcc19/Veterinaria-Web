@@ -710,7 +710,6 @@ function validarmodificarHistorial() {
             },
             causaH: {
                 required: true,
-                number: true
             },
             tratamientoH: {
                 required: true

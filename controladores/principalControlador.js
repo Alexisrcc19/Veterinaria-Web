@@ -23,7 +23,7 @@ class principalControlador {
             } else {
                 restringir = false;
             }
-            comentarios.filter({ id_comentario: req.session.cuenta.external }).then(function (com) {
+            comentarios.filter({ id_comentario: req.session.cuenta.external, visible:true }).then(function (com) {
                 var num = com.length;
                 var verificarCom = true;
                 if (num > 0) {

@@ -61,7 +61,10 @@ class CuentaController {
              * then() = usado para realizar el collback dentro de la mascota con el modelo y el filter incluido
              */
 
-            cuentaC.getJoin({persona: {rol: true}}).filter({correo: req.body.correo}).run().then(function (verificar) {
+            cuentaC.getJoin({persona: {rol: true}}).filter({correo: req.body.correo, visible:true}).run().then(function (verificar) {
+               
+                    
+                
                 /**
                  * verificar.length = se usa para poder saber si la cuenta es mayor a cero, caso contrario saldra el error de "No existe la cuenta"
                  * que en realidad es porque la base de datos no tiene registro de la cuenta pero por temas de privacidad se presentara al 
@@ -116,6 +119,7 @@ class CuentaController {
              * los datos del modelo llamado persona
              * @returns {undefined}
              */
+           
         }).error(function (error) {
             req.flash('error', 'Algo salio mal, comuniquese con los desarroladores');
             res.redirect('/');

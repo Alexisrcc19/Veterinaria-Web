@@ -5,6 +5,10 @@ var comentario = require('../modelos/comentarios');
 var ci = require('../modelos/cita');
 var se = require('../modelos/servicio');
 var foro = require('../modelos/foro');
+
+var eliminarControlador = require('../controladores/eliminarControlador');
+var eliminar = new eliminarControlador();
+
 /*
  * bd = usada para la genreacion de roles 
  */
@@ -148,10 +152,10 @@ router.get('/registrarUsuario', function (req, res, next) {
 /*
  * foro de discusiones
  */
-router.get("/cargarDatosForo", foro.cargardatosForo);
+router.get("/cargarDatosForo",sacar,CuentaVeterinario, foro.cargardatosForo);
 router.get('/foro', foro.listadoForo);
-router.get('/foroVeterinario', foro.listadoForoVeterinario);
-router.post('/registroForo', foro.guardar);
+router.get('/foroVeterinario',sacar,CuentaVeterinario, foro.listadoForoVeterinario);
+router.post('/registroForo',foro.guardar);
 router.post('/responderForo', sacar,CuentaVeterinario, foro.responder);
 //acerca
 router.get('/acerca', function (req, res, next) {
@@ -162,11 +166,11 @@ router.get('/acerca', function (req, res, next) {
 /*
  * get = permite visualizar la parte del formulario previo al registro de la mascota
  */
-router.get('/registroMascota', sacar, CuentaUsuario, mascota.visualizar);
+router.get('/registroMascota', sacar, mascota.visualizar);
 /*
  * post = permite registrar una nueva mascota
  */
-router.post('/registro/mascota', sacar, CuentaUsuario, mascota.guardar);
+router.post('/registro/mascota', sacar, mascota.guardar);
 router.post('/veterinario/registro/mascota', sacar, CuentaVeterinario, mascota.guardarDesdeVeterinario);
 //<-------------------Veterinario---------------->
 
@@ -250,5 +254,14 @@ router.post('/veterinario/servicio/registro',sacar,servicio.guardarServicio);
 router.get('/veterinario/servicio/listaServicio',sacar,servicio.verListadoServicio);
 router.get('/servicio/datosModi',sacar,servicio.cargardatosServicio);
 router.post('/veterinario/servicio/modificar',sacar,servicio.modificarServicio);
+/*
+ * eliminaciones
+ */
+router.post('/eliminarComentario', sacar,CuentaVeterinario,eliminar.eliminarComentario);
+router.post('/eliminarMascota', sacar, eliminar.eliminarMascota);
+router.post('/eliminarHistorialM', sacar,CuentaVeterinario,eliminar.eliminarHistorial);
+router.post('/eliminarUsuario', sacar,CuentaVeterinario,eliminar.eliminarUsuario);
+router.post('/eliminarVeterinario', sacar,eliminar.eliminarVeterinario)
+router.post('/eliminarForo', sacar,CuentaVeterinario,eliminar.eliminarForo)
 
 module.exports = router;

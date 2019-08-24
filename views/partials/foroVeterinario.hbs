@@ -13,7 +13,7 @@
             </div>
             <div class="form-group">
                 <div class="form-group">
-                <a href="/" class=" btn btn-outline-primary ml-auto float-rigth" title="agregar discusion" >Regresar</a>
+                    <a href="/" class=" btn btn-outline-primary ml-auto float-rigth" title="agregar discusion" >Regresar</a>
                 </div>
                 <div class="table-responsive">
                     <table id="tablaPforo" class="table table-striped">
@@ -43,10 +43,15 @@
                                     {{fecha}}
                                 </td>
                                 <td>
-
-                                    <div class="btn-group">
-                                        <button type="button" onclick="llenardatosForo('{{external_id}}')" data-toggle="modal" data-target="#responderForo" data-tooltip="tooltip" data-placement="top" title="Editar" class="btn-warning btn-sm" >Responder</button>
-                                    </div>
+                                    <form name="eliminarForo" action="/eliminarForo" method="POST">
+                                        <input type="hidden" value="{{external_id}}" id="borrarForo" name="borrarForo">
+                                        <div class="btn-group">
+                                            <button type="button" onclick="llenardatosForo('{{external_id}}')" data-toggle="modal" data-target="#responderForo" data-tooltip="tooltip" data-placement="top" title="Editar" class="btn-warning btn-sm" >Responder</button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="submit" class="btn btn-sm btn-danger" >Eliminar</button>
+                                        </div>
+                                    </form>
                                 </td>
                             </tr>
                             {{/each}}

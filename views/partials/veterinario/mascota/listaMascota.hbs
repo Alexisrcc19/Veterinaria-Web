@@ -1,9 +1,8 @@
 <script src="/js/metodos.js"></script>
 <script>
     $(document).ready(function () {
-        validarRegistro()
-    });
-</script>
+    validarRegistro()
+    });</script>
 <section class="site-section bg-white " id="testimonials-section" data-aos="fade">
     <div class="container">
         <div class="btn-group">
@@ -15,7 +14,7 @@
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
                         <p class="card-text">
-                            <h4>Datos Cliente</h4><input type="hidden" value="{{cliente.id}}" id="idCliente" name="idCliente" />
+                        <h4>Datos Cliente</h4><input type="hidden" value="{{cliente.id}}" id="idCliente" name="idCliente" />
                         </p>
                     </div>
                 </div>
@@ -59,10 +58,10 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each listaM}}
+                                {{#each listaM as |list i|}}
                                 <tr>
                                     <td>
-                                        {{1}}
+                                        {{i}}
                                     </td>
                                     <td>
                                         {{nombre}}
@@ -77,13 +76,19 @@
                                         {{sexo}}
                                     </td>
                                     <td>
-                                        <div class="btn-group">
-                                            <a href="#" data-toggle="modal" data-target="#modificarMascota" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenardatosMascota('{{external_id}}')"><i class="far fa-edit"></i></a>
+                                        <form name="eliminarMascotaVeterinario" action="/eliminarMascota" method="POST">
+                                            <input type="hidden" value="{{external_id}}" id="borrarMascota" name="borrarMascota">
+                                            <div class="btn-group">
+                                                <a href="#" data-toggle="modal" data-target="#modificarMascota" data-tooltip="tooltip" data-placement="top" title="Editar" class=" btn-info btn-sm" onclick="llenardatosMascota('{{external_id}}')"><i class="far fa-edit"></i></a>
 
-                                        </div>
-                                        <div class="btn-group">
-                                            <a href="/veterinario/mascota/listaHistorial/{{external_id}}/{{persona.external_id}}" data-tooltip="tooltip" data-placement="top" title="Registro Historial" class="btn-warning btn-sm"><i class="far fa-calendar-alt"></i></a>
-                                        </div>
+                                            </div>
+                                            <div class="btn-group">
+                                                <a href="/veterinario/mascota/listaHistorial/{{external_id}}/{{persona.external_id}}" data-tooltip="tooltip" data-placement="top" title="Registro Historial" class="btn-warning btn-sm"><i class="far fa-calendar-alt"></i></a>
+                                            </div>
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn btn-sm " ><img title="Eliminar" src="/images/delete.png"></button>
+                                            </div>
+                                        </form>
                                     </td>
                                 </tr>
                                 {{/each}}

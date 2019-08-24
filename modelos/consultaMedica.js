@@ -2,6 +2,7 @@ var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
 var consultaMedica = thinky.createModel("consultaMedica", {
+    visible: type.boolean(),
     id_consulta: type.string(),
     hora_consulta: type.string(),
     fecha_consulta: type.string(),

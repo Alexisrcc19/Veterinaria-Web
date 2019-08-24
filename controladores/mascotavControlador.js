@@ -11,7 +11,7 @@ class controladorMV {
             var ver = listado[0];
             var mos = ver.id;
             console.log(mos);
-            personaC.getJoin({ mascota: true }).filter({ id_rolPersona: mos }).then(function (lista) {
+            personaC.getJoin({ mascota: true }).filter({ id_rolPersona: mos,visible:true }).then(function (lista) {
 
                 res.render('index', {
                     title: 'Veterinario',
@@ -29,10 +29,10 @@ class controladorMV {
     visualizarModificar(req, res) {
         var external = req.params.external;
         console.log("external: " + external);
-        personaC.filter({ external_id: external }).then(function (resultC) {
+        personaC.filter({ external_id: external,visible:true }).then(function (resultC) {
             var cliente = resultC[0];
             console.log(cliente);
-            mascotaC.filter({ id_cliente: cliente.id }).getJoin({ persona: true }).then(function (resultM) {
+            mascotaC.filter({ id_cliente: cliente.id ,visible:true}).getJoin({ persona: true }).then(function (resultM) {
                 res.render('index', {
                     title: 'Administrar Mascota',
                     fragmento: 'veterinario/mascota/listaMascota',
@@ -53,12 +53,13 @@ class controladorMV {
     }
     guardarMascota(req, res) {
         var external = req.body.externalC;
-        mascotaC.then(function (historial) {
+        mascotaC.filter({visible:true}).then(function (historial) {
             var nroHistoria = historial.length;
             var reg = ("N-H-" + nroHistoria);
-            personaC.filter({ id: external }).then(function (resultC) {
+            personaC.filter({ id: external ,visible:true}).then(function (resultC) {
                 var cliente = resultC[0];
                 var data = {
+                    visible:true,
                     nro_historial: reg,
                     raza: req.body.raza,
                     nombre: req.body.nombre,

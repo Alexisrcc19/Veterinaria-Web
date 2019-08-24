@@ -102,10 +102,20 @@
                                 </li>
                                 <li><a href="/foroVeterinario" class="nav-link">Foro</a></li>
                                 <li class="nav-item submenu dropdown">
-                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{usuario}} <i class="fas fa-user-shield fa-2x"></i></a>
+                                    <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{usuario}} <i class="fas fa-user-shield fa"></i></a>
                                     <ul class="dropdown-menu">
-                                        <li class="nav-item"><a class="nav-link" href="/registrarVeterinario" class="nav-link">Registrar veterinario</a></li>
-                                        <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración <i class="fas fa-user-cog fa-2x "></i></a></li>
+                                        
+                                        <form name="eliminarVeterinario" action="/eliminarVeterinario" method="POST">
+                                            <input type="hidden" id="borrarVeterinario" name="borrarVeterinario" value="{{external}}">
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn btn-sm " style="color: red" >Eliminar mi cuenta</button>
+                                            </div>
+                                        </form>
+                                        
+                                        
+                                        
+                                        
+                                        <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración <i class="fas fa-user-cog  "></i></a></li>
                                         <li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li>
                                     </ul>
 
@@ -136,6 +146,12 @@
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{usuario}} <i class="far fa-user"></i></a>
                                     <ul class="dropdown-menu">
+                                        <form name="eliminarVeterinario" action="/eliminarVeterinario" method="POST">
+                                            <input type="hidden" id="borrarVeterinario" name="borrarVeterinario" value="{{external}}">
+                                            <div class="btn-group">
+                                                <button type="submit" class="btn btn-sm " style="color: red" >Eliminar mi cuenta</button>
+                                            </div>
+                                        </form>
                                         <li> <a href="#" data-toggle="modal" data-target="#configuracionUsuario" class="nav-link" onclick="llenardatosUsuario('{{external}}')">Configuración <i class="fas fa-user-cog"></i></a></li>
                                         {{!-- <li class="nav-item"><a class="nav-link" href="7configuracionUsuario" class="nav-link">Configuracion</a></li> --}}
                                         <li class="nav-item"><a class="nav-link" href="javascript:abrir()">Salir</a> </li>
