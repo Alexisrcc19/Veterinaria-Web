@@ -5,13 +5,14 @@ var Pago = thinky.createModel("Pago", {
     visible: type.boolean(),
     id_pago: type.string(),
     tipo: type.string(),
-    descripcion: type.string(),
     hora: type.string(),
     fecha: type.string(),
-    });
+    id: type.string(),
+    external_id: type.string().default(r.uuid())
+});
 
 module.exports = Pago;
-var Cliente = require('./cliente');
+var Cliente = require('./persona');
 Pago.belongsTo(Cliente, "pago", "id_pago", "id_cliente");
 
 

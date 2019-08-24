@@ -12,8 +12,6 @@ var Historial = thinky.createModel("Historial", {
 });
 
 module.exports = Historial;
-var ConsultaMedica = require('./consultaMedica');
-Historial.hasOne(ConsultaMedica, "historial", "id_historial", "id_consulta");
 var Mascota = require('./mascota');
 Historial.belongsTo(Mascota, "mascota", "id_mascota", "id");
 

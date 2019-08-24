@@ -92,8 +92,6 @@ class CuentaController {
                          */
                         req.session.cuenta = {id: cuenta.persona.id, external: cuenta.persona.external_id, persona: ver,
                             usuario: cuenta.persona.apellidos + " " + cuenta.persona.nombres, ver: cuenta.correo};
-                        //en caso de querer recuperar el rol de quien inicia sesion se usara lo siguiente:
-                        //cuenta.veterinario.rol.nombre
                         res.redirect('/');
                     } else {
                         req.flash('error', 'Los datos son incorrectos');

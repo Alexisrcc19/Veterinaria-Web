@@ -1,4 +1,4 @@
-var thinky = require('../config/thinky_init');
+    var thinky = require('../config/thinky_init');
 var type = thinky.type;
 var r = thinky.r;
 var Persona = thinky.createModel("Persona", {
@@ -25,4 +25,7 @@ var Mascota = require('./mascota');
 Persona.hasMany(Mascota, "mascota", "id", "id_cliente");
 //Relacion de cliente y cita
 var Cita = require("./cita");
-Persona.hasOne(Cuenta, "cita", "id", "id_cliente");
+Persona.hasMany(Cuenta, "cita", "id", "id_cliente");
+//Relacion de cliente y pago
+var Pago = require("./pago");
+Persona.hasMany(Pago, "pago", "id", "id_cliente");

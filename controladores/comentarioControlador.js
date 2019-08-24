@@ -12,7 +12,7 @@ class comentarioControlador {
         rol.filter({nombre: true}).then(function (lista){
             var ver = lista[0];
             var roles = ver.id;
-            veterinario.filter({vet:true}).then(function (ver){
+            veterinario.filter({vet:true,visible:true}).then(function (ver){
         res.render('index', {title: 'Comentario', fragmento: 'usuario/comentario/registroComentario', listado:ver,ventanas: "ventanas",
                     msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
             });

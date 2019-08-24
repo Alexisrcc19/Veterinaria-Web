@@ -25,7 +25,7 @@ class MascotaControl {
          * 
          * then() = usado para realizar el collback dentro de la mascota con el modelo y el filter incluido
          */
-        mascota.getJoin({persona: true}).filter({id_cliente: req.session.cuenta.id, visible:true}).then(function (lista) {
+        mascota.getJoin({persona: true}).filter({id_cliente: req.session.cuenta.id, visible: true}).then(function (lista) {
             var mas = false;
             /**
              * mas = variable ceada para verificar mas adelante
@@ -79,7 +79,7 @@ class MascotaControl {
             var reg = ("N-H-" + nroHistorial);
 
             var data = {
-                visible:true,
+                visible: true,
                 nro_historial: reg,
                 raza: req.body.raza,
                 nombre: req.body.nombre,
@@ -98,11 +98,11 @@ class MascotaControl {
              * save() = metodo usado para guardar directametne en la base de datos
              */
             mascotaD.save().then(function () {
-                req.flash('info', 'mascota registrada');
-                res.redirect('/');
+                req.flash('info', 'Mascota registrada');
+                res.redirect('/registroMascota');
             }).error(function () {
                 req.flash('error', 'No se pudo guardar');
-                res.redirect('/');
+                res.redirect('/registroMascota');
             });
         });
     }
@@ -116,11 +116,11 @@ class MascotaControl {
         mascota.then(function (historial) {
             var nroHistorial = historial.length;
             var reg = ("N-H-" + nroHistorial);
-            persona.filter({external_id: external,visible:true}).then(function (datosM) {
+            persona.filter({external_id: external, visible: true}).then(function (datosM) {
                 // console.log(datosM);
                 var persona = datosM[0];
                 var data = {
-                    visible:true,
+                    visible: true,
                     nro_historial: reg,
                     raza: req.body.raza,
                     nombre: req.body.nombre,
@@ -156,7 +156,7 @@ class MascotaControl {
      */
     cargardatosMascota(req, res) {
         var external = req.query.external;
-        mascota.filter({external_id: external,visible:true}).then(function (resultPM) {
+        mascota.filter({external_id: external, visible: true}).then(function (resultPM) {
             // res.send(resultP);
             var mascota = resultPM[0];
             res.json(mascota);
@@ -167,7 +167,7 @@ class MascotaControl {
     }
 
     modificarM(req, res) {
-        mascota.filter({external_id: req.body.externalMa,visible:true}).then(function (resultM) {
+        mascota.filter({external_id: req.body.externalMa, visible: true}).then(function (resultM) {
             if (resultM.length > 0) {
                 var mascotaM = resultM[0];
                 mascotaM.nombre = req.body.nombreMa;
