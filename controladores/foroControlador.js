@@ -19,13 +19,13 @@ class foroControlador {
 
     listadoForoVeterinario(req, res) {
         foro.filter({visible:true}).then(function (listado) {
-            res.render('index', {title: 'Foro', fragmento: 'foroVeterinario', inicio: 'inicio', listado: listado
+            res.render('index', {title: 'Foro', fragmento: 'foroVeterinario', inicio: 'inicio', listado: listado,ventanas:"ventanas"
                 , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
         });
     }
     listadoForo(req, res) {
         foro.filter({visible:true}).then(function (listado) {
-            res.render('index', {title: 'Foro', fragmento: 'foro', inicio: 'inicio', listado: listado
+            res.render('index', {title: 'Foro', fragmento: 'foro', inicio: 'inicio', listado: listado,ventanas:"ventanas"
                 , msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
         });
     }

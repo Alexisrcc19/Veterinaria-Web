@@ -1,10 +1,11 @@
 {{#if persona}}
 {{#unless restringir}}
-<br>
+
 
 <section class="site-section bg-light block-13" id="testimonials-section" data-aos="fade">
+    
     <div class="container">
-
+<hr>
         {{#if verificar}}
         <div class="row justify-content-center" data-aos="fade-up">
             <div class="col-lg-6 text-center heading-section mb-5">
@@ -43,9 +44,10 @@
         </div>
         {{/if}}
         {{#unless verificar}}
-        <h1>Aun no tiene comentarios de clientes</h1>
+        <p style="font-size: 30px; font-style: oblique; font-weight: 900">Federico Nietzsche:</p> <a style="font-size: 20px; font-style: oblique">“Las mentes más profundas de todos los tiempos han sentido compasión por los animales”.</a>
+        <br><br>
         <div class="form-group">
-            <center><img src="images/principalVeterinario.jpg" width="300"></center>
+            <center><img src="images/principalVeterinario.jpg" width="70%" style="border-radius: 8%"></center>
         </div>
         {{/unless}}
     </div>
@@ -64,15 +66,21 @@
 {{#unless persona}}
 <section class="site-section bg-light trainers" id="trainers-section">
     <div class="container">
+        <br><hr>
         <div class="row">
 
             <div class="col-md-6" data-aos="fade-right">
                 <img class="img-fluid border10 rotate-reverse10" src="images/dog_doctor.jpg" alt="Image">
             </div>
             <div class="col-md-5 ml-auto align-self-center" data-aos="fade-left">
-                <h2 class="mb-2 heading mb-4">Meet <strong>Jean Smith</strong> Our Dog Veterenarian</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Iste amet praesentium tenetur quos eius asperiores incidunt <a href="#">reprehenderit</a> hic labore? Officiis enim laborum facere iure voluptatem autem veritatis cupiditate magnam saepe.</p>
-                <p>Nulla, beatae ducimus? Dolor distinctio tempore hic consequatur, magni consectetur possimus tenetur eius, placeat, eveniet facilis perferendis vitae deleniti incidunt! Incidunt, illum eum? Suscipit aliquid consequatur repudiandae doloremque est nisi.</p>
+                <h2 class="mb-2 heading mb-4">Conoce a <strong>Sofia Macas</strong> nuestra Veterinaria especializada.</h2>
+                <p>Nos complace darle la bienvenida a nuestro equipo de trabajo; aquí encontraras algunos tips y sugerencias sobre el cuidado de nuestras mascotas, los servicios que ofrecemos y que ponemos a su disposición. 
+
+Estamos aquí para ayudarlos, si tiene alguna duda o comentario puede ponerse en contacto con nosotros; recuerde que nuestra prioridad es la salud de su mascota.
+<hr>
+Atentamente,
+<br>
+Universidad Nacional de Loja</p>
 
             </div>
         </div>
@@ -83,33 +91,33 @@
     <div class="container">
         <div class="row justify-content-center" data-aos="fade-up">
             <div class="col-lg-6 text-center heading-section mb-5">
-
-                <h2 class="text-black mb-2">Our Services</h2>
-                <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts.</p>
+                <h2 class="text-black mb-2">Servicios</h2>
+                <p>Servicios ofrecidos de manera inmediata.</p>
             </div>
         </div>
+        <center>
         <div class="row">
             <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up" data-aos-delay="">
 
                 <div class="block_service">
-                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
-                    <h3>Dog Checkup</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <span class="fas fa-ambulance fa-7x" style="color: #c82333"></span>
+                    <h3>Emergencias</h3>
+                    <p>Soportamos todo tipo de emergencias gracias a nuestro equipo medico que siempre esta listo para actuar ante cualquier percance.</p>
                 </div>
 
             </div>
             <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up"  data-aos-delay="100">
                 <div class="block_service">
-                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
-                    <h3>Dog Dermatology</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <span class="fas fa-syringe fa-7x" style="color: #c82333"></span>
+                    <h3>Vacunacion</h3>
+                    <p>Contamos con todo tipo de vacunas para proteger a su mascota desde los primeros dias de nacimiento hasta su adultes mayor.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up"  data-aos-delay="200">
                 <div class="block_service">
-                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
-                    <h3>For Strong Teeth</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <span  > <img src="images/scalpel.svg" width="90" height="85"></span>
+                    <h3>Cirugias</h3>
+                    <p>Nuestra veterinaria se encuentra altamente equipada con tecnologia de punta para atender todo tipo de procediminetos quirurgicos. </p>
                 </div>
             </div>
 
@@ -117,107 +125,32 @@
             <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up"  data-aos-delay="">
 
                 <div class="block_service">
-                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
-                    <h3>Dog First Aid</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <span class="fas fa-cut fa-7x" style="color: #c82333"></span>
+                    <h3>Aseo</h3>
+                    <p>La parte estetica e higiene de su mascota tambien es importante ya que ayuda a la prevencion de enfermedades solo con un correcto aseo.</p>
                 </div>
 
             </div>
             <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up"  data-aos-delay="100">
                 <div class="block_service">
-                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
-                    <h3>Dog Dryer</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <span class="fas fa-hospital fa-7x" style="color: #c82333"></span>
+                    <h3>Hopitalizacion</h3>
+                    <p>Nosotros brindamos un confortable ambiente de alojamineto para su mascota cuando esta lo requiera.</p>
                 </div>
             </div>
             <div class="col-md-6 mb-4 col-lg-4" data-aos="fade-up"  data-aos-delay="200">
                 <div class="block_service">
-                    <span class="icon-paw d-block display-3 text-primary mb-3"></span>
-                    <h3>Expert Veterinarian</h3>
-                    <p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia, there live the blind texts. </p>
+                    <span class="fas fa-dog fa-7x" style="color: #c82333"></span>
+                    <h3>Dermatologia</h3>
+                    <p>Los problemas de la piel de nuestras mascotas son una de las consultas mas frecuentes en el dia a dia de una hospital veterinario.</p>
                 </div>
             </div>
 
         </div>
+            </center>
     </div>
 </section>
 
-<section class="bg-light" id="contact-section">
-    <div class="container">
-        <div class="row no-gutters">
-            <div class="col-lg-6">
-                <form action="#" class="p-5 contact-form">
-
-                    <h2 class="h4 mb-5 heading">Contact Form</h2> 
-
-                    <div class="row form-group">
-                        <div class="col-md-6 mb-3 mb-md-0">
-                            <label for="fname">First Name</label>
-                            <input type="text" id="fname" class="form-control">
-                        </div>
-                        <div class="col-md-6">
-                            <label for="lname">Last Name</label>
-                            <input type="text" id="lname" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-
-                        <div class="col-md-12">
-                            <label for="email">Email</label> 
-                            <input type="email" id="email" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-
-                        <div class="col-md-12">
-                            <label for="subject">Subject</label> 
-                            <input type="subject" id="subject" class="form-control">
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <label for="message">Message</label> 
-                            <textarea name="message" id="message" cols="30" rows="7" class="form-control" placeholder="Write your notes or questions here..."></textarea>
-                        </div>
-                    </div>
-
-                    <div class="row form-group">
-                        <div class="col-md-12">
-                            <input type="submit" value="Send Message" class="btn btn-dark btn-md text-white">
-                        </div>
-                    </div>
-
-
-                </form>
-            </div>
-            <div class="col-lg-6">
-                <div class="row justify-content-center align-items-center h-100">
-                    <div class="col-lg-6 text-center heading-section mb-5 align-self-center">
-
-                        <h2 class=" mb-5 text-black">Contact Us</h2>
-                        <ul class="list-unstyled text-left address">
-                            <li>
-                                <span class="d-block">Address:</span>
-                                <p>Melbourne St,South Birbane 4101 Austraila</p>
-                            </li>
-                            <li>
-                                <span class="d-block">Phone:</span>
-                                <p>+(000) 123 4567 89</p>
-                            </li>
-                            <li>
-                                <span class="d-block">Email:</span>
-                                <p>info@yourdomain.com</p>
-                            </li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
 <!--agregar nueva mascota-->
 <div class="modal fade" id="ModalMascota" tabindex="-1" role="dialog" aria-labelledby="modalpaciente"
      aria-hidden="true">

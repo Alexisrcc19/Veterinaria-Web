@@ -141,7 +141,6 @@
                                 <li><a href="/comentario" class="nav-link"> <i class="far fa-comment-dots"></i> Dejar un comentario</a></li>
                                 <li><a href="#services-section" class="nav-link">Nuestros Servicios</a></li>
                                 <li><a href="/foro" class="nav-link">Foro</a></li>
-                                <li><a href="#contact-section" class="nav-link">Contactanos</a></li>
                                 {{!-- item cerrar session y configuracion de usuario --}}
                                 <li class="nav-item submenu dropdown">
                                     <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"> {{usuario}} <i class="far fa-user"></i></a>
@@ -178,45 +177,41 @@
 <section>
     {{> (lookup . 'fragmento') }}
 </section>
-<footer class="site-footer">
+<footer class="site-footer" style="padding: 5%">
     <div class="container">
         <div class="row">
+            
             <div class="col-md-9">
                 <div class="row">
                     <div class="col-md-5">
-                        <h2 class="footer-heading mb-4">About Us</h2>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Neque facere laudantium magnam voluptatum autem. Amet aliquid nesciunt veritatis aliquam.</p>
+                        <h2 class="footer-heading mb-4">Acerca de nosotro</h2>
+                        <p>Nuestro local cuenta con expertos veterinarios dispuestos a atender a tu mascota. El huésped de nuestra veterinaria puede aprovechar su estadía para realizarse un chequeo médico completo, con exámenes de laboratorio, o cualquier tipo de procedimiento médico necesario. También puedes aprovechar la estadía de tu mascota para someterla a una limpieza profunda de dentadura o cirugías menores, si el caso lo amerita. </p>
                     </div>
-                    <div class="col-md-3 ml-auto">
-                        <h2 class="footer-heading mb-4">Quick Links</h2>
-                        <ul class="list-unstyled">
-                            <li><a href="#about-section" class="smoothscroll">About Us</a></li>
-                            <li><a href="#trainers-section" class="smoothscroll">Trainers</a></li>
-                            <li><a href="#services-section" class="smoothscroll">Services</a></li>
-                            <li><a href="#testimonials-section" class="smoothscroll">Testimonials</a></li>
-                            <li><a href="#contact-section" class="smoothscroll">Contact Us</a></li>
-                        </ul>
-                    </div>
+                    
                     <div class="col-md-3">
-                        <h2 class="footer-heading mb-4">Follow Us</h2>
-                        <a href="#" class="pl-0 pr-3 social-link"><span class="icon-facebook"></span></a>
-                        <a href="#" class="pl-3 pr-3 social-link"><span class="icon-twitter"></span></a>
-                        <a href="#" class="pl-3 pr-3 social-link"><span class="icon-instagram"></span></a>
-                        <a href="#" class="pl-3 pr-3 social-link"><span class="icon-linkedin"></span></a>
+                        <h2 class="footer-heading mb-4">Siguenos en:</h2>
+                        <a href="https://www.facebook.com/UNLoficial/" class="pl-0 pr-3 social-link"><span class="icon-facebook"></span></a>
+                        <a href="https://twitter.com/UNLoficial" class="pl-3 pr-3 social-link"><span class="icon-twitter"></span></a>
+                        <a href="https://www.instagram.com/unloficial/" class="pl-3 pr-3 social-link"><span class="icon-instagram"></span></a>
+                        <a href="https://www.youtube.com/channel/UCXMwpCdZV7QHdKBuFk3QeUw" class="pl-3 pr-3 youtube-link"><span class="icon-youtube"></span></a>
                     </div>
                 </div>
             </div>
             <div class="col-md-3">
                 <h2 class="footer-heading mb-4">Subscribe Newsletter</h2>
-                <form action="#" method="post" class="footer-subscribe">
-                    <div class="input-group mb-3">
-                        <input type="text" class="form-control border-secondary text-white bg-transparent" placeholder="Enter Email" aria-label="Enter Email" aria-describedby="button-addon2">
-                        <div class="input-group-append">
-                            <button class="btn btn-primary text-black" type="button" id="button-addon2">Send</button>
-                        </div>
-                    </div>
-                </form>
+                <p><a style=" font-weight: 900;">Información adicional</a>
+                    <br>
+<a style="font-style: oblique; font-weight: 900;">Internacional:</a> +593 7 2545072
+<br>
+<a style="font-style: oblique; font-weight: 900;"> Nacional:</a> (07) 2545072 ext. 113
+<br>
+<a style="font-style: oblique; font-weight: 900;">Mail:</a> coord.medicina.veterinaria@unl.edu.ec
+<br>
+<a style="font-style: oblique; font-weight: 900;">Atención:</a> Lunes a viernes 
+<br>
+8:00 a 12:30 | 15:00 a 18:30</p>  
             </div>
+            
         </div>
         <div class="row pt-5 mt-5 text-center">
             <div class="col-md-12">
@@ -224,8 +219,8 @@
                     <p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                         Copyright &copy;
-                        <script>document.write(new Date().getFullYear());</script> All rights reserved | This template is made
-                        with <i class="icon-heart-o" aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                        <script>document.write(new Date().getFullYear());</script> Todos los derechos reservados de los estudiantes de la Universidad Nacional de Loja de la carrera Ingenieria en Sistemas del cuarto ciclo paralelo "B"
+                         <i class="fas fa-user-cog" aria-hidden="true"></i>  <a href="https://unl.edu.ec/" target="_blank">UNL</a>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </p>
 
@@ -234,5 +229,6 @@
 
         </div>
     </div>
+    
 </footer>
 {{>'usuario/configuracionUsuario'}}
