@@ -1,9 +1,39 @@
 <script src="/js/metodos.js"></script>
+<script src="/microservicios/metod.js"></script>
 <script>
 
-</script>
-<script>
+
     $(document).ready(function () {
+        $("#horass").hide();
+        $("#fechass").hide();
+
+        var a = recorrerSelect(document.getElementById("horass"));
+        var b = recorrerSelect(document.getElementById("horario"));
+        console.log(a);
+        console.log(b);
+        var c = recorrerSelect(document.getElementById("fechass"));
+        console.log(c);
+
+
+        //var c = recorrerSelect(document.getElementById("fechass"));
+        $(document).change(function () {
+            var verFecha = $("#fecha").val();
+            var horas = $("#horario").val();
+            contieneValor(c, verFecha);
+            if (contieneValor(c, verFecha) == verFecha && contieneValor(a, horas) == horas) {
+                alert("Hora ya contiene cita, seleccione otra hora")
+                $("select option[value='" + horas + "']").prop("disabled", true);
+
+            }
+        });
+
+        //valoresIguales(b, a);
+        $("#fecha").change(function () {
+            var f = $("#fecha").val();
+            console.log("fecha seleecionada:" + f);
+            contieneValor(c, f);
+        });
+
         fechaActual();
         selectColor();
         fechasPasadas();
@@ -23,6 +53,12 @@
             $("#valor").val("true")
         });
     });
+    llenarComboServicio();
+
+
+
+
+    //$("select option[value='8:00-8:30']").css("background-color", "#F07979");
 </script>
 
 <section class="site-section bg-white " id="testimonials-section" data-aos="fade">
@@ -33,13 +69,23 @@
         {{#if registro}}
         <h1 class="text-center">{{title}}</h1>
         <div class="row">
-            
+
             <div class="card align-self-center" style="width:300px">
                 <div class="card-header btn-succses">
                     <div class="card-title text-center">
                         <p class="card-text">
-                            <h4>Datos Cliente</h4><input type="hidden" value="{{cliente.id}}" id="idCliente" name="idCliente" />
+                        <h4>Datos Cliente</h4><input type="hidden" value="{{cliente.id}}" id="idCliente" name="idCliente" />
                         </p>
+                        <select id="horass" >
+                            {{#each citas}}
+                            <option value="{{hora}}">{{hora}}</option>
+                            {{/each}}
+                        </select>
+                        <select id="fechass">
+                            {{#each citas}}
+                            <option value="{{fecha}}">{{fecha}}</option>
+                            {{/each}}
+                        </select>
                     </div>
                 </div>
                 <div class="card-body">
@@ -49,7 +95,7 @@
                     </div>
                     <div class="form-group">
                         <label for="nombres">Nombres:</label>
-                        <input type="text" class="form-control" value="{{cliente.nombres}} {{cliente.apellidos}}" readonly>
+                        <input type="text" class="form-control" value="{{cliente.nombres}} {{cliente.apellidos}}" name="nombreCliente" readonly>
                     </div>
                     <div class="form-group">
                         <label for="direccion">Direccion:</label>
@@ -72,26 +118,16 @@
                             <label class="text-black">Seleccione su mascota</label>
                             <select class="form-control" id="mascota" name="mascota">
                                 {{#each mascota}}
-                                <option value="{{id}}"> {{nombre}} </option>
+                                <option value="{{nombre}}"> {{nombre}} </option>ç
                                 {{/each}}
                             </select>
                             <label class="text-black" for="exampleFormControlSelect2">Seleccione el servicio</label>
                             <div class="form-group">
-                                <select class="form-control" name="servicio" id="servicio">
-                                    <option>Vacunas</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
+                                <select class="form-control" name="servicio" id="servicioA">
                                 </select>
                             </div>
                             <label class="text-black" for="fecha">Seleccione la fecha</label>
-                            <div class="alert alert-warning text-black-opacity-05" role="alert" id="alerta">
-                                ATENCION!. Al pasar las 17:00 la fecha para agendar la cita pasara automaticamente al siguiente dia laborable.
-                            </div>
-                            <div class="alert alert-danger" role="alert" id="fechaError">
-                                La fecha que escogiste no es válida
-                            </div>
+
                             <div class="form-group">
                                 <input type="date" id="fecha" name="fecha" class="form-control">
                             </div>
@@ -101,20 +137,23 @@
 
                                 </select>
                                 <select multiple class="form-control text-black dropdown-secondary" name="hora" id="horario" size="8">
-                                    <option value="8:00-8:30">8:00-8:30</option>
-                                    <option value="8:30-9:00">8:30-9:00</option>
-                                    <option value="9:00-9:30">9:00-9:30</option>
-                                    <option value="9:30-10:00">9:30-10:00</option>
-                                    <option value="10:00-10:30">10:00-10:30</option>
-                                    <option value="10:30-11:00">10:30-11:00</option>
-                                    <option value="11:00-11:30">11:00-11:30</option>
-                                    <option value="11:30-12:00">11:30-12:00</option>
-                                    <option value="12:00-12:30">12:00-12:30</option>
-                                    <option value="12:30-13:00">12:30-13:00</option>
-                                    <option value="15:00-15:30">15:00-15:30</option>
-                                    <option value="15:30-16:00">15:30-16:00</option>
-                                    <option value="16:00-16:30">16:00-16:30</option>
-                                    <option value="16:30-17:00">16:30-17:00</option>
+                                    <option value="8:00-8:30" id="h1">8:00-8:30</option>
+                                    <option value="8:30-9:00" id="h2">8:30-9:00</option>
+                                    <option value="9:00-9:30" id="h3">9:00-9:30</option>
+                                    <option value="9:30-10:00" id="h4">9:30-10:00</option>
+                                    <option value="10:00-10:30" id="h5">10:00-10:30</option>
+                                    <option value="10:30-11:00" id="h6">10:30-11:00</option>
+                                    <option value="11:00-11:30" id="h7">11:00-11:30</option>
+                                    <option value="11:30-12:00" id="h8">11:30-12:00</option>
+                                    <option value="12:00-12:30" id="h9">12:00-12:30</option>
+                                    <option value="almuerzo" disabled=""  >Hora de almuerzo</option>
+                                    <option value="15:00-15:30" id="h10">15:00-15:30</option>
+                                    <option value="15:30-16:00" id="h11">15:30-16:00</option>
+                                    <option value="16:00-16:30" id="h12">16:00-16:30</option>
+                                    <option value="16:30-17:00" id="h13">16:30-17:00</option>
+                                    <option value="16:00-16:30" id="h14">17:00-17:30</option>
+                                    <option value="16:30-17:00" id="h15">17:30-18:00</option>
+                                    <option value="16:00-16:30" id="h16">18:00-18:30</option>
                                 </select>
                             </div>
                             <input id="valor" type="hidden" value="false" name="valor">
@@ -122,7 +161,7 @@
                                 Estimado(a) {{cliente.nombres}} {{cliente.apellidos}} una vez agendada tu cita no podras modificar los datos de la misma
                             </div>
                             <div class="form-group">
-                                <input type="submit" class="btn btn-primary btn-pill" value="Generar Cita" id="genCit">
+                                <input type="submit" id="bcita" class="btn btn-primary btn-pill" value="Generar Cita" id="genCit">
                                 <a href="/" class="btn btn-danger btn-pill">Volver</a>
                             </div>
                         </form>
@@ -130,11 +169,11 @@
                     </div>
                 </div>
             </div>
-            
+
         </div>
         {{/if}}
-            {{#unless registro}}
-            <h1>Aun no tiene mascotas registradas</h1>
-            {{/unless}}
+        {{#unless registro}}
+        <h1>Aun no tiene mascotas registradas</h1>
+        {{/unless}}
     </div>
 </section>

@@ -4,17 +4,18 @@ var mascota = require('../modelos/mascota');
 var cita = require('../modelos/cita');
 class CitaControl {
     /**
-     * Visualizacion listado de las citas (Veterinario)
+     * @function Visualizacion listado de las citas (Veterinario)
      * @param {type} req = se usa para el envio de mensajes de error o informacion
      * @param {type} res = para la redireccion de plantilla, en este caso listado de citas
      * @returns {undefined}
      */
     verListaCitas(req, res) {
-        persona.getJoin({cita: true}).filter({visible: true}).then(function (data) {
-            cita.filter({visible: true}).then(function () {
+        persona.getJoin({cita: true},{mascota:true}).filter({visible: true}).then(function (data) {
+            cita.filter({visible: true}).then(function (cita) {
                 res.render('index', {
                     title: 'Lista de Citas',
                     fragmento: 'citaMedica/veterinario/listaCitas',
+                    cita:cita,
                     ventanas: "ventanas",
                     msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
             }).error(function (error) {
@@ -22,7 +23,7 @@ class CitaControl {
         });
     }
     /**
-     * Visualización del Registro de cita (Cliente)
+     * @function Visualización del Registro de cita (Cliente)
      * @param {type} req
      * @param {type} res
      * @returns {undefined}
@@ -34,6 +35,9 @@ class CitaControl {
              var cliente = data[0];
              var idC = cliente.id;
             mascota.filter({id_cliente:idC, visible:true}).then(function (mascota){
+                cita.then(function (citasReservadas){
+                    var citasR = citasReservadas[0];
+                    console.log(citasReservadas)
             if (data.length > 0) {
                 var registros = true;
                     if(mascota.length > 0){
@@ -45,12 +49,14 @@ class CitaControl {
                     title: 'Agendar Cita',
                     fragmento: "citaMedica/usuario/agendarCita",
                     cliente: cliente,
+                    citas: citasReservadas,
                     registro:registros,
                     mascota: mascota,
                     usuario: req.session.cuenta.usuario,
                     ventanas: "ventanas",
                     msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}
                 });
+                console.log(citasR.hora)
                 console.log("nombre:" + mascota.nombre);
             } else {
                 req.flash('info', 'No se pudo encontrar lo solicitado!');
@@ -59,6 +65,7 @@ class CitaControl {
         }).error(function (error) {
 
         });
+        })
 });
     }
     /**
@@ -79,6 +86,7 @@ class CitaControl {
         persona.filter({external_id: external}).then(function (data) {
             if (data.length > 0) {
                 var cliente = data[0];
+                var nombre= cliente.nombres+" "+cliente.apellidos
 
                 var datosCita = {
                     visible: true,
@@ -87,7 +95,7 @@ class CitaControl {
                     estado: valor,
                     id_mascota: req.body.mascota,
                     id_servicio: req.body.servicio,
-                    id_cliente: cliente.id
+                    id_cliente: nombre
                 };
                 var Cita = new cita(datosCita);
                 Cita.saveAll().then(function (result) {
@@ -108,11 +116,5 @@ class CitaControl {
         });
     }
 
-    buscarFecha(req, res) {
-        var fecha = $("#fecha").val();
-        console.log(fecha);
-    }
-
 }
 module.exports = CitaControl;
-

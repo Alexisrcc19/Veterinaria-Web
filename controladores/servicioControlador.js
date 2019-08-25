@@ -102,6 +102,14 @@ class ServicioControl {
         });
 
     }
+ CargarServicios(req,res) {
+    servicio.filter({visible:true}).then(function (resultS) {
+            
+            res.json(resultS);
+        }).error(function () {
+            console.log("ERROR AL CONSULTAR SERVICIO");
+        });
+}
 
     
 }

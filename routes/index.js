@@ -254,6 +254,7 @@ router.post('/veterinario/servicio/registro',sacar,servicio.guardarServicio);
 router.get('/veterinario/servicio/listaServicio',sacar,servicio.verListadoServicio);
 router.get('/servicio/datosModi',sacar,servicio.cargardatosServicio);
 router.post('/veterinario/servicio/modificar',sacar,servicio.modificarServicio);
+router.get('/servicioCombo',sacar,servicio.CargarServicios);
 /*
  * eliminaciones
  */

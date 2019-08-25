@@ -21,9 +21,7 @@ function llenardatosCliente(external) {
             $("#direccionM").val(data.direccion);
             $("#usuarioM").val(data.cuenta.usuario);
             $("#correoM").val(data.cuenta.correo);
-            $("#claveModificar").val(data.cedula);
-
-            
+            $("#claveM").val(data.cuenta.clave);
         }
     });
 };
@@ -139,6 +137,26 @@ function llenardatosServicio(external) {
         }
     });
 };
+
+function llenarComboServicio() {
+    var url = url_base+"servicioCombo";
+    $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'json',
+        success: function (data, textStatus, jqXHR) {
+            console.log(data);
+            var opcion = '';
+                $.each(data, function (index, item) {
+                    opcion += '<option  value= ' + item.nombre + '>' + item.nombre + '</option>';
+                });
+                $("#servicioA").html(opcion);
+        }, error: function (jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+            alert("ERROR");
+        }
+    });
+}
 
 /**
  * funcion utilizando data table para realizar la busqueda en la lista de clientes
@@ -309,5 +327,4 @@ function dataTable() {
 
    
 };
-
 

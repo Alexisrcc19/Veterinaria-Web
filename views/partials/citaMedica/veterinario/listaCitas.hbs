@@ -28,38 +28,27 @@
                                 <tr>
                                     <th>Nro</th>
                                     <th>Cliente</th>
-                                    <th>Paciente</th>
+                                    <th>Mascota</th>
                                     <th>Servicio</th>
-                                    <th>Estado de Pago</th>
-                                    <th>Acciones</th>
+                                    
                                 </tr>
                             </thead>
                             <tbody>
-                                {{#each lista as |lis i|}}
+                                {{#each cita as |lis i|}}
                                 <tr>
                                     <td>
                                         {{i}}
                                     </td>
                                     <td>
-                                        {{cedula}}
+                                        {{id_cliente}}
                                     </td>
                                     <td>
-                                        {{nombres}} {{apellidos}}
+                                        {{id_mascota}}
                                     </td>
                                     <td>
-                                        {{direccion}}
+                                        {{id_servicio}}
                                     </td>
-                                    <td>
-                                        {{telefono}}
-                                    </td>
-                                    <td>
-                                        <div class="btn-group">
-                                            <button type="button" data-toggle="modal" data-target="#modificarCliente" data-tooltip="tooltip" data-placement="top" title="Editar" class="btn-danger btn-sm" onclick="llenardatosCliente('{{external_id}}')"><i class="fa fa-edit"></i></button>
-                                        </div>
-                                        <div class="btn-group">
-                                            <a href="/registroMascota/{{external_id}}" data-tooltip="tooltip" data-placement="top" title="Registrar Mascota" class="btn-warning btn-sm"><i class="fas fa-dog"></i></a>
-                                        </div>
-                                    </td>
+                                  
                                 </tr>
                                 {{/each}}
                             </tbody>

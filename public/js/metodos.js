@@ -99,11 +99,11 @@ function selectColor() {
     if (dia !== "fin") {
         $("#inf").hide();
         $("#horario").show();
-        $("select option[value='1']").css("background-color", "#F07979");
-        $("select option[value='0']").css("background-color", "#91DD68");
+        $("#bcita").show();
     } else {
         $("#inf").show();
         $("#horario").hide();
+        $("#bcita").hide();
         // $("#inf").prop('disabled', 'disabled');
     }
 
@@ -220,20 +220,12 @@ function validarclave(clave) {
     }
     return false;
 }
-function validarclaveS(clave) {
-    var claveActual = $("#claveM").val();
-    console.log(claveActual)
-    if (clave === claveActual) {
-        return true;
-    }
-    return false;
-}
 /**
  * funcion para validar la vista de registro de veterinario
  */
 function validarveterinario() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     $.validator.addMethod("validacedula", function (value, element) {
         return this.optional(element) || validarCedula(value);
@@ -314,7 +306,7 @@ function validarforo() {
  */
 function validarcliente() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     $.validator.addMethod("validacedula", function (value, element) {
         return this.optional(element) || validarCedula(value);
@@ -362,7 +354,7 @@ function validarcliente() {
  */
 function modificarUV() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     $.validator.addMethod("validacedula", function (value, element) {
         return this.optional(element) || validarCedula(value);
@@ -397,10 +389,11 @@ function modificarUV() {
             correoM: {
                 required: true
             },
-            claveActual: {
+            claveM: {
                 required: true,
+                minlength: 5,
+                maxlength: 10
             }
-
         }
     });
 }
@@ -421,7 +414,7 @@ function validarcomentario() {
  */
 function validarcliente() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
 
     $.validator.addMethod("registro", function (value, element) {
@@ -474,7 +467,7 @@ function validarcliente() {
  */
 function validarMascotaModificarU() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     // $('#guardar').click(function () {
     //     if ($('#especie').val().trim() === '') {
@@ -508,7 +501,7 @@ function validarMascotaModificarU() {
  */
 function registroMV() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     // $('#guardar').click(function () {
     //     if ($('#especie').val().trim() === '') {
@@ -542,7 +535,7 @@ function registroMV() {
  */
 function modificarMVe() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     // $('#guardar').click(function () {
     //     if ($('#especie').val().trim() === '') {
@@ -576,7 +569,7 @@ function modificarMVe() {
  */
 function validarMascota() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
 
     // $('#guardar').click(function () {
@@ -611,7 +604,7 @@ function validarMascota() {
  */
 function validarConfiguracionUsuario() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
 
     $.validator.addMethod("validacedula", function (value, element) {
@@ -676,7 +669,7 @@ function validarConfiguracionUsuario() {
  */
 function validarregistroHistorial() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     $("#registrarHV").validate({
         rules: {
@@ -703,7 +696,7 @@ function validarregistroHistorial() {
  */
 function validarmodificarHistorial() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     $("#modificarHV").validate({
         rules: {
@@ -729,7 +722,7 @@ function validarmodificarHistorial() {
  */
 function validarServicios() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     $("#tablarerservicios").validate({
         rules: {
@@ -753,7 +746,7 @@ function validarServicios() {
  */
 function tablaregModServicio() {
     $.validator.addMethod("soloLetras", function (value, element) {
-        return this.optional(element) || /^[a-z\s]+$/i.test(value);
+        return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
     $("#tablaregModServicio").validate({
         rules: {
@@ -772,5 +765,35 @@ function tablaregModServicio() {
         }
     });
 }
+/**
+ * @function Comprueba si un valor existe dento de un Array
+ * @param {type} array arreglo
+ * @param {type} valor elemento a buscar
+ * @returns {unresolved} valor encontrado
+ */
+function contieneValor(array, valor) {
+            for (var i = 0; i < array.length; i++) {
+                if (valor == array[i]) {
+                    //  console.log('Si existe');
+                    //return valor;
+                    console.log("valor:" + valor);
+                    console.log("HORARIO Y DIV IGUALES")
+                    return valor;
+                    break;
+                }
+            }
+        }
 
 
+function recorrerSelect(sel) {
+            var array = [sel.length];
+            for (var i = 0; i < sel.length; i++) {
+                //  Aca haces referencia al "option" actual
+                var opt = sel[i];
+                array[i] = opt.value;
+                // Haces lo que te de la gana aca
+                //console.log(array);
+            }
+            return array;
+            //console.log("ESte es el array"+array);
+        }
