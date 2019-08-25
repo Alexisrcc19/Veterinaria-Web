@@ -220,6 +220,14 @@ function validarclave(clave) {
     }
     return false;
 }
+function validarclaveS(clave) {
+    var claveActual = $("#claveM").val();
+    console.log(claveActual)
+    if (clave === claveActual) {
+        return true;
+    }
+    return false;
+}
 /**
  * funcion para validar la vista de registro de veterinario
  */
@@ -389,11 +397,10 @@ function modificarUV() {
             correoM: {
                 required: true
             },
-            claveM: {
+            claveActual: {
                 required: true,
-                minlength: 5,
-                maxlength: 10
             }
+
         }
     });
 }

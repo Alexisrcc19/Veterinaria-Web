@@ -145,15 +145,15 @@ class usuarioControl {
                 clienteM.direccion = req.body.direccionM;
                 clienteM.cuenta.usuario = req.body.usuarioM;
                 clienteM.cuenta.correo = req.body.correoM;
-                clienteM.cuenta.clave = req.body.claveM;
+                clienteM.cuenta.clave = req.body.cedulaM;
 
                 clienteM.saveAll({ cuenta: true }).then(function (modificadoM) {
-                    req.flash('success','registro modificado');
+                    req.flash('success','registro Actualizado');
                     res.redirect('/listaclientes')
                     // res.send(modificadoM);
                 }).error(function (error) {
                     // req.flash('modificado con exito');
-                    req.flash('error','error al modificado');
+                    req.flash('error','error al Actualizar');
                     res.redirect('/listaclientes')
                    
                 });
@@ -193,9 +193,8 @@ class usuarioControl {
                 clienteM.cuenta.correo = req.body.correoU;
                 clienteM.cuenta.clave = req.body.clavenU2;
                 clienteM.saveAll({ cuenta: true }).then(function (modificadoM) {
-
                     req.flash('success', 'actualizado correctamente inicie session');
-                    req.session.destroy();
+                    req.session.destroy();        
                     res.redirect('/')
                     // res.send(modificadoM);
                 }).error(function (error) {

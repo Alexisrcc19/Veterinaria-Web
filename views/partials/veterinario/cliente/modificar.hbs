@@ -12,11 +12,12 @@
                     <p class="card-text ">ACTUALIZAR CLIENTE</p>
                 </div>
             </div>
-           
+
             <div class="modal-body">
-              
+
                 <form id="modificarUV" method="POST" action="/actualizar">
                     <input type="hidden" value="0" id="externalM" name="externalM" />
+                    {{!-- <input type="hidden" value="0" id="claveM" name="claveM" /> --}}
                     <div id="mensaje"></div>
                     <ul class="nav nav-tabs">
                         <li class="nav-item"><a class="nav-link active" data-toggle="tab" href="#dcM">Cliente</a></li>
@@ -74,18 +75,16 @@
                                 <label for="correo">Correo:</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-at"></i></span>
-                                    <input type="text" class="form-control" id="correoM" name="correoM" placeholder="Ingrese su correo">
+                                    <input type="email" class="form-control" id="correoM" name="correoM" placeholder="email@gmail.">
                                 </div>
                             </div>
                             <div class="form-group">
                                 <label for="clave">Clave:</label>
                                 <div class="input-group">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
-                                    <input type="password" class="form-control" id="claveM" name="claveM" placeholder="Ingrese su clave">
+                                    <input type="text" class="form-control" id="claveModificar" name="claveModificar" placeholder="Ingrese su clave">
                                 </div>
-
-                            </div>
-
+                            </div>                                                                 
                             <div class="modal-footer">
                                 <button type="submit" class="btn btn-outline-primary">Actualizar</button>
                                 <a href="/listaClientes" class="btn btn-outline-secondary">Cancelar</a>

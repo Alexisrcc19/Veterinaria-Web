@@ -21,7 +21,9 @@ function llenardatosCliente(external) {
             $("#direccionM").val(data.direccion);
             $("#usuarioM").val(data.cuenta.usuario);
             $("#correoM").val(data.cuenta.correo);
-            $("#claveM").val(data.cuenta.clave);
+            $("#claveModificar").val(data.cedula);
+
+            
         }
     });
 };
