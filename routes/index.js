@@ -265,4 +265,7 @@ router.post('/eliminarUsuario', sacar,CuentaVeterinario,eliminar.eliminarUsuario
 router.post('/eliminarVeterinario', sacar,eliminar.eliminarVeterinario)
 router.post('/eliminarForo', sacar,CuentaVeterinario,eliminar.eliminarForo)
 
+router.get('/pago', function (req, res, next) {
+    res.render('pagos');
+})
 module.exports = router;
