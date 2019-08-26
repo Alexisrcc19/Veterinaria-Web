@@ -151,10 +151,14 @@ function llenarComboServicio() {
         success: function (data, textStatus, jqXHR) {
             console.log(data);
             var opcion = '';
+
             $.each(data, function (index, item) {
                 opcion += '<option  value= ' + item.nombre + '>' + item.nombre + '</option>';
             });
             $("#servicioA").html(opcion);
+              
+                
+
         }, error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
             alert("ERROR");
@@ -337,7 +341,53 @@ function dataTable() {
             }
         }
     });
-
+$('#tablaLCitaV').DataTable({
+        // "dom": "Blfrtip",
+        // "buttons": ['excel', 'pdf', 'copy'],
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "No se encontraron resultados en su busqueda",
+            "searchPlaceholder": "Buscar registros",
+            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+            "aria": {
+                "sortAscending": ": ordenar de manera Ascendente",
+                "sortDescending": ": ordenar de manera Descendente "
+            }
+        }
+    });
+    $('#tablaLCitaC').DataTable({
+        // "dom": "Blfrtip",
+        // "buttons": ['excel', 'pdf', 'copy'],
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "No se encontraron resultados en su busqueda",
+            "searchPlaceholder": "Buscar registros",
+            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+            "aria": {
+                "sortAscending": ": ordenar de manera Ascendente",
+                "sortDescending": ": ordenar de manera Descendente "
+            }
+        }
+    });
+   
 
 };
 

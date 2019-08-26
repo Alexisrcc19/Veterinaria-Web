@@ -153,16 +153,12 @@ router.post('/inicio_sesion', cuenta.iniciar_sesion);
  * @description ruta permite destruir session
  */
 router.get('/cerrar_sesion', sacar, cuenta.cerrar_sesion);
-/**
- * @description rutas propias de
- */
-router.get('/listaCitas', sacar, cita.verListaCitas);
 
-router.get('/listaPagos', sacar, pago.verListaPagos);
-router.get('/GestionPagos', sacar, pago.verGestionPagos);
 /**
  * @description ruta para visualizar mascota
  */
+
+
 router.get('/listaclientes', sacar, CuentaVeterinario, mascota1.verReg);
 router.get('/registroMascota/:external', sacar, CuentaVeterinario, mascota1.visualizarModificar);
 router.get('/veterinario/mascota/listaHistorial/:external/:external_idP', sacar, CuentaVeterinario, historial.verHistorial);
@@ -199,7 +195,8 @@ router.post('/registroComentario', sacar, CuentaUsuario, comentario.guardarComen
  */
 router.get("/cliente/cita/agendar", sacar, cita.verRegistro);
 router.post('/cliente/cita/agendar', sacar, cita.guardarCita);
-router.get('/veterinario/cita/listaCitas', sacar, cita.verListaCitas);
+router.get('/veterinario/cita/listaCitas', sacar, cita.verListaCitasV);
+router.get('/cliente/cita/listaCitas', sacar, cita.verListaCitasC);
 
 /**
  * @description rutas propias de los servios
@@ -215,11 +212,22 @@ router.get('/servicioCombo', sacar, servicio.CargarServicios);
  */
 router.post('/eliminarComentario', sacar, CuentaVeterinario, eliminar.eliminarComentario);
 router.post('/eliminarMascota', sacar, eliminar.eliminarMascota);
+
 router.post('/eliminarHistorialM', sacar, CuentaVeterinario, eliminar.eliminarHistorial);
 router.post('/eliminarUsuario', sacar, CuentaVeterinario, eliminar.eliminarUsuario);
 router.post('/eliminarVeterinario', sacar, eliminar.eliminarVeterinario)
 router.post('/eliminarForo', sacar, CuentaVeterinario, eliminar.eliminarForo)
-router.get('/pago', function (req, res, next) {
+
+
+router.post('/eliminarHistorialM', sacar, CuentaVeterinario, eliminar.eliminarHistorial);
+router.post('/eliminarUsuario', sacar, CuentaVeterinario, eliminar.eliminarUsuario);
+router.post('/eliminarVeterinario', sacar, eliminar.eliminarVeterinario)
+router.post('/eliminarForo', sacar, CuentaVeterinario, eliminar.eliminarForo)
+
+
+router.get('/pago/:valor', sacar, function (req, res, next) {
+
     res.render('pagos');
-})
+});
+router.post('/pago', pago.guardar);
 module.exports = router;

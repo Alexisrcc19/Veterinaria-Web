@@ -2,6 +2,7 @@
 var persona = require('../modelos/persona');
 var mascota = require('../modelos/mascota');
 var cita = require('../modelos/cita');
+var servicio=require('../modelos/servicio');
 /**
  * @description citaControl
  */
@@ -12,12 +13,35 @@ class CitaControl {
      * @param {req} req  se usa para el envio de mensajes de error o informacion
      * @param {res} res  para la redireccion de plantilla, en este caso listado de citas
      */
-    verListaCitas(req, res) {
-        persona.getJoin({ cita: true }, { mascota: true }).filter({ visible: true }).then(function (data) {
+
+    verListaCitasV(req, res) {
+
+        persona.getJoin({ cita: true }).filter({ visible: true }).then(function (data) {
+
             cita.filter({ visible: true }).then(function (cita) {
+
+
                 res.render('index', {
                     title: 'Lista de Citas',
                     fragmento: 'citaMedica/veterinario/listaCitas',
+                    cita: cita,
+                   
+                    ventanas: "ventanas",
+                    msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
+                });
+
+            }).error(function (error) {
+            });
+        });
+    }
+
+    verListaCitasC(req, res) {
+
+        persona.getJoin({ cita: true }).filter({ visible: true }).then(function (data) {
+            cita.filter({ visible: true }).then(function (cita) {
+                res.render('index', {
+                    title: 'Pagar de Citas',
+                    fragmento: 'citaMedica/usuario/listaCitas',
                     cita: cita,
                     ventanas: "ventanas",
                     msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
@@ -57,13 +81,13 @@ class CitaControl {
                             mascota: mascota,
                             usuario: req.session.cuenta.usuario,
                             ventanas: "ventanas",
+
                             msg: {
                                 error: req.flash('error'),
                                 info: req.flash('info'),
                                 ok: req.flash('success')
                             }
                         });
-                        console.log(citasR.hora)
                         console.log("nombre:" + mascota.nombre);
                     } else {
                         req.flash('info', 'No se pudo encontrar lo solicitado!');
@@ -92,6 +116,8 @@ class CitaControl {
             if (data.length > 0) {
                 var cliente = data[0];
                 var nombre = cliente.nombres + " " + cliente.apellidos
+                servicio.filter({external_id: external}).then({
+                });
                 var datosCita = {
                     visible: true,
                     fecha: req.body.fecha,

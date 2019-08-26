@@ -1,3 +1,5 @@
+
+
 <script src="/js/metodos.js"></script>
 <script src="/microservicios/metod.js"></script>
 <script>
@@ -16,7 +18,7 @@
 
 
         //var c = recorrerSelect(document.getElementById("fechass"));
-        $(document).change(function () {
+        $("#horario").change(function () {
             var verFecha = $("#fecha").val();
             var horas = $("#horario").val();
             contieneValor(c, verFecha);
@@ -54,6 +56,10 @@
         });
     });
     llenarComboServicio();
+    
+        $("#servicioA").click(function () {
+        alert($(this).attr("id"))
+    });
 
 
 
@@ -103,6 +109,10 @@
                     </div>
                 </div>
             </div>
+
+
+
+
             <div class="col-md-1"> </div>
             <div class="card" style="width:700px">
                 <div class="card-header btn-succses">
@@ -118,14 +128,17 @@
                             <label class="text-black">Seleccione su mascota</label>
                             <select class="form-control" id="mascota" name="mascota">
                                 {{#each mascota}}
-                                <option value="{{nombre}}"> {{nombre}} </option>ç
+                                <option value="{{nombre}}"> {{nombre}} </option>
                                 {{/each}}
                             </select>
                             <label class="text-black" for="exampleFormControlSelect2">Seleccione el servicio</label>
                             <div class="form-group">
                                 <select class="form-control" name="servicio" id="servicioA">
                                 </select>
+                               
+
                             </div>
+                            
                             <label class="text-black" for="fecha">Seleccione la fecha</label>
 
                             <div class="form-group">
@@ -162,6 +175,8 @@
                             </div>
                             <div class="form-group">
                                 <input type="submit" id="bcita" class="btn btn-primary btn-pill" value="Generar Cita" id="genCit">
+                                
+
                                 <a href="/" class="btn btn-danger btn-pill">Volver</a>
                             </div>
                         </form>
@@ -175,5 +190,8 @@
         {{#unless registro}}
         <h1>Aun no tiene mascotas registradas</h1>
         {{/unless}}
+
     </div>
 </section>
+
+    

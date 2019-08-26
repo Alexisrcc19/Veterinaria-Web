@@ -49,14 +49,14 @@ $(function() {
         var isCvvValid = $.payform.validateCardCVC(CVV.val());
 
         if(owner.val().length < 5){
-            alert("Wrong owner name");
+            console.log("Nombre de titular incorrecto");
         } else if (!isCardValid) {
-            alert("Wrong card number");
+            console.log("Numero de tarjeta incorrecto");
         } else if (!isCvvValid) {
-            alert("Wrong CVV");
+            console.log("Incorrecto CVV");
         } else {
             // Everything is correct. Add your form submission code here.
-            alert("Everything is correct");
+            console.log("Todo correcto");
         }
     });
 });

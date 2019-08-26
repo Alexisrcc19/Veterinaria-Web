@@ -15,17 +15,16 @@
 
     <body>
         <div class="container-fluid">
-            <header>
-                
-            </header>
+
             <div class="creditCardForm">
                 <div class="heading">
-                    <h1>Confirm Purchase</h1>
+                    <h1>Realizar pago en linea </h1>
                 </div>
+               
                 <div class="payment">
-                    <form>
+                    <form action="/pago" method="POST">
                         <div class="form-group owner">
-                            <label for="owner">Owner</label>
+                            <label for="owner">Titular</label>
                             <input type="text" class="form-control" id="owner">
                         </div>
                         <div class="form-group CVV">
@@ -33,79 +32,68 @@
                             <input type="text" class="form-control" id="cvv">
                         </div>
                         <div class="form-group" id="card-number-field">
-                            <label for="cardNumber">Card Number</label>
+                            <label for="cardNumber">Numero Tarjeta</label>
                             <input type="text" class="form-control" id="cardNumber">
                         </div>
                         <div class="form-group" id="expiration-date">
-                            <label>Expiration Date</label>
+                            <label>Fecha Expiracion</label>
                             <select>
-                                <option value="01">January</option>
-                                <option value="02">February </option>
-                                <option value="03">March</option>
-                                <option value="04">April</option>
-                                <option value="05">May</option>
-                                <option value="06">June</option>
-                                <option value="07">July</option>
-                                <option value="08">August</option>
-                                <option value="09">September</option>
-                                <option value="10">October</option>
-                                <option value="11">November</option>
-                                <option value="12">December</option>
+                                <option value="01">Enero</option>
+                                <option value="02">Febrero </option>
+                                <option value="03">Marzo</option>
+                                <option value="04">Abril</option>
+                                <option value="05">Mayo</option>
+                                <option value="06">Junio</option>
+                                <option value="07">Julio</option>
+                                <option value="08">Agosto</option>
+                                <option value="09">Septiembre</option>
+                                <option value="10">Octubre</option>
+                                <option value="11">Noviembre</option>
+                                <option value="12">Diciembre</option>
                             </select>
                             <select>
-                                <option value="16"> 2016</option>
-                                <option value="17"> 2017</option>
-                                <option value="18"> 2018</option>
                                 <option value="19"> 2019</option>
                                 <option value="20"> 2020</option>
                                 <option value="21"> 2021</option>
+                                <option value="22"> 2022</option>
+                                <option value="23"> 2023</option>
+                                <option value="24"> 2024</option>
                             </select>
                         </div>
+                        <input type="hidden" id="fecha" name="fecha">
+                        <input type="hidden" id="horaA" name="hora">
                         <div class="form-group" id="credit_cards">
                             <img src="/images/visa.jpg" id="visa">
                             <img src="/images/mastercard.jpg" id="mastercard">
                             <img src="/images/amex.jpg" id="amex">
                         </div>
                         <div class="form-group" id="pay-now">
-                            <button type="submit" class="btn btn-default" id="confirm-purchase">Confirm</button>
+                            <button type="submit" class="btn btn-default" >Confirmar</button>
+                            <a href="/" class="btn btn-danger btn-pill">Volver</a>
                         </div>
                     </form>
                 </div>
             </div>
 
-            <p class="examples-note">Here are some dummy credit card numbers and CVV codes so you can test out the form:</p>
-
-            <div class="examples">
-                <div class="table-responsive">
-                    <table class="table table-hover">
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Card Number</th>
-                                <th>Security Code</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Visa</td>
-                                <td>4716108999716531</td>
-                                <td>257</td>
-                            </tr>
-                            <tr>
-                                <td>Master Card</td>
-                                <td>5281037048916168</td>
-                                <td>043</td>
-                            </tr>
-                            <tr>
-                                <td>American Express</td>
-                                <td>342498818630298</td>
-                                <td>3156</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
         </div>
+        <script src="/js/metodos.js"></script>
+        <script>
+             $(document).ready(function () {
+                 obtenerHoraActual();
+             });
+            fechaActual();
+            function obtenerHoraActual() {
+                var d = new Date();
+                var hora = d.getHours();
+                var minuto = d.getMinutes();
+                var segundo = d.getSeconds();
+                var hour= hora+":"+minuto+":"+segundo;
+                console.log(hour);
+                $("#horaA").val(hour);
+            }
+
+        </script>
+
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
         <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
         <script src="/js/jquery.payform.min.js" charset="utf-8"></script>
