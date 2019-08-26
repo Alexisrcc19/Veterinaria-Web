@@ -227,7 +227,7 @@ router.post('/eliminarForo', sacar, CuentaVeterinario, eliminar.eliminarForo)
 
 router.get('/pago/:valor', sacar, function (req, res, next) {
 
-    res.render('pagos');
+    res.render('pagos',{title:"PAGOS EN LINEA"});
 });
 router.post('/pago', pago.guardar);
 module.exports = router;

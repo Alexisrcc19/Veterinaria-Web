@@ -40,10 +40,10 @@ class principalControlador {
                 mascotaUsuarioC.visible = false;
                 mascotaUsuarioC.save().then(function (BorrarComentario) {
                     req.flash('error', 'Mascota eliminada');
-                    res.redirect('/');
+                    res.redirect('/registroMascota');
                 }).error(function (error) {
                     req.flash('error', 'error al eliminar');
-                    res.redirect('/');
+                    res.redirect('/registroMascota');
                 });
             }
         });

@@ -2,7 +2,7 @@
 var persona = require('../modelos/persona');
 var mascota = require('../modelos/mascota');
 var cita = require('../modelos/cita');
-var servicio=require('../modelos/servicio');
+var servicio = require('../modelos/servicio');
 /**
  * @description citaControl
  */
@@ -16,18 +16,18 @@ class CitaControl {
 
     verListaCitasV(req, res) {
 
-        persona.getJoin({ cita: true }).filter({ visible: true }).then(function (data) {
-
-            cita.filter({ visible: true }).then(function (cita) {
+        persona.getJoin({cita: true}).filter({visible: true}).then(function (data) {
+            
+            cita.filter({ visible: true}).then(function (cita) {
 
 
                 res.render('index', {
                     title: 'Lista de Citas',
                     fragmento: 'citaMedica/veterinario/listaCitas',
                     cita: cita,
-                   
+
                     ventanas: "ventanas",
-                    msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
+                    msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}
                 });
 
             }).error(function (error) {
@@ -37,14 +37,17 @@ class CitaControl {
 
     verListaCitasC(req, res) {
 
-        persona.getJoin({ cita: true }).filter({ visible: true }).then(function (data) {
-            cita.filter({ visible: true }).then(function (cita) {
+        persona.getJoin({cita: true}).filter({external_id: req.session.cuenta.external,visible: true}).then(function (data) {
+            var ver = data[0];
+            var idC = ver.id;
+            console.log(idC)
+            cita.filter({id_C: idC,visible: true}).then(function (cita) {
                 res.render('index', {
                     title: 'Pagar de Citas',
                     fragmento: 'citaMedica/usuario/listaCitas',
                     cita: cita,
                     ventanas: "ventanas",
-                    msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
+                    msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}
                 });
             }).error(function (error) {
             });
@@ -58,10 +61,10 @@ class CitaControl {
      */
     verRegistro(req, res) {
         var external = req.session.cuenta.external;
-        persona.filter({ external_id: external, visible: true }).then(function (data) {
+        persona.filter({external_id: external, visible: true}).then(function (data) {
             var cliente = data[0];
             var idC = cliente.id;
-            mascota.filter({ id_cliente: idC, visible: true }).then(function (mascota) {
+            mascota.filter({id_cliente: idC, visible: true}).then(function (mascota) {
                 cita.then(function (citasReservadas) {
                     var citasR = citasReservadas[0];
                     console.log(citasReservadas)
@@ -112,10 +115,11 @@ class CitaControl {
             valor = false;
         }
         var external = req.session.cuenta.external;
-        persona.filter({ external_id: external }).then(function (data) {
+        persona.filter({external_id: external}).then(function (data) {
             if (data.length > 0) {
                 var cliente = data[0];
                 var nombre = cliente.nombres + " " + cliente.apellidos
+                var id = cliente.id;
                 servicio.filter({external_id: external}).then({
                 });
                 var datosCita = {
@@ -125,7 +129,8 @@ class CitaControl {
                     estado: valor,
                     id_mascota: req.body.mascota,
                     id_servicio: req.body.servicio,
-                    id_cliente: nombre
+                    id_cliente: nombre,
+                    id_C: id
                 };
                 var Cita = new cita(datosCita);
                 Cita.saveAll().then(function (result) {

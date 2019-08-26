@@ -9,7 +9,8 @@ var Cita = thinky.createModel("Cita", {
     hora: type.string(),
     estado:type.boolean(),
     id_mascota:type.string(),
-    id_servicio: type.string()
+    id_servicio: type.string(),
+    id_C:type.string()
     });
 
 module.exports = Cita;
