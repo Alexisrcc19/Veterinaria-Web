@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: mascotavControlador.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: mascotavControlador.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+var personaC = require('../modelos/persona');
+var mascotaC = require('../modelos/mascota');
+var rol = require('../modelos/rol');
+/**
+ * @description controladorMV
+ */
+class controladorMV {
+    /**
+     * @description método que permite visualizar registro de mascota desde cliente
+     * @param {req} req objeto petición
+     * @param {res} res objeto respuesta 
+     */
+    verReg(req, res) {
+        rol.filter({ nombre: false }).then(function (listado) {
+            var ver = listado[0];
+            var mos = ver.id;
+            console.log(mos);
+            personaC.getJoin({ mascota: true }).filter({ id_rolPersona: mos, visible: true }).then(function (lista) {
+                res.render('index', {
+                    title: 'Veterinario',
+                    fragmento: 'veterinario/cliente/listaClientes',
+                    lista: lista,
+                    ventanas: "ventanas",
+                    msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
+                });
+                console.log(listado)
+            });
+        });
+    }
+    /**
+     * @description método que permite cargar los datos al modal para 
+     * previo actualizacion de datos de sde cliente
+     * @param {req} req objeto petición
+     * @param {res} res objeto respuesta 
+     */
+    visualizarModificar(req, res) {
+        var external = req.params.external;
+        console.log("external: " + external);
+        personaC.filter({ external_id: external, visible: true }).then(function (resultC) {
+            var cliente = resultC[0];
+            console.log(cliente);
+            mascotaC.filter({ id_cliente: cliente.id, visible: true }).getJoin({ persona: true }).then(function (resultM) {
+                res.render('index', {
+                    title: 'Administrar Mascota',
+                    fragmento: 'veterinario/mascota/listaMascota',
+                    cliente: cliente,
+                    listaM: resultM,
+                    ventanas: "ventanas",
+                    msg: {
+                        error: req.flash('error'),
+                        info: req.flash('info'), ok: req.flash('success')
+                    }
+                })
+            }).error(function (error) {
+            });
+        }).error(function (error) {
+            req.flash('error', "Error al regsitar!");
+            res.redirect("/");
+        });
+    }
+    /**
+    * @description método que permite guardar un registro de mascota desde cliente
+    * @param {req} req objeto petición
+    * @param {res} res objeto respuesta 
+    */
+    guardarMascota(req, res) {
+        var external = req.body.externalC;
+        mascotaC.filter({ visible: true }).then(function (historial) {
+            var nroHistoria = historial.length;
+            var reg = ("N-H-" + nroHistoria);
+            personaC.filter({ id: external, visible: true }).then(function (resultC) {
+                var cliente = resultC[0];
+                var data = {
+                    visible: true,
+                    nro_historial: reg,
+                    raza: req.body.raza,
+                    nombre: req.body.nombre,
+                    edad: req.body.edad,
+                    sexo: req.body.sexo,
+                    tipo: req.body.tipo,
+                    especie: req.body.especie,
+                    id_cliente: cliente.id
+                };
+                var mascotaD = new mascotaC(data);
+                mascotaD.save().then(function (guardar) {
+                    req.flash('info', 'mascota registrada con exito');
+                    res.redirect('/veterinario/mascota/listaMascota/' + cliente.external_id);
+                }).error(function (error) {
+                    req.flash('error', 'No se pudo guardar su mascota');
+                    res.redirect('/');
+                });
+            }).error(function (error) {
+            });
+        });
+    }
+}
+module.exports = controladorMV;</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CitaControl.html">CitaControl</a></li><li><a href="comentarioControlador.html">comentarioControlador</a></li><li><a href="controladorMV.html">controladorMV</a></li><li><a href="CuentaController.html">CuentaController</a></li><li><a href="foroControlador.html">foroControlador</a></li><li><a href="HistorialController.html">HistorialController</a></li><li><a href="MascotaControl.html">MascotaControl</a></li><li><a href="principalControlador.html">principalControlador</a></li><li><a href="ServicioControl.html">ServicioControl</a></li><li><a href="usuarioControl.html">usuarioControl</a></li><li><a href="VeterinarioControl.html">VeterinarioControl</a></li></ul><h3>Global</h3><ul><li><a href="global.html#creacionRoles">creacionRoles</a></li><li><a href="global.html#creacionVeterinario">creacionVeterinario</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sun Aug 25 2019 20:37:47 GMT-0500 (GMT-05:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

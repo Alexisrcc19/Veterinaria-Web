@@ -1,10 +1,11 @@
-//visualizar Cliente  para modificar
 var url_base = "http://localhost:3000/";
-
+/**
+ * @description funcion que permite llenar datos del cliente para si actualizacion desde veterinario
+ * @param {external} external 
+ */
 function llenardatosCliente(external) {
     var url = url_base + "cargarDatosPersona";
     console.log(url);
-    //en el controlador se recibe los mismo datos que estan aqui en el servicio texto = a req.query.texto en el contrlador
     var external = external;
     $.ajax({
         url: url,
@@ -12,7 +13,6 @@ function llenardatosCliente(external) {
         data: 'external=' + external,
         success: function (data, textStatus, jqXHR) {
             console.log(data);
-            // console.log(data.cedula);
             $("#externalM").val(data.external_id);
             $("#cedulaM").val(data.cedula);
             $("#nombresM").val(data.nombres);
@@ -26,14 +26,12 @@ function llenardatosCliente(external) {
     });
 };
 /**
- * metodo para llenar datos en formulario de odificar
- * @param {external_id de mascota} external 
+ * @description funcion q permite llenar datos de una mascota para previo actualizacion
+ * @param {external} external 
  */
-
 function llenardatosMascota(external) {
     var url = url_base + "cargarDatosMascota";
     console.log(external);
-    //en el controlador se recibe los mismo datos que estan aqui en el servicio texto = a req.query.texto en el contrlador
     var external = external;
     $.ajax({
         url: url,
@@ -41,7 +39,6 @@ function llenardatosMascota(external) {
         data: 'external=' + external,
         success: function (data, textStatus, jqXHR) {
             console.log(data);
-            // console.log(data.edad);
             $("#externalMa").val(data.external_id);
             $("#nombreMa").val(data.nombre);
             $("#razaMa").val(data.raza);
@@ -52,10 +49,13 @@ function llenardatosMascota(external) {
         }
     });
 };
+/**
+ * @description funcion q permite llenar datos de historial de una mascota para previo actualizacion
+ * @param {external} external 
+ */
 function llenardatosHistorial(external) {
     var url = url_base + "cargarDatosHistorial";
     console.log(external);
-    //en el controlador se recibe los mismo datos que estan aqui en el servicio texto = a req.query.texto en el contrlador
     var external = external;
     $.ajax({
         url: url,
@@ -68,18 +68,16 @@ function llenardatosHistorial(external) {
             $("#estadoH").val(data.estado);
             $("#enfermedadesH").val(data.enfermedades);
             $("#tratamientoH").val(data.tratamiento);
-
         }
     });
 };
-/**mfuncion para cargar datos de la cuenta de usuario en la vista y configurar cuenta
- * 
- * @param {*} external traemos el external del usuario
+/**
+ * @description funcion q permite llenar datos usuario para previo configuracion desde su vista
+ * @param {external} external 
  */
 function llenardatosUsuario(external) {
     var url = url_base + "cargarDatosUsuario";
     console.log(external);
-    //en el controlador se recibe los mismo datos que estan aqui en el servicio texto = a req.query.texto en el contrlador
     var external = external;
     $.ajax({
         url: url,
@@ -87,7 +85,6 @@ function llenardatosUsuario(external) {
         data: 'external=' + external,
         success: function (data, textStatus, jqXHR) {
             console.log(data);
-            // console.log(data.edad);
             $("#externalU").val(data.external_id);
             $("#externalU").val(data.external_id);
             $("#cedulaU").val(data.cedula);
@@ -101,10 +98,13 @@ function llenardatosUsuario(external) {
         }
     });
 };
+/**
+ * @description funcion q permite llenar datos de una foro para su visualizacion
+ * @param {external} external 
+ */
 function llenardatosForo(external) {
     var url = url_base + "cargarDatosForo";
     console.log(external);
-    //en el controlador se recibe los mismo datos que estan aqui en el servicio texto = a req.query.texto en el contrlador
     var external = external;
     $.ajax({
         url: url,
@@ -112,13 +112,16 @@ function llenardatosForo(external) {
         data: 'external=' + external,
         success: function (data, textStatus, jqXHR) {
             console.log(data);
-            // console.log(data.edad);
             $("#externalF").val(data.external_id);
             $("#temaF").val(data.foro);
             $("#nombreF").val(data.persona)
         }
     });
 };
+/**
+ * @description funcion q permite llenar datos de  servicio para modificar
+ * @param {external} external 
+ */
 function llenardatosServicio(external) {
     var url = url_base + "servicio/datosModi";
     console.log(external);
@@ -129,7 +132,6 @@ function llenardatosServicio(external) {
         data: 'external=' + external,
         success: function (data, textStatus, jqXHR) {
             console.log(data);
-            // console.log(data.edad);
             $("#externalS").val(data.id);
             $("#nombreS").val(data.nombre);
             $("#tipoPagoS").val(data.formaPago);
@@ -137,9 +139,11 @@ function llenardatosServicio(external) {
         }
     });
 };
-
+/**
+ * @description funcion q permite llenar datos en el combo box de servicios
+ */
 function llenarComboServicio() {
-    var url = url_base+"servicioCombo";
+    var url = url_base + "servicioCombo";
     $.ajax({
         url: url,
         type: 'GET',
@@ -147,25 +151,21 @@ function llenarComboServicio() {
         success: function (data, textStatus, jqXHR) {
             console.log(data);
             var opcion = '';
-                $.each(data, function (index, item) {
-                    opcion += '<option  value= ' + item.nombre + '>' + item.nombre + '</option>';
-                });
-                $("#servicioA").html(opcion);
+            $.each(data, function (index, item) {
+                opcion += '<option  value= ' + item.nombre + '>' + item.nombre + '</option>';
+            });
+            $("#servicioA").html(opcion);
         }, error: function (jqXHR, textStatus, errorThrown) {
             console.log(jqXHR);
             alert("ERROR");
         }
     });
 }
-
 /**
- * funcion utilizando data table para realizar la busqueda en la lista de clientes
+ * @description funcion que permite implementar el plugin DataTable en la vista de las listas
  */
 function dataTable() {
-    //tabla pedidos data tables para realizar busquedas
     $('#tablaLCliente').DataTable({
-        // "dom": "Blfrtip",
-        // "buttons": ['excel', 'pdf', 'copy'],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -187,8 +187,6 @@ function dataTable() {
         }
     });
     $('#tablaPforo').DataTable({
-        // "dom": "Blfrtip",
-        // "buttons": ['excel', 'pdf', 'copy'],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -210,8 +208,6 @@ function dataTable() {
         }
     });
     $('#tablaLMascota').DataTable({
-        // "dom": "Blfrtip",
-        // "buttons": ['excel', 'pdf', 'copy'],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -233,8 +229,6 @@ function dataTable() {
         }
     });
     $('#tablaUmascota').DataTable({
-        // "dom": "Blfrtip",
-        // "buttons": ['excel', 'pdf', 'copy'],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -256,8 +250,31 @@ function dataTable() {
         }
     });
     $('#tablaLHistorialP').DataTable({
-        // "dom": "Blfrtip",
-        // "buttons": ['excel', 'pdf', 'copy'],
+        "dom": "Blfrtip",
+        "buttons": [ 'pdf'],
+        "language": {
+            "lengthMenu": "Mostrar _MENU_ registros por pagina",
+            "zeroRecords": "No se encontraron resultados en su busqueda",
+            "searchPlaceholder": "Buscar registros",
+            "info": "Mostrando registros de _START_ al _END_ de un total de  _TOTAL_ registros",
+            "infoEmpty": "No existen registros",
+            "infoFiltered": "(filtrado de un total de _MAX_ registros)",
+            "search": "Buscar:",
+            "paginate": {
+                "first": "Primero",
+                "last": "Último",
+                "next": "Siguiente",
+                "previous": "Anterior"
+            },
+            "aria": {
+                "sortAscending": ": ordenar de manera Ascendente",
+                "sortDescending": ": ordenar de manera Descendente "
+            }
+        }
+    });
+    $('#tablaLCitaV').DataTable({
+        "dom": "Blfrtip",
+        "buttons": ['pdf'],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -279,8 +296,6 @@ function dataTable() {
         }
     });
     $('#tablaHmascotas').DataTable({
-        // "dom": "Blfrtip",
-        // "buttons": ['excel', 'pdf', 'copy'],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -302,8 +317,6 @@ function dataTable() {
         }
     });
     $('#tablaLServicio').DataTable({
-        // "dom": "Blfrtip",
-        // "buttons": ['excel', 'pdf', 'copy'],
         "language": {
             "lengthMenu": "Mostrar _MENU_ registros por pagina",
             "zeroRecords": "No se encontraron resultados en su busqueda",
@@ -325,6 +338,6 @@ function dataTable() {
         }
     });
 
-   
+
 };
 

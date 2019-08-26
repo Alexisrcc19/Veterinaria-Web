@@ -1,6 +1,6 @@
 /**
- * funcion para validar el ingreso de la cédula
- * @param {recibe la cedula como parametro} cedula 
+ * @description funcion para validar cedula ecuatoriana
+ * @param {cedula} cedula  
  */
 function validarCedula(cedula) {
     var cad = cedula.trim();
@@ -29,37 +29,18 @@ function validarCedula(cedula) {
     }
 }
 /**
- * funcion para manejo de errores
- * @param {sms como parametro para enviar mensaje} msg 
- */
-function manejoMensajes(msg) {
-    //console.log(error);
-    var mensaje = '<div class="alert alert-danger">';
-    mensaje += msg;
-    mensaje += '</div>';
-    $("#error").html(mensaje);
-}
-/**
- * Obtiene la fecha actual
- * @returns {String}
+ * @description trae fecha actual cambiando de formato
  */
 function fechaActual() {
-
-    //alert(fecha);
     var d = new Date();
-    //alert((d.getDate()+"/"+(d.getMonth()+1))+"/"+d.getFullYear());
     var mes = (d.getMonth() + 1);
     var dia = d.getDate();
     var fecha = (d.getFullYear() + "-" + rellenarCeros(mes, 2) + "-" + rellenarCeros(dia, 2));
-    //  console.log("actual "+fecha);
-
     $("#fecha").val(fecha);
     return fecha;
 }
 /**
- * Devuelve una fecha especificada
- * @param {type} fecha 
- * @returns {String}
+ * @description funcion para selecionar fecha en el select
  */
 function fechaE(fecha) {
     var d = new Date(fecha);
@@ -70,10 +51,7 @@ function fechaE(fecha) {
     return fecha;
 }
 /**
- * Da formato a la fecha para que se pueda ajustar al input de tipo date 
- * @param {type} texto
- * @param {type} nro_cero
- * @returns {String}
+ * @description funcion pra dar formato al input date
  */
 function rellenarCeros(texto, nro_cero) {
     texto = texto + "";
@@ -88,14 +66,10 @@ function rellenarCeros(texto, nro_cero) {
     }
 }
 /**
- * Pinta los horarios dependiendo si estos estan agendados o no
- * #91DD68 -> Este color en caso de que la cita ya este agendada
- * #F07979 -> Este color en caso de que la cita aun no este agendada
- * @returns {undefined}
+ * @description sirve para controlar los dias de atencion
  */
 function selectColor() {
     var dia = diaSemana();
-    // console.log("THIS DAY" + dia);
     if (dia !== "fin") {
         $("#inf").hide();
         $("#horario").show();
@@ -104,13 +78,11 @@ function selectColor() {
         $("#inf").show();
         $("#horario").hide();
         $("#bcita").hide();
-        // $("#inf").prop('disabled', 'disabled');
     }
 
 }
 /**
- * Retorna el nombre del dia, segun la fecha.
- * @returns {String}
+ * @description funcion que permite retoranar el dia segun la fecha
  */
 function diaSemana() {
     var fa = $("#fecha").val();
@@ -122,11 +94,7 @@ function diaSemana() {
 
 }
 /**
- * Retorna propiamente el valor(nombre) del dia actual
- * @param {type} dia
- * @param {type} mes
- * @param {type} anio
- * @returns {String}
+ * @description funcion que permite verificar los dias de la semana del sistema
  */
 function verificar_diaSemana(dia, mes, anio) {
     // var dias = [ "lun", "mar", "mie", "jue", "vie", "sab", "dom"];
@@ -137,11 +105,9 @@ function verificar_diaSemana(dia, mes, anio) {
     return d;
 }
 /**
- * Retorna un valor booleano que permite inhabilitar fechas expiradas
- * @returns {Boolean}
+ * @description funcion que inhabilita fechas pasadaas
  */
 function fechasPasadas() {
-    //  console.log("FECHA ACTUAL.METODO FECHAS APSADAS: "+ fechaActual());
     document.getElementById("fecha").setAttribute("min", fechaActual());
     var fechaEntrada = fechaE($("#fecha").val());
     var fechaLimite = fechaActual();
@@ -152,17 +118,12 @@ function fechasPasadas() {
     if ((new Date(fechaEntrada).getTime() < new Date(fechaLimite).getTime())) {
         console.log("FEcha Entrada incorrecta");
         $("#fechaError").show();
-        //$("#horario").prop('disabled', false);
     }
-
     console.log("FechaEntrada correcta")
     $("#fechaError").hide();
 }
 /**
- * Comprueba la hora actual
- * true= hora no disponible en el horario de atencion de la veterinario
- * false= hora dentro del horario de atencion de la veterinaria
- * @returns {Boolean}
+ * @description funcio que permite obtener la hora del sistema
  */
 function obtenerHora() {
     var d = new Date();
@@ -179,38 +140,18 @@ function obtenerHora() {
     }
 }
 /**
- * Devuelve la fecha siguiente a la fecha actual
- * @param {type} fecha
- * @returns {String}
+ * @description funcion que permite cojer la cita dependiendo de la hora
  */
 function fechaSiguiente(fecha) {
     var d = new Date(fecha);
     var mes = (d.getMonth() + 1);
     var dia = (d.getDate() + 2);
     var fecha = (d.getFullYear() + "-" + rellenarCeros(mes, 2) + "-" + rellenarCeros(dia, 2));
-    //   console.log("escogida: "+fecha);
     $("#fecha").val(fecha);
     return fecha;
 }
 /**
- * funcion para calcular la edad segun el ingreso de la fecha de nacimiento
- * @param {fecha como parametro para realizar el calculo} fecha 
- */
-function calcularEdad(fecha) {
-    //    var fecha = document.getElementById("fecha");
-    var hoy = new Date();
-    var cumpleanos = new Date(fecha);
-    var edad = hoy.getFullYear() - cumpleanos.getFullYear();
-    var m = hoy.getMonth() - cumpleanos.getMonth();
-    if (m < 0 || (m === 0 && hoy.getDate() < cumpleanos.getDate())) {
-        edad--;
-    }
-    console.log("TIENES: " + edad + " ANIOS");
-    return edad;
-}
-/**
- * metodo para validar la clave de l a cuenta y poder gonfigurar la cunenta
- * @param {clave} clave 
+ * @description funcion que permite validar la clave de la cuenta actual en caso de configuracion
  */
 function validarclave(clave) {
     var claveActual = $("#claveU").val();
@@ -221,7 +162,7 @@ function validarclave(clave) {
     return false;
 }
 /**
- * funcion para validar la vista de registro de veterinario
+ * @description funcion para validar el registro de veterinario desde administrador
  */
 function validarveterinario() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -275,7 +216,7 @@ function validarveterinario() {
     });
 }
 /**
- * funcion para validar la vista de los comentarios
+ * @description funcion para validar el la vista d elos comentarios
  */
 function validarcomentario() {
     $("#formulario").validate({
@@ -287,7 +228,7 @@ function validarcomentario() {
     });
 }
 /**
- * funcion para validar la vista del foro
+ * @description funcion para validar el la vista del foro
  */
 function validarforo() {
     $("#formulario").validate({
@@ -302,7 +243,7 @@ function validarforo() {
     });
 }
 /**
- * funcion para validar la vista del registro de usuario desde publico
+ * @description funcion para validar la vista del registro de usuario desde publico
  */
 function validarcliente() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -350,7 +291,7 @@ function validarcliente() {
     });
 }
 /**
- * Funcion para modificar un cliente desde veterinario
+ * @description Funcion para modificar un cliente desde veterinario
  */
 function modificarUV() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -398,7 +339,7 @@ function modificarUV() {
     });
 }
 /**
- * funcion para validar los comentarios echos por los clientes 
+ * @description funcion para validar los comentarios echos por los clientes 
  */
 function validarcomentario() {
     $("#formulario").validate({
@@ -410,7 +351,7 @@ function validarcomentario() {
     });
 }
 /**
- * funncion para validar la vista de registro de cliente desde publico
+ * @description funncion para validar la vista de registro de cliente desde publico
  */
 function validarcliente() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -463,18 +404,12 @@ function validarcliente() {
     });
 }
 /**
- * funcion para validar el registro de modificar desde usuario de mascota 
+ * @description funcion para validar el registro de modificar desde usuario de mascota 
  */
 function validarMascotaModificarU() {
     $.validator.addMethod("soloLetras", function (value, element) {
         return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
-    // $('#guardar').click(function () {
-    //     if ($('#especie').val().trim() === '') {
-    //         alert('selecione la especie');
-    //     } else {
-    //     }
-    // });
     $("#tablarmm").validate({
         rules: {
             nombreMa: {
@@ -497,18 +432,12 @@ function validarMascotaModificarU() {
     });
 }
 /**
- * funcion para validar la vista de registro de mascota desde veterinario
+ * @description funcion para validar la vista de registro de mascota desde veterinario
  */
 function registroMV() {
     $.validator.addMethod("soloLetras", function (value, element) {
         return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
-    // $('#guardar').click(function () {
-    //     if ($('#especie').val().trim() === '') {
-    //         alert('selecione la especie');
-    //     } else {
-    //     }
-    // });
     $("#tablaregMV").validate({
         rules: {
             nombre: {
@@ -531,18 +460,12 @@ function registroMV() {
     });
 }
 /**
- * funcion para validar la vista de modificar de mascota desde veterinrio
+ * @description funcion para validar la vista de modificar de mascota desde veterinrio
  */
 function modificarMVe() {
     $.validator.addMethod("soloLetras", function (value, element) {
         return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
-    // $('#guardar').click(function () {
-    //     if ($('#especie').val().trim() === '') {
-    //         alert('selecione la especie');
-    //     } else {
-    //     }
-    // });
     $("#modifiMVe").validate({
         rules: {
             nombreMa: {
@@ -565,20 +488,12 @@ function modificarMVe() {
     });
 }
 /**
- * Método para validar el registro de mascota desde cliente
+ * @description funcion para validar el registro de mascota desde cliente
  */
 function validarMascota() {
     $.validator.addMethod("soloLetras", function (value, element) {
         return this.optional(element) || /^[a-ñ-z\s]+$/i.test(value);
     }, "Escriba Solo letras por Favor");
-
-    // $('#guardar').click(function () {
-    //     if ($('#especie').val().trim() === '') {
-    //         alert('selecione la especie');
-    //     } else {
-    //         //            alert('especie seleccionado correctamente');
-    //     }
-    // });
     $("#tablareg").validate({
         rules: {
             nombre: {
@@ -600,7 +515,7 @@ function validarMascota() {
     });
 }
 /**
- * funcion para validar la vista de configuracion de cuenta de Cliente
+ * @description funcion para validar la vista de configuracion de cuenta de Cliente
  */
 function validarConfiguracionUsuario() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -665,7 +580,7 @@ function validarConfiguracionUsuario() {
     });
 }
 /**
- * funcion para validar la vista de registro de historial de la mascota desde veterinario
+ * @description funcion para validar la vista de registro de historial de la mascota desde veterinario
  */
 function validarregistroHistorial() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -692,7 +607,7 @@ function validarregistroHistorial() {
     });
 }
 /**
- * funcion para validar la vista de modificar de historial de la mascota desde veterinario
+ * @description funcion para validar la vista de modificar de historial de la mascota desde veterinario
  */
 function validarmodificarHistorial() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -718,7 +633,7 @@ function validarmodificarHistorial() {
     });
 }
 /**
- * funcion para validar la vista de servicios desde admsnistrador
+ * @description funcion para validar la vista de servicios desde admsnistrador
  */
 function validarServicios() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -742,7 +657,7 @@ function validarServicios() {
     });
 }
 /**
- * funcion para validar la vista de servicios para modificar desde admsnistrador
+ * @description funcion para validar la vista de servicios para modificar desde admsnistrador
  */
 function tablaregModServicio() {
     $.validator.addMethod("soloLetras", function (value, element) {
@@ -766,34 +681,28 @@ function tablaregModServicio() {
     });
 }
 /**
- * @function Comprueba si un valor existe dento de un Array
- * @param {type} array arreglo
- * @param {type} valor elemento a buscar
- * @returns {unresolved} valor encontrado
+ * @description funcion que permite encontrar un elemento dentro de un array
  */
 function contieneValor(array, valor) {
-            for (var i = 0; i < array.length; i++) {
-                if (valor == array[i]) {
-                    //  console.log('Si existe');
-                    //return valor;
-                    console.log("valor:" + valor);
-                    console.log("HORARIO Y DIV IGUALES")
-                    return valor;
-                    break;
-                }
-            }
+    for (var i = 0; i < array.length; i++) {
+        if (valor == array[i]) {
+            //  console.log('Si existe');
+            //return valor;
+            console.log("valor:" + valor);
+            console.log("HORARIO Y DIV IGUALES")
+            return valor;
+            break;
         }
-
-
+    }
+}
+/**
+ * @description funcion que permite guardar datos de un selec en un array
+ */
 function recorrerSelect(sel) {
-            var array = [sel.length];
-            for (var i = 0; i < sel.length; i++) {
-                //  Aca haces referencia al "option" actual
-                var opt = sel[i];
-                array[i] = opt.value;
-                // Haces lo que te de la gana aca
-                //console.log(array);
-            }
-            return array;
-            //console.log("ESte es el array"+array);
-        }
+    var array = [sel.length];
+    for (var i = 0; i < sel.length; i++) {
+        var opt = sel[i];
+        array[i] = opt.value;
+    }
+    return array;
+}

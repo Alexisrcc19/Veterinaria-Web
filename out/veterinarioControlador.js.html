@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: veterinarioControlador.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: veterinarioControlador.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>'use strict';
+var rol = require('../modelos/rol');
+var persona = require('../modelos/persona');
+var cuenta = require('../modelos/cuenta');
+var mascota = require('../modelos/mascota');
+/**
+ * @description VeterinarioControl
+ */
+class VeterinarioControl {
+    /**
+     * @description método que permite redirecionar a la pantalla para registar un veterinario
+     * @param {req} req objeto petición
+     * @param {res} res objeto respuesta 
+     */
+    registroVeterinario(req, res) {
+        res.render('index', {
+            title: 'Registrate', fragmento: 'veterinario/registroVeterinario', registro: 'registro', ventanas: "ventanas",
+            msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
+        });
+    }
+    listadoPacientes(req, res) {
+        mascota.getJoin({ persona: true }).filter({ visible: true }).then(function (lista) {
+            res.render('index', {
+                title: 'Veterinario', fragmento: 'registroMascotaVeterinario', lista: lista, ventanas: "ventanas",
+                msg: { error: req.flash('error'), info: req.flash('info'), ok: req.flash('success') }
+            });
+        }).error(function () {
+            req.flash('error', 'No se pudo encontrar');
+            res.redirect('/');
+        });
+    }
+    /**
+      * @description método que permite registrar un vterinario desde administrador
+      * @param {req} req objeto petición
+      * @param {res} res objeto respuesta 
+      */
+    guardar(req, res) {
+        rol.filter({ nombre: true }).run().then(function (roles) {
+            if (roles.length > 0) {
+                var role = roles[0];
+                cuenta.filter({ correo: req.body.correo, visible: true }).then(function (verificarCuenta) {
+                    if (verificarCuenta.length >= 1) {
+                        req.flash('error', 'la cuenta ya existe');
+                        res.redirect('/registrarVeterinario');
+                    } else {
+                        var datosV = {
+                            visible: true,
+                            vet: true,
+                            cedula: req.body.cedula,
+                            apellidos: req.body.apellidos,
+                            nombres: req.body.nombres,
+                            direccion: req.body.direccion,
+                            telefono: req.body.telefono,
+                            nro_registro: req.body.nro_registro,
+                            id_rolPersona: role.id
+                        };
+                        var datosC = {
+                            visible: true,
+                            correo: req.body.correo,
+                            clave: req.body.clave,
+                            usuario: req.body.usuario
+                        };
+                        var Veterinario = new persona(datosV);
+                        var Cuenta = new cuenta(datosC);
+                        Veterinario.cuenta = Cuenta;
+                        Veterinario.saveAll({ cuenta: true }).then(function (result) {
+                            req.flash('success', 'Se ha registrado correctamente! inicie session');
+                            req.session.destroy();
+                            res.redirect('/');
+                        }).error(function () {
+                            req.flash('error', 'la cuenta ya existe');
+                            res.redirect('/');
+                        });
+                    }
+                }).error(function () {
+                    req.flash('error', 'la cuenta ya existe');
+                    res.redirect('/');
+                });
+            } else {
+                req.flash('error', 'Aun no existen roles, recargue la pagina');
+            }
+        }).error(function () {
+            req.flash('error', 'hubo un problema por favor comuniquese con los desarroladores');
+            res.redirect('/');
+        });
+    }
+}
+module.exports = VeterinarioControl;
+
+
+
+
+
+
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CitaControl.html">CitaControl</a></li><li><a href="comentarioControlador.html">comentarioControlador</a></li><li><a href="controladorMV.html">controladorMV</a></li><li><a href="CuentaController.html">CuentaController</a></li><li><a href="foroControlador.html">foroControlador</a></li><li><a href="HistorialController.html">HistorialController</a></li><li><a href="MascotaControl.html">MascotaControl</a></li><li><a href="principalControlador.html">principalControlador</a></li><li><a href="ServicioControl.html">ServicioControl</a></li><li><a href="usuarioControl.html">usuarioControl</a></li><li><a href="VeterinarioControl.html">VeterinarioControl</a></li></ul><h3>Global</h3><ul><li><a href="global.html#creacionRoles">creacionRoles</a></li><li><a href="global.html#creacionVeterinario">creacionVeterinario</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sun Aug 25 2019 20:37:47 GMT-0500 (GMT-05:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

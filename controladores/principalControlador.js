@@ -1,20 +1,18 @@
 'use strict';
 var utilidades = require('../controladores/utilidades');
 var comentarios = require('../modelos/comentarios');
-
+/**
+ * @description principalControlador
+ */
 class principalControlador {
+     /**
+     * @description método que permite validar la autenticacion de la persona
+     * @param {req} req objeto petición
+     * @param {res} res objeto respuesta 
+     */
     verPrincipal(req, res) {
-        /*
-    * creacionRoles() = permite generar por primera vez los roles
-    */
         utilidades.creacionRoles();
-        /*
-         * creacionVeterinario() = permite generar por primera vez el veterinario
-         */
         utilidades.creacionVeterinario();
-        /*
-         * verifica si existe una sesion activa, caso contrario se encontrara en el principal(publico)
-         */
         if (req.session !== undefined && req.session.cuenta !== undefined) {
             var verificar = req.session.cuenta.ver;
             var restringir = true;
@@ -23,7 +21,7 @@ class principalControlador {
             } else {
                 restringir = false;
             }
-            comentarios.filter({ id_comentario: req.session.cuenta.external, visible:true }).then(function (com) {
+            comentarios.filter({ id_comentario: req.session.cuenta.external, visible: true }).then(function (com) {
                 var num = com.length;
                 var verificarCom = true;
                 if (num > 0) {

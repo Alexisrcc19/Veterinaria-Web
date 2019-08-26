@@ -5,115 +5,50 @@ var comentario = require('../modelos/comentarios');
 var ci = require('../modelos/cita');
 var se = require('../modelos/servicio');
 var foro = require('../modelos/foro');
-
 var eliminarControlador = require('../controladores/eliminarControlador');
 var eliminar = new eliminarControlador();
-
-/*
- * bd = usada para la genreacion de roles 
+/**
+ * @description se usa para la generacion de roles
  */
 var bd = require('../modelos/rol');
 var com = require('../modelos/comentarios');
-
 var foroControlador = require('../controladores/foroControlador');
 var foro = new foroControlador();
-
-
 var comentarioControlador = require('../controladores/comentarioControlador');
 var comentario = new comentarioControlador();
-
 var mascotavControl = require('../controladores/mascotavControlador');
 var mascota1 = new mascotavControl();
-
 var historialControlador = require('../controladores/HistorialControlador');
 var historial = new historialControlador();
-
-
 var principalControlador = require('../controladores/principalControlador');
 var principal = new principalControlador();
-/*
- * 
- * @type Module veterinarioControlador|Module veterinarioControlador
- */
 var veterinarioControl = require('../controladores/veterinarioControlador');
-/*
- * 
- * @type veterinarioControl instanciado
- */
 var veterinario = new veterinarioControl();
-/*
- * 
- * @type Module CuentaControlador|Module CuentaControlador
- */
 var cuentaControlador = require('../controladores/CuentaControlador');
-/*
- * 
- * @type cuentaControlador instanciado
- */
 var cuenta = new cuentaControlador();
-/*
- * 
- * @type Module mascotaControlador|Module mascotaControlador
- */
 var mascotacontrol = require('../controladores/mascotaControlador');
-/*
- * 
- * @type mascotacontrol instanciado
- */
 var mascota = new mascotacontrol();
-/*
- * 
- * @type Module usuarioControlador|Module usuarioControlador
- */
 var usuarioControl = require('../controladores/usuarioControlador');
-/*
- * 
- * @type usuarioControl instanciado
- */
 var usuario = new usuarioControl();
-/*
- * 
- * @type Module citaControlador|Module citaControlador
- */
 var citaControl = require('../controladores/citaControlador');
-/*
- * 
- * @type citaControl instanciado
- */
 var cita = new citaControl();
-/*
- * 
- * @type Module pagoControlador|Module pagoControlador
- */
 var pagoControl = require('../controladores/pagoControlador');
-/*
- * 
- * @type pagoControl instanciado
- */
 var pago = new pagoControl();
-/*
- * 
- * @type Module utilidades|Module utilidades
- */
+var servicioControl = require('../controladores/servicioControlador');
+var servicio = new servicioControl();
 /**
- * @type Module servicioControlador|Module servicioControlador
- */
-var servicioControl= require('../controladores/servicioControlador');
-/**
- * @type servicioControl |Servicio instanciado
- */
-var servicio= new servicioControl();
-
-/* GET home page. */
-/*
- * verificar_inicio = funcion que permite verificar  si una persona se encuentra iniciada sesion
- */
+     * @description funcion que permite cverificar inicio de session
+     * @param {req} req objeto petición
+     * @param {res} res objeto respuesta 
+     */
 function verificar_inicio(req) {
     return (req.session !== undefined && req.session.cuenta !== undefined);
 }
-/*
- * funcion que me permite negar el acceso a la pagina sin antes haber iniciado sesion
- */
+/**
+     * @description método que permite enviar mensaje y confirmacion de inicio session
+     * @param {req} req objeto petición
+     * @param {res} res objeto respuesta 
+     */
 var sacar = function (req, res, next) {
     if (verificar_inicio(req)) {
         next();
@@ -122,6 +57,11 @@ var sacar = function (req, res, next) {
         res.redirect('/');
     }
 };
+/**
+     * @description método que permite verificar la session del veterinario
+     * @param {req} req objeto petición
+     * @param {res} res objeto respuesta 
+     */
 var CuentaVeterinario = function (req, res, next) {
     var ver = req.session.cuenta.persona;
     if (ver === true) {
@@ -131,6 +71,11 @@ var CuentaVeterinario = function (req, res, next) {
         res.redirect('/');
     }
 };
+/**
+     * @description método que permite verificar la session del cliente
+     * @param {req} req objeto petición
+     * @param {res} res objeto respuesta 
+     */
 var CuentaUsuario = function (req, res, next) {
     var ver = req.session.cuenta.persona;
     if (ver === false) {
@@ -140,131 +85,140 @@ var CuentaUsuario = function (req, res, next) {
         res.redirect('/');
     }
 }
-router.get('/' , principal.verPrincipal);
-
-/*
- * permite redireccionar a la plantilla para poder registrar un clietne
+router.get('/', principal.verPrincipal);
+/**
+ * @description ruta para redirecionar a una pantalla y reistrar un cliente
  */
 router.get('/registrarUsuario', function (req, res, next) {
-    res.render('index', {title: 'Registrate', fragmento: 'registroUsuario', registro: 'registro', ventanas: "ventanas", msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
-
+    res.render('index', {
+        title: 'Registrate',
+        fragmento: 'registroUsuario',
+        registro: 'registro',
+        ventanas: "ventanas",
+        msg: {
+            error: req.flash('error'),
+            info: req.flash('info'),
+            ok: req.flash('success')
+        }
+    });
 });
-/*
- * foro de discusiones
+/**
+ * @description rutas get y post para visualizar guardar y listar el foro
  */
-router.get("/cargarDatosForo",sacar,CuentaVeterinario, foro.cargardatosForo);
+router.get("/cargarDatosForo", sacar, CuentaVeterinario, foro.cargardatosForo);
 router.get('/foro', foro.listadoForo);
-router.get('/foroVeterinario',sacar,CuentaVeterinario, foro.listadoForoVeterinario);
-router.post('/registroForo',foro.guardar);
-router.post('/responderForo', sacar,CuentaVeterinario, foro.responder);
-//acerca
+router.get('/foroVeterinario', sacar, CuentaVeterinario, foro.listadoForoVeterinario);
+router.post('/registroForo', foro.guardar);
+router.post('/responderForo', sacar, CuentaVeterinario, foro.responder);
+/**
+ * @description ruta para mostrar acerca de nostros 
+ */
 router.get('/acerca', function (req, res, next) {
-    res.render('index', {title: 'Foro', fragmento: 'AcercadeNosotros', inicio: 'inicio', ventanas: "ventanas", msg: {error: req.flash('error'), info: req.flash('info'), ok: req.flash('success')}});
-
+    res.render('index', {
+        title: 'Foro',
+        fragmento: 'AcercadeNosotros',
+        inicio: 'inicio',
+        ventanas: "ventanas",
+        msg: {
+            error: req.flash('error'),
+            info: req.flash('info'),
+            ok: req.flash('success')
+        }
+    });
 });
-//<----------------mascota---------------->
-/*
- * get = permite visualizar la parte del formulario previo al registro de la mascota
+/**
+ * @description ruta para listar guardar visualizar y actualizar mascota desde veterinario
  */
 router.get('/registroMascota', sacar, mascota.visualizar);
-/*
- * post = permite registrar una nueva mascota
- */
 router.post('/registro/mascota', sacar, mascota.guardar);
 router.post('/veterinario/registro/mascota', sacar, CuentaVeterinario, mascota.guardarDesdeVeterinario);
-//<-------------------Veterinario---------------->
-
-/*
- * get = permite la visualizacion del formulario previo a registrar
+/**
+ * @description rutas que redireciona a una pantalla para registro d eun veterinario
  */
 router.get('/registrarVeterinario', sacar, CuentaVeterinario, veterinario.registroVeterinario);
-/*
- * post = permite guardar los datos de un nuevo veterinario
- */
 router.post('/registroVeterinario', sacar, CuentaVeterinario, veterinario.guardar);
-router.get('/listaVeterinarios', sacar, CuentaVeterinario, veterinario.verListaVeterinario);
-/*
- * get = permite visualizar el listado de paciente con sus respectivas mascotas
+/**
+ * @description rutas para mostra listado de los clientes 
  */
 router.get('/registroMascotaVeterinario', sacar, CuentaVeterinario, veterinario.listadoPacientes);
-//<-----------------------------usuario------------------------>
-/*
- * post = permite guardar los datos de nuevo cliente 
+/**
+ * @description rutas propios del usuario de su vista
  */
 router.post('/registroUsuario', usuario.guardar);
-//<---------------inicio de sesion----------->
-/*
- * post = permite el ingreso de la persona previamente registrada
+/**
+ * @description analisa en ingreso al sistema previo al registro
  */
 router.post('/inicio_sesion', cuenta.iniciar_sesion);
-/*
- * get = permite destruir la sesion, y salir del sistema, dejando en la pantalla principal(publico)
+/**
+ * @description ruta permite destruir session
  */
 router.get('/cerrar_sesion', sacar, cuenta.cerrar_sesion);
-//citas
+/**
+ * @description rutas propias de
+ */
 router.get('/listaCitas', sacar, cita.verListaCitas);
-//pagos en linea
+
 router.get('/listaPagos', sacar, pago.verListaPagos);
 router.get('/GestionPagos', sacar, pago.verGestionPagos);
+/**
+ * @description ruta para visualizar mascota
+ */
 router.get('/listaclientes', sacar, CuentaVeterinario, mascota1.verReg);
-// router.post('/guardarmascotacliente', mascota1.guardarMV);
 router.get('/registroMascota/:external', sacar, CuentaVeterinario, mascota1.visualizarModificar);
-// router.post('/registroMascota', mascota1.guardarMascota);
 router.get('/veterinario/mascota/listaHistorial/:external/:external_idP', sacar, CuentaVeterinario, historial.verHistorial);
 router.post('/veterinario/registro/historial', sacar, CuentaVeterinario, historial.guardarHistorial);
 router.get('/listaHistorialMascotas', sacar, CuentaVeterinario, historial.listaHistorialMascotas);
 /**
- * rutas para cargar datos para modificar y actualizar clientes
+ * @description rutas para cargar datos para modificar y actualizar clientes
  */
 router.get("/cargarDatosPersona", sacar, CuentaVeterinario, usuario.cargardatosCliente);
-/*
- * rutas para cargar y modificar datos del historial
+/**
+ * @description rutas para cargar y modificar datos del historial
  */
 router.get("/cargarDatosHistorial", sacar, historial.cargardatosHistorial);
 router.post('/actualizarHistorial', historial.modificarH);
 router.post('/actualizar', sacar, usuario.modificarC);
-/*
- * rutas para cargar y modifiacr datos de la mascota 
+/**
+ * @description rutas para cargar y modifiacr datos de la mascota 
  */
 router.get("/cargarDatosMascota", mascota.cargardatosMascota);
 router.post('/actualizarMascota', mascota.modificarM);
 /**
- * ruta para vizualizar y configurar cuenta de usuario
+ * @description ruta para vizualizar y configurar cuenta de usuario
  */
 router.get("/cargarDatosUsuario", usuario.cargardatosUsuario);
 router.post('/configurarUsuario', usuario.configurarUsuario);
-/*
- * comentarios que el cliente puede dejar a un veterinario
+/**
+ * @description rutas propias de los comentarios
  */
 router.get('/comentario', sacar, CuentaUsuario, comentario.dejarComentario);
 router.post('/registroComentario', sacar, CuentaUsuario, comentario.guardarComentario);
 
 /**
- * rutas para agendar y gestionar Citas Medica 
+ * @description rutas propias de los citas medicas
  */
 router.get("/cliente/cita/agendar", sacar, cita.verRegistro);
 router.post('/cliente/cita/agendar', sacar, cita.guardarCita);
 router.get('/veterinario/cita/listaCitas', sacar, cita.verListaCitas);
 
 /**
- * Servios de la veterinaria
+ * @description rutas propias de los servios
  */
-router.get('/veterinario/servicio/registro',sacar,servicio.verRegistroServicio);
-router.post('/veterinario/servicio/registro',sacar,servicio.guardarServicio);
-router.get('/veterinario/servicio/listaServicio',sacar,servicio.verListadoServicio);
-router.get('/servicio/datosModi',sacar,servicio.cargardatosServicio);
-router.post('/veterinario/servicio/modificar',sacar,servicio.modificarServicio);
-router.get('/servicioCombo',sacar,servicio.CargarServicios);
-/*
- * eliminaciones
+router.get('/veterinario/servicio/registro', sacar, servicio.verRegistroServicio);
+router.post('/veterinario/servicio/registro', sacar, servicio.guardarServicio);
+router.get('/veterinario/servicio/listaServicio', sacar, servicio.verListadoServicio);
+router.get('/servicio/datosModi', sacar, servicio.cargardatosServicio);
+router.post('/veterinario/servicio/modificar', sacar, servicio.modificarServicio);
+router.get('/servicioCombo', sacar, servicio.CargarServicios);
+/**
+ * @description rutas pertenecen a lo que respecta elimanacion de datos
  */
-router.post('/eliminarComentario', sacar,CuentaVeterinario,eliminar.eliminarComentario);
+router.post('/eliminarComentario', sacar, CuentaVeterinario, eliminar.eliminarComentario);
 router.post('/eliminarMascota', sacar, eliminar.eliminarMascota);
-router.post('/eliminarHistorialM', sacar,CuentaVeterinario,eliminar.eliminarHistorial);
-router.post('/eliminarUsuario', sacar,CuentaVeterinario,eliminar.eliminarUsuario);
-router.post('/eliminarVeterinario', sacar,eliminar.eliminarVeterinario)
-router.post('/eliminarForo', sacar,CuentaVeterinario,eliminar.eliminarForo)
-
+router.post('/eliminarHistorialM', sacar, CuentaVeterinario, eliminar.eliminarHistorial);
+router.post('/eliminarUsuario', sacar, CuentaVeterinario, eliminar.eliminarUsuario);
+router.post('/eliminarVeterinario', sacar, eliminar.eliminarVeterinario)
+router.post('/eliminarForo', sacar, CuentaVeterinario, eliminar.eliminarForo)
 router.get('/pago', function (req, res, next) {
     res.render('pagos');
 })

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: CuentaControlador.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: CuentaControlador.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>
+'use strict';
+
+var cuentaC = require('../modelos/cuenta');
+/**
+ * @description CuentaController
+ */
+class CuentaController {
+    /**
+     * @description  Funcion que permite iniciar sesion
+     * @param {req} req objeto peticion
+     * @param {res} res objeto respuesta
+     * @returns {undefined} redireccion a paginas
+     */
+
+    iniciar_sesion(req, res) {
+
+        cuentaC.getJoin({persona: {rol: true}}).filter({correo: req.body.correo}).run().then(function (verificar) {
+            var cuenta = verificar[0];
+            /**
+             * se usa rty-catch para poder atrapar errores, en este caso es siendo usado en caso de que se digite algun tipo de 
+             * cuenta o una clave que no exista en la base de datos, en cuyo caso atrapara ese error y lo represenatara como "la cuenta no existe",
+             * e inmediatamente se redirige a la pagina principal  
+             */
+            try {
+                /**
+                 * 
+                 * @type ver = variable declarada para poder rescatar el rol del cual se esta tratando de iniciar sesion
+                 * para acontinuacion una vez reconocido el rol se le presentara en pantalla lo que tiene disponible, 
+                 * ya sea veterinario o usuario
+                 */
+                var ver = cuenta.persona.rol.nombre;
+            } catch (error) {
+                req.flash('error', 'No existe la cuenta');
+                res.redirect('/');
+            }
+            /**
+             * cuentaC = se hace referencia a la cuenta para poder verificar si los datos ingresados son los correctos,
+             * caso contrario aparecera otro error diciendo "los datos son incorrectos" e inmediantamente se redirige a la 
+             * pagina principal
+             * 
+             * getJoin= se usa cuando dos cuentas estan relacionadas
+             * 
+             * persona = se une el modelo de persona para poder extraer el rol con el cual inicia sesion,
+             * en el rol se tiene el dato "nombre" el cual es de tipo boolean, ya que solo estara enviando 
+             * true o false, por temas de la plantilla usada
+             * 
+             * filter = se filtra el correo para la futura verificacion de la cuenta antes de dar permisos de ingreso
+             * 
+             * run() = esta funcion es usada para hacer funcionar, aunque no es obligatoria
+             * 
+             * then() = usado para realizar el collback dentro de la mascota con el modelo y el filter incluido
+             */
+
+            cuentaC.getJoin({persona: {rol: true}}).filter({correo: req.body.correo, visible:true}).run().then(function (verificar) {
+               
+                    
+                
+                /**
+                 * verificar.length = se usa para poder saber si la cuenta es mayor a cero, caso contrario saldra el error de "No existe la cuenta"
+                 * que en realidad es porque la base de datos no tiene registro de la cuenta pero por temas de privacidad se presentara al 
+                 * usuario dicho mensaje
+                 */
+                if (verificar.length > 0) {
+                    /**
+                     * 
+                     * @type verificar = se la toma como arreglo empezando desde cero ya que estamos trayendo todos los datos de la cuenta
+                     */
+                    var cuenta = verificar[0];
+                    /**
+                     * cuenta.clave = se esta extrayendo la informacion de la cuenta, en este caso se extrae la clave para luego poder comprobar
+                     * con el "req.body.clave" el cual es rescatado de la plantilla "publico"
+                     */
+                    if (cuenta.clave === req.body.clave) {
+                        /**
+                         * req.session.cuenta = en esta variable de sesion estamos recuperando todos los datos que estaran activos durante todo el tiempo
+                         * que se encuentre en sesion, se han puesto los datos que se crean convenientes
+                         * 
+                         * id = se extrae el id de la persona que haya iniciado sesion, ya sea veterinario o usuario
+                         * external = se extrae el external_id de la persona que haya iniciado sesion, ya sea veterinario o usuario
+                         * persona = se extrae el valor del boolean de la persona que haya iniciado sesion, ya sea veterinario o usuario
+                         * usuario =me extrae los datos (nombres y apellidos) de la persona que haya iniciado sesion, ya sea veterinario o usuario
+                         */
+                        req.session.cuenta = {id: cuenta.persona.id, external: cuenta.persona.external_id, persona: ver,
+                            usuario: cuenta.persona.apellidos + " " + cuenta.persona.nombres, ver: cuenta.correo};
+                        res.redirect('/');
+                    } else {
+                        req.flash('error', 'Los datos son incorrectos');
+                        res.redirect('/');
+                    }
+                } else {
+                    req.flash('error', 'No existe la cuenta');
+                    res.redirect('/');
+                }
+                /**
+                 * 
+                 * @param {type} error = saldra error en caso de no estar conectada correctamente la base de datos, y por ende no encontraria 
+                 * los datos del modelo llamado persona
+                 * @returns {undefined}
+                 */
+            }).error(function (error) {
+                req.flash('error', 'Algo salio mal, comuniquese con los desarroladores');
+                res.redirect('/');
+            });
+            /**
+             * 
+             * @param {type} error = saldra error en caso de no estar conectada correctamente la base de datos, y por ende no encontraria 
+             * los datos del modelo llamado persona
+             * @returns {undefined}
+             */
+           
+        }).error(function (error) {
+            req.flash('error', 'Algo salio mal, comuniquese con los desarroladores');
+            res.redirect('/');
+        });
+    }
+    /**
+     * 
+     * @param {type} req = en este caso es usado para destruir la sesion que se encuentre activa
+     * @param {type} res = usada para la redirigir a la pagina principal(publica)
+     * @returns {undefined}
+     * 
+     */
+    cerrar_sesion(req, res) {
+        req.session.destroy();
+        res.redirect('/');
+    }
+}
+/**
+ * exportacion de la clase "CuentaController"
+ */
+
+module.exports = (CuentaController);
+
+
+</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="CitaControl.html">CitaControl</a></li><li><a href="comentarioControlador.html">comentarioControlador</a></li><li><a href="controladorMV.html">controladorMV</a></li><li><a href="CuentaController.html">CuentaController</a></li><li><a href="foroControlador.html">foroControlador</a></li><li><a href="HistorialController.html">HistorialController</a></li><li><a href="MascotaControl.html">MascotaControl</a></li><li><a href="principalControlador.html">principalControlador</a></li><li><a href="ServicioControl.html">ServicioControl</a></li><li><a href="usuarioControl.html">usuarioControl</a></li><li><a href="VeterinarioControl.html">VeterinarioControl</a></li></ul><h3>Global</h3><ul><li><a href="global.html#creacionRoles">creacionRoles</a></li><li><a href="global.html#creacionVeterinario">creacionVeterinario</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.3</a> on Sun Aug 25 2019 20:37:47 GMT-0500 (GMT-05:00)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

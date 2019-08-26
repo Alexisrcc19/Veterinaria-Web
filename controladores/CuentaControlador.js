@@ -1,24 +1,15 @@
 
 'use strict';
-/**
- * Importacion de la clase de modelo Cuenta
- * @type Module cuenta|Module cuenta
- */
-/**
- * 
- * @type Module cuenta|Module cuenta---sirve para extraer el modelo de la cuenta
- */
+
 var cuentaC = require('../modelos/cuenta');
 /**
- * Clase que permite iniciar sesion y cerrar sesion
+ * @description CuentaController
  */
-
-
 class CuentaController {
     /**
-     * Funcion que permite iniciar sesion
-     * @param {type} req objeto peticion
-     * @param {type} res objeto respuesta
+     * @description  Funcion que permite iniciar sesion
+     * @param {req} req objeto peticion
+     * @param {res} res objeto respuesta
      * @returns {undefined} redireccion a paginas
      */
 
