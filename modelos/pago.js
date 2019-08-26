@@ -8,6 +8,7 @@ var Pago = thinky.createModel("Pago", {
     hora: type.string(),
     fecha: type.string(),
     id: type.string(),
+    valor: type.string(),
     external_id: type.string().default(r.uuid())
 });
 

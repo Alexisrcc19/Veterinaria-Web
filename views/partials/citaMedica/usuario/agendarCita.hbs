@@ -1,3 +1,5 @@
+
+
 <script src="/js/metodos.js"></script>
 <script src="/microservicios/metod.js"></script>
 <script>
@@ -16,7 +18,7 @@
 
 
         //var c = recorrerSelect(document.getElementById("fechass"));
-        $(document).change(function () {
+        $("#horario").change(function () {
             var verFecha = $("#fecha").val();
             var horas = $("#horario").val();
             contieneValor(c, verFecha);
@@ -54,6 +56,10 @@
         });
     });
     llenarComboServicio();
+    
+        $("#servicioA").click(function () {
+        alert($(this).attr("id"))
+    });
 
 
 
@@ -103,6 +109,10 @@
                     </div>
                 </div>
             </div>
+
+
+
+
             <div class="col-md-1"> </div>
             <div class="card" style="width:700px">
                 <div class="card-header btn-succses">
@@ -118,13 +128,73 @@
                             <label class="text-black">Seleccione su mascota</label>
                             <select class="form-control" id="mascota" name="mascota">
                                 {{#each mascota}}
-                                <option value="{{nombre}}"> {{nombre}} </option>ç
+                                <option value="{{nombre}}"> {{nombre}} </option>
                                 {{/each}}
                             </select>
                             <label class="text-black" for="exampleFormControlSelect2">Seleccione el servicio</label>
                             <div class="form-group">
                                 <select class="form-control" name="servicio" id="servicioA">
                                 </select>
+                                <input id="valorMicro" name="valorMicro" value="" />
+
+                            </div>
+                            <label class="text-black" for="exampleFormControlSelect2">Forma de pago</label>
+                            <div class="form-group">
+
+                                <select class="form-control" name="tPago" id="tPago">
+                                    <option value="online"> En linea</option>
+                                    <option value="efectivo">Efectivo </option>
+                                </select>
+                                <hr>
+                                <form>
+                                    <div class="form-group owner">
+                                        <label for="owner">Titular</label>
+                                        <input type="text" class="form-control" id="owner">
+                                    </div>
+                                    <div class="form-group CVV">
+                                        <label for="cvv">CVV</label>
+                                        <input type="text" class="form-control" id="cvv">
+                                    </div>
+                                    <div class="form-group" id="card-number-field">
+                                        <label for="cardNumber">Numero Tarjeta</label>
+                                        <input type="text" class="form-control" id="cardNumber">
+                                    </div>
+                                    <div class="form-group" id="expiration-date">
+                                        <label>Fecha Expiracion</label>
+                                        <select>
+                                            <option value="01">Enero</option>
+                                            <option value="02">Febrero </option>
+                                            <option value="03">Marzo</option>
+                                            <option value="04">Abril</option>
+                                            <option value="05">Mayo</option>
+                                            <option value="06">Junio</option>
+                                            <option value="07">Julio</option>
+                                            <option value="08">Agosto</option>
+                                            <option value="09">Septiembre</option>
+                                            <option value="10">Octubre</option>
+                                            <option value="11">Noviembre</option>
+                                            <option value="12">Diciembre</option>
+                                        </select>
+                                        <select>
+                                            <option value="19"> 2019</option>
+                                            <option value="20"> 2020</option>
+                                            <option value="21"> 2021</option>
+                                            <option value="22"> 2022</option>
+                                            <option value="23"> 2023</option>
+                                            <option value="24"> 2024</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group" id="credit_cards">
+                                        <img src="/images/visa.jpg" id="visa">
+                                        <img src="/images/mastercard.jpg" id="mastercard">
+                                        <img src="/images/amex.jpg" id="amex">
+                                    </div>
+                                    <div class="form-group" id="pay-now">
+                                        <button type="submit" class="btn btn-default" id="confirm-purchase">Confirmar</button>
+                                        <a href="/" class="btn btn-danger btn-pill">Volver</a>
+                                    </div>
+                                </form>
+                                <hr>
                             </div>
                             <label class="text-black" for="fecha">Seleccione la fecha</label>
 
@@ -162,6 +232,8 @@
                             </div>
                             <div class="form-group">
                                 <input type="submit" id="bcita" class="btn btn-primary btn-pill" value="Generar Cita" id="genCit">
+                                <input type="button" id="bPago" class="btn btn-primary btn-pill" value="">
+<!--<a href="/pago/{{valor}}" class="btn btn-danger btn-pill">Volver</a>-->
                                 <a href="/" class="btn btn-danger btn-pill">Volver</a>
                             </div>
                         </form>
@@ -175,5 +247,8 @@
         {{#unless registro}}
         <h1>Aun no tiene mascotas registradas</h1>
         {{/unless}}
+
     </div>
 </section>
+
+    

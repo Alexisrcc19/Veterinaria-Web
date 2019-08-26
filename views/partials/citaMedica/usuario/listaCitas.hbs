@@ -6,7 +6,7 @@
         </div>
         <div class="card">
             <div class="card-header bg-succses">
-                HISTORIAL CITAS MEDICAS
+                    PAGAR CITAS MEDICAS
             </div>
             <div class="card-body">
                 <div class="form-group">
@@ -23,14 +23,13 @@
                 </div>
                 <div class="form-group">
                     <div class="table-responsive">
-                        <table id="tablaLCitaV" class="table table-sm">
+                        <table id="tablaLCitaC" class="table table-sm">
                             <thead>
                                 <tr>
                                     <th>Nro</th>
-                                    <th>Cliente</th>
                                     <th>Mascota</th>
                                     <th>Servicio</th>
-                                    
+                                    <th>Pagar</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -40,16 +39,17 @@
                                         {{i}}
                                     </td>
                                     <td>
-                                        {{id_cliente}}
-                                    </td>
-                                    <td>
                                         {{id_mascota}}
                                     </td>
                                     
                                     <td>
                                         {{id_servicio}}
                                     </td>
-                                  
+                                  <td>
+                                        <div class="btn-group">
+                                                <a href="/pago/{{id_servicio}}" class="btn-warning btn-sm">PAGAR </a>
+                                            </div> 
+                                    </td>
                                 </tr>
                                 {{/each}}
                             </tbody>

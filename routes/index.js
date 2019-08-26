@@ -201,11 +201,7 @@ router.post('/inicio_sesion', cuenta.iniciar_sesion);
  * get = permite destruir la sesion, y salir del sistema, dejando en la pantalla principal(publico)
  */
 router.get('/cerrar_sesion', sacar, cuenta.cerrar_sesion);
-//citas
-router.get('/listaCitas', sacar, cita.verListaCitas);
-//pagos en linea
-router.get('/listaPagos', sacar, pago.verListaPagos);
-router.get('/GestionPagos', sacar, pago.verGestionPagos);
+
 router.get('/listaclientes', sacar, CuentaVeterinario, mascota1.verReg);
 // router.post('/guardarmascotacliente', mascota1.guardarMV);
 router.get('/registroMascota/:external', sacar, CuentaVeterinario, mascota1.visualizarModificar);
@@ -244,7 +240,8 @@ router.post('/registroComentario', sacar, CuentaUsuario, comentario.guardarComen
  */
 router.get("/cliente/cita/agendar", sacar, cita.verRegistro);
 router.post('/cliente/cita/agendar', sacar, cita.guardarCita);
-router.get('/veterinario/cita/listaCitas', sacar, cita.verListaCitas);
+router.get('/veterinario/cita/listaCitas', sacar, cita.verListaCitasV);
+router.get('/cliente/cita/listaCitas', sacar, cita.verListaCitasC);
 
 /**
  * Servios de la veterinaria
@@ -265,7 +262,9 @@ router.post('/eliminarUsuario', sacar,CuentaVeterinario,eliminar.eliminarUsuario
 router.post('/eliminarVeterinario', sacar,eliminar.eliminarVeterinario)
 router.post('/eliminarForo', sacar,CuentaVeterinario,eliminar.eliminarForo)
 
-router.get('/pago', function (req, res, next) {
+
+router.get('/pago/:valor', sacar,function (req, res, next) {
     res.render('pagos');
-})
+});
+router.post('/pago', pago.guardar);
 module.exports = router;
